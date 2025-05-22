@@ -119,19 +119,16 @@
 
 
 
-							<!-- controllare quantity se si richiama dai dati -->
+							
 							<t:template>
-								<Label text="{Quantity}" />
+								<Label text="asd" />
 							</t:template>
 						</t:Column>
 						<t:Column width="9rem">
 							<Label text="Data ultimo aggiornmento" />
 							<!-- controllare status  -->
 							<t:template>
-								<ObjectStatus text="{Status}" state="{
-								path: 'Available',
-								formatter: '.formatAvailableToObjectState'
-							}"/>
+								<ObjectStatus text="asd"/>
 							</t:template>
 						</t:Column>
 
@@ -157,7 +154,7 @@
 							<t:template>
 								<Link text="Show Image" href="{ProductPicUrl}" target="_blank"/>
 							</t:template>
-						</t:Column> -->
+						</t:Column> 
 						<t:Column width="9rem">
 							<Label text="Details" />
 							<t:template>
@@ -192,7 +189,7 @@
 						</t:Column>
 						<t:Column width="11rem" hAlign="Center">
 							<Label text="{i18n>data}" />
-							<t:template> -->
+							<t:template> 
 								<DatePicker value="{
 								path: 'DeliveryDate',
 								type: 'sap.ui.model.type.Date',
