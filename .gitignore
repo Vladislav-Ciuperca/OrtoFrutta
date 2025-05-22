@@ -5,3 +5,5 @@ demo/db/.env
 esercitazione/gen/db/.env
 # auto generated wildcard
 esercitazione/esercitazione/.env
+# auto generated wildcard
+esercitazione/db/.env
