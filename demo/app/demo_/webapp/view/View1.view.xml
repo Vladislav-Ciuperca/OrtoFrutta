@@ -1,0 +1,168 @@
+<mvc:View
+controllerName="demo.controller.View1"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:smartList="sap.ui.comp.smartlist"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	height="100%">
+     
+
+	<SplitApp
+
+		id="SplitAppDemo"
+		initialDetail="detail"
+		initialMaster="master">
+
+		<detailPages>
+			<Page
+				id="detail"
+				title="{i18n>title}"
+				backgroundDesign= "Solid"
+				visible="false">
+				
+
+				<VBox class="sapUiSmallMargin">
+		<f:Form id="FormToolbar"
+			editable="true"
+			ariaLabelledBy="Title1">
+			<f:toolbar>
+				<Toolbar id="TB1">
+					<Title id="Title1" text="{i18n>text}"/>
+					<ToolbarSpacer />
+					<Button icon="sap-icon://settings"/>
+					<Button icon="sap-icon://drop-down-list" />
+				</Toolbar>
+			</f:toolbar>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer ariaLabelledBy="Title2">
+					<f:toolbar>
+						<Toolbar>
+							<Title id="Title2" text= "{i18n>title}"/>
+							<ToolbarSpacer />
+							<Button icon="sap-icon://settings"/>
+						</Toolbar>
+					</f:toolbar>
+					<f:formElements>
+						<f:FormElement label="{i18n>label_1}">
+							<f:fields>
+								<Input required="true" value="{AddUser>/Name}" id="name" placeholder="{i18n>placeholder_1}" />
+							</f:fields>
+						</f:FormElement>
+						<!-- <f:FormElement label="{i18n>label_cognome}">
+							<f:fields>
+								<Input value="{SupplierCognome}" id="cognome"  placeholder="{i18n>placeholder_cognome}"/>
+							</f:fields>
+						</f:FormElement> -->
+						
+					</f:formElements>
+				</f:FormContainer>
+
+				
+				<f:FormContainer ariaLabelledBy="Title3">
+					<f:toolbar>
+						<Toolbar>
+							<Title id="Title3" text="{i18n>titolo_altre_info}" />
+							<ToolbarSpacer />
+							<Button icon="sap-icon://settings"/>
+						</Toolbar>
+					</f:toolbar>
+					
+
+					<f:formElements>
+					
+						<f:FormElement label="{i18n>label_mail}">
+							<f:fields>
+								<Input value="{AddUser>/Mail}" id="Mail" placeholder="{i18n>placeholder_mail}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>label_telefono}">
+							<f:fields>
+								<Input value="{AddUser>/Telefono}" id="Telefono"  placeholder="{i18n>placeholder_telefono}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				
+			</f:formContainers>
+			
+		</f:Form>
+
+			<OverflowToolbar>
+  <ToolbarSpacer /> <Button id="save" press="save" visible="false" tooltip="Save" icon="sap-icon://save"/>
+</OverflowToolbar>
+
+		
+	</VBox>
+			</Page>
+
+	
+		</detailPages>
+		
+	
+	
+		
+		<masterPages>
+			
+
+			<Page
+				id="master"
+				title="{i18n>title_studenti}"
+				backgroundDesign= "List">
+					
+			<OverflowToolbar>
+				<SearchField liveChange=".onSearch" width="80%"  placeholder="{i18n>search}" 
+				/>
+			</OverflowToolbar>
+
+			<smartList:SmartList id="ItemsST" items="{AddUser>/Users}" header="{i18n>header_utenti}"
+				showRowCount="false" showFullScreenButton="false" enableAutoBinding="false">
+				
+					<StandardListItem press="OnListItemPress" type="Navigation" title="{AddUser>nome_studente}" info="{AddUser>email_studente}"
+						description="{AddUser>telefono_studente}"/>
+						
+			</smartList:SmartList>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer/>
+				<OverflowToolbarButton id="add" press="visibile" tooltip="Add" text="Add" icon="sap-icon://add"/>
+			</OverflowToolbar>
+		</footer>	
+		</Page>
+		
+
+			<!-- <Page
+				id="master2"
+				title="Master 2"
+				backgroundDesign="List"
+				showNavButton="true"
+				navButtonPress=".onPressMasterBack">
+				<List itemPress=".onListItemPress">
+					<items>
+						<StandardListItem title="To Detail 1" type="Active" custom:to="detail" />
+						<StandardListItem title="To Detail 2" type="Active" custom:to="detailDetail" />
+						<StandardListItem title="To Detail 3" type="Active" custom:to="detail2" />
+					</items>
+				</List>
+			</Page> -->
+		</masterPages>
+	</SplitApp>
+</mvc:View>
