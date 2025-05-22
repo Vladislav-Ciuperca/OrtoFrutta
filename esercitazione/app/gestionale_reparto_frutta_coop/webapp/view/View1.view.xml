@@ -11,13 +11,13 @@
 	
 	
 	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
-			<!-- DynamicPage Title -->
+		
 			<f:title>
 				<f:DynamicPageTitle>
 					<f:heading>
-						<Title text="Ortofrutta"/>
+						<Title text="{i18n>Titolo}"/>
 					</f:heading>
-					<f:expandedContent>
+					<!-- <f:expandedContent>
 						<Label text="This is a subheading"/>
 					</f:expandedContent>
 					<f:snappedContent>
@@ -25,8 +25,9 @@
 					</f:snappedContent>
 					<f:snappedTitleOnMobile>
 						<Title text="This is a subheading"/>
-					</f:snappedTitleOnMobile>
-					<f:content>
+					</f:snappedTitleOnMobile> -->
+
+					<!-- <f:content>
 						<OverflowToolbar>
 							<GenericTag text="SR"
 								status="Error"
@@ -38,21 +39,23 @@
 									state="Error"/>
 							</GenericTag>
 						</OverflowToolbar>
-					</f:content>
+					</f:content> -->
+
+<!-- bottoni in alto a destra -->
 					<f:actions>
 						<ToolbarSpacer/>
 						<Button
-								text="Edit"
+								text="{i18n>button_edita}"
 								type="Emphasized"/>
 						<Button
-								text="Delete"
+								text="{i18n>button_elimina}"
 								type="Transparent"/>
-						<Button
+						<!-- <Button
 								text="Copy"
 								type="Transparent"/>
 						<Button
 								icon="sap-icon://action"
-								type="Transparent"/>
+								type="Transparent"/> -->
 					</f:actions>
 				</f:DynamicPageTitle>
 			</f:title>
@@ -72,13 +75,13 @@
 												allowWrapping="true">
 											<layout:VerticalLayout
 													class="sapUiMediumMarginEnd">
-												<ObjectAttribute title="Location" text="Warehouse A"/>
-												<ObjectAttribute title="Halway" text="23L"/>
-												<ObjectAttribute title="Rack" text="34"/>
+												<ObjectAttribute title="{i18n>title_posizione}" text="{i18n>text_magazzino}"/>
+												<ObjectAttribute title="{i18n>title_corridoio}" text="{i18n>text_corridoio}"/>
+												<ObjectAttribute title="{i18n>title_rastrelliera}" text="{i18n>text_rastrelliera}"/>
 											</layout:VerticalLayout>
 											<layout:VerticalLayout>
-												<ObjectAttribute title="Availability"/>
-												<ObjectStatus text="In Stock" state="Success" />
+												<ObjectAttribute title="{i18n>title_disponibilità}"/>
+												<ObjectStatus text="{i18n>text_disponibilità}" state="Success" />
 											</layout:VerticalLayout>
 										</layout:HorizontalLayout>
 									</content>
@@ -95,30 +98,35 @@
 						rowMode="Auto">
 					<t:extension>
 						<OverflowToolbar style="Clear">
-							<Title text="Products"/>
+							<Title text="{i18n>tabella_prodotti}"/>
 						</OverflowToolbar>
 					</t:extension>
 					<t:columns>
 						<t:Column width="11rem">
-							<Label text="Product Name" />
+							<Label text="{i18n>nome_prodotto}" />
 							<t:template>
 								<Text text="{Name}" wrapping="false" />
 							</t:template>
 						</t:Column>
 						<t:Column width="11rem">
-							<Label text="Product Id" />
+							<Label text="{i18n>ID_prodotto}" />
 							<t:template>
 								<Input value="{ProductId}"/>
 							</t:template>
 						</t:Column>
 						<t:Column width="6rem" hAlign="End">
-							<Label text="Quantity" />
+							<Label text="{i18n>text_quantità}" />
+
+
+
+							<!-- controllare quantity se si richiama dai dati -->
 							<t:template>
 								<Label text="{Quantity}" />
 							</t:template>
 						</t:Column>
 						<t:Column width="9rem">
-							<Label text="Status" />
+							<Label text="Data ultimo aggiornmento" />
+							<!-- controllare status  -->
 							<t:template>
 								<ObjectStatus text="{Status}" state="{
 								path: 'Available',
@@ -126,14 +134,18 @@
 							}"/>
 							</t:template>
 						</t:Column>
+
+
+
 						<t:Column width="9rem">
-							<Label text="Price" />
+							<Label text="{i18n>prezzo}" />
+							<!-- prezzo -->
 							<t:template>
 								<u:Currency value="{Price}" currency="{CurrencyCode}"/>
 							</t:template>
 						</t:Column>
 						<t:Column width="12rem">
-							<Label text="Supplier" />
+							<Label text="{i18n>sconto}" />
 							<t:template>
 								<ComboBox value="{SupplierName}" items="{/Suppliers}">
 									<c:Item text="{Name}"/>
@@ -143,15 +155,15 @@
 						<t:Column width="9rem">
 							<Label text="Image" />
 							<t:template>
-								<!-- <Link text="Show Image" href="{ProductPicUrl}" target="_blank"/> -->
+								<Link text="Show Image" href="{ProductPicUrl}" target="_blank"/>
 							</t:template>
-						</t:Column>
+						</t:Column> -->
 						<t:Column width="9rem">
 							<Label text="Details" />
 							<t:template>
 								<Button text="Show Details" press="handleDetailsPress"/>
 							</t:template>
-						</t:Column>
+						</t:Column> 
 						<t:Column width="7rem">
 							<Label text="Heavy Weight" />
 							<t:template>
@@ -162,7 +174,7 @@
 							</t:template>
 						</t:Column>
 						<t:Column width="12rem">
-							<Label text="Category" />
+							<Label text="{i18n>categoria}" />
 							<t:template>
 								<Select selectedKey="{Category}" items="{/Categories}">
 									<c:Item text="{Name}" key="{Name}"/>
@@ -179,8 +191,8 @@
 							</t:template>
 						</t:Column>
 						<t:Column width="11rem" hAlign="Center">
-							<Label text="Delivery Date" />
-							<t:template>
+							<Label text="{i18n>data}" />
+							<t:template> -->
 								<DatePicker value="{
 								path: 'DeliveryDate',
 								type: 'sap.ui.model.type.Date',
@@ -195,8 +207,8 @@
 			<f:footer>
 				<OverflowToolbar>
 					<ToolbarSpacer/>
-					<Button type="Accept" text="Accept"/>
-					<Button type="Reject" text="Reject"/>
+					<Button type="Accept" text="Accetta"/>
+					<Button type="Reject" text="Rifiuta"/>
 				</OverflowToolbar>
 			</f:footer>
 		</f:DynamicPage>
