@@ -18,3 +18,4 @@ entity fruttarolo : cuid {
     sconto: String;
     origine: String
 }
+
