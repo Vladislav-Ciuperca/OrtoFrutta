@@ -105,7 +105,8 @@
 						<t:Column width="8rem">
 							<Label text="{i18n>id_prodotto}" />
 							<t:template>
-								<Input value="{AddProducts/ID}"/>
+							<Text text="{AddProducts/ID}" wrapping="false" />
+								<!-- <Input value="{AddProducts/ID}"/> -->
 							</t:template>
 						</t:Column>
 
@@ -144,7 +145,7 @@
 						<t:Column width="6rem">
 							<Label text="{i18n>prezzo_prodotto}" />
 							<t:template>
-								<u:Currency value="{{AddProducts/prezzo_unitario}" currency="{CurrencyCode}"/>
+								<u:Currency value="{AddProducts/prezzo_unitario}" currency="{CurrencyCode}"/>
 							</t:template>
 						</t:Column>
 
@@ -237,6 +238,7 @@
 					</t:columns>
 				</t:Table>
 			</f:content>
+
 
 
 
