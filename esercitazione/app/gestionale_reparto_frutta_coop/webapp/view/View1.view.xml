@@ -88,7 +88,10 @@
 				</f:DynamicPageHeader>
 			</f:header>
 
+		
+
 			<f:content>
+			
 				<t:Table
 						rows="{/ProductCollection}"
 						selectionMode="MultiToggle"
@@ -97,6 +100,10 @@
 						<OverflowToolbar style="Clear">
 							<Title text="{i18n>tabella_prodotti}"/>
 						</OverflowToolbar>
+						<OverflowToolbar>
+				<SearchField liveChange=".onSearch" width="80%"  placeholder="{i18n>search}" 
+				/>
+			</OverflowToolbar>
 					</t:extension>
 					<t:columns>
 
@@ -125,7 +132,7 @@
 						</t:Column>
 
 						<!-- QUANTITA -->
-						<t:Column width="6rem" hAlign="End">
+						<t:Column width="6rem">
 							<Label text="{i18n>quantità_prodotto}" />
 							<t:template>
 								<Label text="{Quantity}" />
@@ -193,6 +200,17 @@
 							</t:template>
 						</t:Column> -->
 
+
+						<!-- ORIGINE -->
+						<t:Column width="12rem">
+							<Label text="{i18n>origine_prodotto}" />
+							<t:template>
+								<Select selectedKey="{Category}" items="{/Categories}">
+									<c:Item text="{Name}" key="{Name}"/>
+								</Select>
+							</t:template>
+						</t:Column>
+
 						<!-- DATA -->
 
 						<t:Column width="11rem" hAlign="Center">
@@ -203,16 +221,6 @@
 								type: 'sap.ui.model.type.Date',
 								formatOptions: {source: {pattern: 'timestamp'}}
 							}"/>
-							</t:template>
-						</t:Column>
-
-						<!-- ORIGINE -->
-						<t:Column width="12rem">
-							<Label text="{i18n>origine_prodotto}" />
-							<t:template>
-								<Select selectedKey="{Category}" items="{/Categories}">
-									<c:Item text="{Name}" key="{Name}"/>
-								</Select>
 							</t:template>
 						</t:Column>
 
