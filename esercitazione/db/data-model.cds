@@ -12,6 +12,7 @@ namespace esercitazione;
 entity fruttarolo : cuid {
     categoria: String;
     prodotto: String;
+    quantit: String;
     prezzo_unitario: String;
     giacenza: String;
     data_aggiornamento: String;
