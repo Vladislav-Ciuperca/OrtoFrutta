@@ -42,6 +42,7 @@
 					<f:actions>
 						<ToolbarSpacer/>
 						<Button
+						press="esegui"
 								text="{i18n>button_edita}"
 								type="Emphasized"/>
 						<Button
@@ -90,7 +91,7 @@
 
 			<f:content>
 				<t:Table
-						rows="{/ProductCollection}"
+						rows="{AddProducts>/Prodotti}"
 						selectionMode="MultiToggle"
 						rowMode="Auto">
 					<t:extension>
@@ -101,31 +102,31 @@
 					<t:columns>
 
 					<!-- ID DEL PRODOTTO-->
-						<t:Column width="11rem">
+						<t:Column width="8rem">
 							<Label text="{i18n>id_prodotto}" />
 							<t:template>
-								<Input value="{ProductId}"/>
+								<Input value="{AddProducts/ID}"/>
 							</t:template>
 						</t:Column>
 
 						<!-- CATEGORIA PRODOTTO -->
-						<t:Column width="11rem">
+						<t:Column width="6rem">
 							<Label text="{i18n>categoria_prodotto}" />
 							<t:template>
-								<Text text="{Categoria}" wrapping="false" />
+								<Text text="{AddProducts/categoria}" wrapping="false" />
 							</t:template>
 						</t:Column>
 
 						<!-- NOME PRODOTTO -->
-						<t:Column width="11rem">
+						<t:Column width="9rem">
 							<Label text="{i18n>nome_prodotto}" />
 							<t:template>
-								<Text text="{Name}" wrapping="false" />
+								<Text text="{AddProducts/prodotto}" wrapping="false" />
 							</t:template>
 						</t:Column>
 
 						<!-- QUANTITA -->
-						<t:Column width="6rem" hAlign="End">
+						<t:Column width="11rem">
 							<Label text="{i18n>quantità_prodotto}" />
 							<t:template>
 								<Label text="asd" />
@@ -140,7 +141,7 @@
 						</t:Column> -->
 
 						<!-- PREZZO -->
-						<t:Column width="5rem">
+						<t:Column width="6rem">
 							<Label text="{i18n>prezzo_prodotto}" />
 							<t:template>
 								<u:Currency value="{Price}" currency="{CurrencyCode}"/>
@@ -148,7 +149,7 @@
 						</t:Column>
 
 						<!-- SCONTO -->
-						<t:Column width="4rem">
+						<t:Column width="5rem">
 							<Label text="{i18n>sconto_prodotto}" />
 							<t:template>
 								<Text text="{Sconto}" wrapping="false" />
@@ -192,7 +193,7 @@
 
 						<!-- DATA -->
 
-						<t:Column width="11rem" hAlign="Center">
+						<t:Column width="13rem">
 							<Label text="{i18n>data_aggiornamento}" />
 							<t:template>
 								<DatePicker value="{
@@ -207,8 +208,8 @@
 						<t:Column width="12rem">
 							<Label text="{i18n>origine_prodotto}" />
 							<t:template>
-								<Select selectedKey="{Category}" items="{/Categories}">
-									<c:Item text="{Name}" key="{Name}"/>
+								<Select selectedKey="{Category}" items="{AddProducts>/Prodotti}">
+									<c:Item text="{AddProducts/categoria}" key="{Name}"/>
 								</Select>
 							</t:template>
 						</t:Column>
