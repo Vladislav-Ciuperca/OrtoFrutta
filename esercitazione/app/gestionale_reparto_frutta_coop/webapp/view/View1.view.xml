@@ -144,7 +144,7 @@
 						<t:Column width="6rem">
 							<Label text="{i18n>prezzo_prodotto}" />
 							<t:template>
-								<u:Currency value="{Price}" currency="{CurrencyCode}"/>
+								<u:Currency value="{{AddProducts/prezzo_unitario}" currency="{CurrencyCode}"/>
 							</t:template>
 						</t:Column>
 
@@ -152,7 +152,7 @@
 						<t:Column width="5rem">
 							<Label text="{i18n>sconto_prodotto}" />
 							<t:template>
-								<Text text="{Sconto}" wrapping="false" />
+								<Text text="{AddProducts/sconto}" wrapping="false" />
 							</t:template>
 						</t:Column>
 
@@ -208,8 +208,16 @@
 						<t:Column width="12rem">
 							<Label text="{i18n>origine_prodotto}" />
 							<t:template>
-								<Select selectedKey="{Category}" items="{AddProducts>/Prodotti}">
-									<c:Item text="{AddProducts/categoria}" key="{Name}"/>
+								<Select selectedKey="{AddProducts/origine}">
+									<c:Item text="Italia" key="{Name}"/>
+									<c:Item text="Nuova Zelanda" key="{Name}"/>
+									<c:Item text="Cina" key="{Name}"/>
+									<c:Item text="Messico" key="{Name}"/>
+									<c:Item text="Indonesia" key="{Name}"/>
+									<c:Item text="India" key="{Name}"/>
+									<c:Item text="Sud America" key="{Name}"/>
+									<c:Item text="iran" key="{Name}"/>
+									<c:Item text="Persia" key="{Name}"/>
 								</Select>
 							</t:template>
 						</t:Column>

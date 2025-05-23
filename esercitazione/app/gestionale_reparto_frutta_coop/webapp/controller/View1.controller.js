@@ -13,6 +13,8 @@ sap.ui.define([
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
 
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
+     
+     
     },
 
     getRouter: function () {
@@ -54,7 +56,10 @@ sap.ui.define([
 
     esegui: function(){
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-    }
+    },
+
+
+  
 
 
   });
