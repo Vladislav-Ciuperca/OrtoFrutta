@@ -266,6 +266,7 @@
 						</t:template>
 					</t:Column>
 
+					
 					<!-- ORIGINE -->
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label  text="{i18n>origine_prodotto}" />
