@@ -108,8 +108,6 @@
 
 				<t:extension>
 					<OverflowToolbar style="Clear">
-					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					 <Button id="undo" press="undo" visible="true"  icon="sap-icon://undo"/>
 					
 						<!-- <Title text="{AddProducts>categoria}"/> -->
 						<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
@@ -288,7 +286,7 @@
 				
 				
 			</OverflowToolbar>
-		</f:footer> -->
+		</f:footer>
 
 	</f:DynamicPage>
 
