@@ -42,6 +42,8 @@ sap.ui.define([
     this.byId("input_origine").setVisible(true)
     this.byId("text_origine").setVisible(false)
 
+    
+
 		},
 
     onSave: function () {
