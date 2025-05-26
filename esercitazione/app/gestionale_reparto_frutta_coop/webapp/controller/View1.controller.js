@@ -275,7 +275,23 @@ sap.ui.define([
     //   this.byId("edit").setVisible(false);
     // },
 
+<<<<<<< HEAD
 >>>>>>> 18a9001 (Revert "cambio origine e data")
+=======
+    // onEdit: function () {
+    //   console.log();
+
+    //   this.byId("save").setVisible(false);
+    // },
+
+
+    // onSave: function () {
+    //   console.log();
+
+    //   this.byId("edit").setVisible(false);
+    // },
+
+>>>>>>> b536e36 (Revert "cambio origine e data")
 
 
     getRouter: function () {
