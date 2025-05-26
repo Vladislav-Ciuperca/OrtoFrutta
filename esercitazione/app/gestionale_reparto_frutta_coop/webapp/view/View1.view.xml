@@ -34,8 +34,10 @@
 					</f:content> -->
 				<f:actions>
 					<ToolbarSpacer/>
-					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
+					<!-- <Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
+					 <Button id="undo" press="undo" visible="true"  icon="sap-icon://undo"/> -->
+
+					<!-- <Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/> -->
 
 					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
@@ -103,9 +105,16 @@
 		
  
 			
+			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
+		
+ 
+			
 
 				<t:extension>
 					<OverflowToolbar style="Clear">
+					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
+					 <Button id="undo" press="undo" visible="true"  icon="sap-icon://undo"/>
+					
 					
 						<!-- <Title text="{AddProducts>categoria}"/> -->
 						<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
@@ -119,6 +128,7 @@
 
 				
 				<t:columns>
+				
 
 					<!-- ID DEL PRODOTTO-->
 <<<<<<< HEAD
@@ -220,8 +230,8 @@
 
 					<!-- DATA -->
 
-					<t:Column width="13rem">
-						<Label id="text_data" text="{i18n>data_aggiornamento}" />
+					<t:Column id="text_data" width="13rem" visible="true">
+						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
@@ -245,6 +255,7 @@
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
+							<Text text="{AddProducts/origine_prodotto}" wrapping="false" />
 							<Text text="{AddProducts/origine_prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
@@ -276,17 +287,18 @@
 
 
 		<!-- DynamicPage Footer -->
-		<!-- <f:footer>
+		<f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Button type="Accept" text="{i18n>accetta}"/>
-				<Button type="Reject" text="{i18n>rifiuta}"/>
+				<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
+				<!-- <Button type="Accept" text="{i18n>accetta}"/> -->
+				<!-- <Button type="Reject" text="{i18n>rifiuta}"/> -->
 				
 				
 				
 				
 			</OverflowToolbar>
-		</f:footer> -->
+		</f:footer> 
 
 	</f:DynamicPage>
 
