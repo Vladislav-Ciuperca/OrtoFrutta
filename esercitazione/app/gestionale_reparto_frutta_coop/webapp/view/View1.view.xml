@@ -29,22 +29,23 @@
 						<OverflowToolbar>
 							<GenericTag text="SR" status="Error" press="onGenericTagPress" design="StatusIconHidden">
 								<ObjectNumber number="2" unit="M" emphasized="false" state="Error"/>
-							</GenericTag>
+							</GenericTag> 
 						</OverflowToolbar>
 					</f:content> -->
 				<f:actions>
 					<ToolbarSpacer/>
-					<Button press="onEdit" text="{i18n>button_edita}" type="Emphasized"/>
-					<Button press="onSave" text="{i18n>button_elimina}" type="Transparent"/>
+					<!-- <Button id="Edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
+					<Button id="undo" press="onSave" text="{i18n>button_elimina}" type="Transparent" visible="false" /> -->
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				</f:actions>
-				
-				
+
+
 			</f:DynamicPageTitle>
 		</f:title>
 
 		<!-- DynamicPage Header -->
 		<f:header>
+
 			<f:DynamicPageHeader pinnable="true">
 				<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 					<items>
@@ -68,20 +69,27 @@
 			</f:DynamicPageHeader>
 		</f:header>
 
+
 		<f:content>
 			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
 
 				<t:extension>
 					<OverflowToolbar style="Clear">
 						<!-- <Title text="{AddProducts>categoria}"/> -->
+						<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
+						<Button id="undo" press="onSave" text="{i18n>button_elimina}" type="Transparent" visible="false" />
 
 					</OverflowToolbar>
 
+			
 				</t:extension>
+
+
+				
 				<t:columns>
-
+					
 					<!-- ID DEL PRODOTTO-->
-
+					
 					<t:Column id="text_prodotto" width="8rem" visible="true">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
@@ -158,7 +166,7 @@
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column  id= "input_prezzo" width="6rem" visible="false">
+					<t:Column id= "input_prezzo" width="6rem" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
 							<Input value="placeholder"/>
@@ -167,14 +175,14 @@
 
 					<!-- SCONTO -->
 					<t:Column id= "text_sconto" width="5rem" visible="true">
-						<Label  text="{i18n>sconto_prodotto}" />
+						<Label text="{i18n>sconto_prodotto}" />
 						<t:template  >
 							<Text text="{AddProducts/sconto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_sconto" width="5rem" visible="false">
-						<Label  text="{i18n>sconto_prodotto}" />
+						<Label text="{i18n>sconto_prodotto}" />
 						<t:template  >
 							<Input value="placeholder"/>
 						</t:template>
@@ -217,8 +225,8 @@
 
 					<!-- DATA -->
 
-					<t:Column width="13rem">
-						<Label id="text_data" text="{i18n>data_aggiornamento}" />
+					<t:Column id="text_data"  width="13rem">
+						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<DatePicker value="{
 								path: 'DeliveryDate',
@@ -229,7 +237,7 @@
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_data" width="13rem" visible="false">
-						<Label  text="{i18n>data_aggiornamento}"/>
+						<Label text="{i18n>data_aggiornamento}"/>
 						<t:template>
 							<DatePicker value="{
 								path: 'DeliveryDate',
@@ -241,7 +249,7 @@
 
 					<!-- ORIGINE -->
 					<t:Column id="text_origine" width="12rem" visible="true">
-						<Label  text="{i18n>origine_prodotto}" />
+						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Select selectedKey="{AddProducts/origine}">
 								<c:Item text="Italia" key="Italia"/>
@@ -258,7 +266,7 @@
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_origine" width="12rem" visible="false">
-						<Label  text="{i18n>origine_prodotto}" />
+						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Select selectedKey="{AddProducts/origine}">
 								<c:Item text="Italia" key="Italia"/>
