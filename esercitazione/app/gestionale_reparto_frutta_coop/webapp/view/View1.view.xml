@@ -233,7 +233,7 @@
 					<!-- DATA -->
 
 					<t:Column id="text_data" width="13rem" visible="true">
-						<Label text="{i18n>data_aggiornamento}" />
+						<Label  text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 						</t:template>
@@ -255,17 +255,7 @@
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Select selectedKey="{AddProducts/origine}">
-								<c:Item text="Italia" key="Italia"/>
-								<c:Item text="Nuova Zelanda" key="Nuova"/>
-								<c:Item text="Cina" key="Cina"/>
-								<c:Item text="Messico" key="Messico"/>
-								<c:Item text="Indonesia" key="Indonesia"/>
-								<c:Item text="India" key="India"/>
-								<c:Item text="Sud America" key="Sud"/>
-								<c:Item text="iran" key="iran"/>
-								<c:Item text="Persia" key="Persia"/>
-							</Select>
+						<Text text="{AddProducts/data_origine_prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
