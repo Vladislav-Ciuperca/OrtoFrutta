@@ -20,19 +20,6 @@ sap.ui.define([
 
 
 
-    // onEdit: function () {
-    //   console.log();
-
-    //   this.byId("save").setVisible(false);
-    // },
-
-
-    // onSave: function () {
-    //   console.log();
-
-    //   this.byId("edit").setVisible(false);
-    // },
-
 
 
     getRouter: function () {
