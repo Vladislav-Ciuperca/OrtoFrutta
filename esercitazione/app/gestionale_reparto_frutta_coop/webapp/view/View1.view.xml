@@ -34,10 +34,8 @@
 					</f:content> -->
 				<f:actions>
 					<ToolbarSpacer/>
-					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
-
-					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
+					<Button press="onEdit" text="{i18n>button_edita}" type="Emphasized"/>
+					<Button text="{i18n>button_elimina}" type="Transparent"/>
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				</f:actions>
 				
@@ -256,7 +254,17 @@
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Text text="{AddProducts/origine_prodotto}" wrapping="false" />
+							<Select selectedKey="{AddProducts/origine}">
+								<c:Item text="Italia" key="Italia"/>
+								<c:Item text="Nuova Zelanda" key="Nuova"/>
+								<c:Item text="Cina" key="Cina"/>
+								<c:Item text="Messico" key="Messico"/>
+								<c:Item text="Indonesia" key="Indonesia"/>
+								<c:Item text="India" key="India"/>
+								<c:Item text="Sud America" key="Sud"/>
+								<c:Item text="iran" key="iran"/>
+								<c:Item text="Persia" key="Persia"/>
+							</Select>
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
