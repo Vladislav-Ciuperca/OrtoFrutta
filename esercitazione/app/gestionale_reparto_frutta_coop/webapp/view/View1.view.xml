@@ -92,34 +92,34 @@
 				<t:columns>
 
 					<!-- ID DEL PRODOTTO-->
-
+<!-- 
 					<t:Column id="text_prodotto" width="8rem" visible="true">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
-							<Text text="{categoria}" wrapping="false" />
+							<Text text="{AddProducts>categoria}" wrapping="false" />
 						</t:template>
-					</t:Column>
+					</t:Column> -->
 					<!-- /////////////////////////////// -->
-					<t:Column id="input_prodotto" width="8rem" visible="false">
+					<!-- <t:Column id="input_prodotto" width="8rem" visible="false">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>/categoria}"/>
+							<Input value="{AddProducts>categoria}"/>
 						</t:template>
-					</t:Column>
+					</t:Column> -->
 
 
 					<!-- CATEGORIA PRODOTTO -->
 					<t:Column id="text_categoria" width="6rem" visible="true">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
-							<Text text="{AddProducts/categoria}" wrapping="false" />
+							<Text text="{AddProducts>categoria}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_categoria" width="6rem" visible="false">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
-							<Input value="placeholder"/>
+							<Input value="{AddProducts>categoria}"/>
 						</t:template>
 					</t:Column>
 
@@ -127,14 +127,14 @@
 					<t:Column id= "text_nome" width="9rem" visible="true">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
-							<Text text="{AddProducts/prodotto}" wrapping="false" />
+							<Text text="{AddProducts>prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id= "input_nome" width="9rem" visible="false">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
-							<Input value="placeholder"/>
+							<Input value="{AddProducts>prodotto}"/>
 						</t:template>
 					</t:Column>
 
@@ -143,14 +143,14 @@
 					<t:Column id= "text_quantita" width="11rem" visible="true">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
-							<Label text="{AddProducts/quantit}" wrapping="false" />
+							<Label text="{AddProducts>giacenza}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id= "input_quanita" width="11rem" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
-							<Input value="placeholder"/>
+							<Input value="{AddProducts>giacenza}"/>
 						</t:template>
 					</t:Column>
 					<!-- <t:Column width="9rem">
@@ -165,14 +165,15 @@
 					<t:Column id= "text_prezzo" width="6rem" visible="true">
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
-							<u:Currency value="{AddProducts/prezzo_unitario}" currency="{CurrencyCode}"/>
+							<!-- <u:Currency value="{AddProducts>prezzo_unitario}" currency="{CurrencyCode}"/> -->
+							<Label text="{AddProducts>prezzo_unitario}"/>
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column  id= "input_prezzo" width="6rem" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
-							<Input value="placeholder"/>
+							<Input value="{AddProducts>prezzo_unitario}"/>
 						</t:template>
 					</t:Column>
 
@@ -180,14 +181,14 @@
 					<t:Column id= "text_sconto" width="5rem" visible="true">
 						<Label  text="{i18n>sconto_prodotto}" />
 						<t:template  >
-							<Text text="{AddProducts/sconto}" wrapping="false" />
+							<Text text="{AddProducts>sconto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_sconto" width="5rem" visible="false">
 						<Label  text="{i18n>sconto_prodotto}" />
 						<t:template  >
-							<Input value="placeholder"/>
+							<Input value="{AddProducts>sconto}"/>
 						</t:template>
 					</t:Column>
 
@@ -252,7 +253,7 @@
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label  text="{i18n>origine_prodotto}" />
 						<t:template>
-								<Text text="{AddProducts/origine}" wrapping="false" />
+								<Text text="{AddProducts>origine}" wrapping="false" />
 						
 						</t:template>
 					</t:Column>
@@ -260,7 +261,7 @@
 					<t:Column id="input_origine" width="12rem" visible="false">
 						<Label  text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Select selectedKey="{AddProducts/origine}">
+							<Select selectedKey="{AddProducts>origine}">
 								<c:Item text="Italia" key="Italia"/>
 								<c:Item text="Nuova Zelanda" key="Nuova"/>
 								<c:Item text="Cina" key="Cina"/>
