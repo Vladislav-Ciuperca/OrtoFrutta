@@ -14,13 +14,15 @@ sap.ui.define([
 
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
 
-      // alert(JSON.stringify(this.getView().getModel("AddProducts").getProperty("/Prodotti"), null, 2));
       
     },
     onEdit: function () {
       // 	MessageToast.show(evt.getSource().getId() + " Pressed");
-      this.byId("edit").setVisible(false);
-      this.byId("undo").setVisible(true);
+      // this.byId("edit").setVisible(false);
+      // this.byId("undo").setVisible(true);
+      this.byId("modifica").setVisible(false)
+      this.byId("undo").setVisible(true)
+
       
       // this.byId("input_prodotto").setVisible(true)
       // this.byId("text_prodotto").setVisible(false)
@@ -221,15 +223,10 @@ sap.ui.define([
     
 >>>>>>> d164a14 (commit)
     onSave: function () {
-      // 	MessageToast.show(evt.getSource().getId() + " Pressed");
-      // console.log(this.byId("edit"));
+
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
-      
-      // this.byId("input_prodotto").setVisible(false)
-      // this.byId("text_prodotto").setVisible(true)
-      
       this.byId("input_categoria").setVisible(false)
       this.byId("text_categoria").setVisible(true)
       
@@ -322,9 +319,12 @@ sap.ui.define([
       this.byId("text_prodotto").setVisible(true)
 =======
       
+<<<<<<< HEAD
       // this.byId("edit").setVisible(false);
 >>>>>>> e30b454 (commit finale di lunedi)
       
+=======
+>>>>>>> 8d2c83d (pulizia code)
     },
     
   
@@ -521,12 +521,15 @@ sap.ui.define([
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
 >>>>>>> e30b454 (commit finale di lunedi)
 =======
           // alert(JSON.stringify(this.getView().getModel("AddProducts").getProperty("/Prodotti"), null, 2));
 >>>>>>> 9173bc3 (expose dei dati :))
+=======
+>>>>>>> 8d2c83d (pulizia code)
         }.bind(that),
         function (error) { }.bind(that));
     },
@@ -550,6 +553,7 @@ sap.ui.define([
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // edit: function () {
     //   console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
@@ -561,5 +565,7 @@ sap.ui.define([
 
 
 >>>>>>> e30b454 (commit finale di lunedi)
+=======
+>>>>>>> 8d2c83d (pulizia code)
   });
 });
