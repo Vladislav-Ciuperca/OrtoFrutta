@@ -475,6 +475,55 @@ sap.ui.define([
     //   this.byId("edit").setVisible(false);
     // },
 
+<<<<<<< HEAD
+=======
+    // onEdit: function () {
+    //   console.log();
+
+    //   this.byId("save").setVisible(false);
+    // },
+
+
+    // onSave: function () {
+    //   console.log();
+
+    //   this.byId("save").setVisible(false);
+    // },
+
+    onSave: function () {
+      // 	MessageToast.show(evt.getSource().getId() + " Pressed");
+      //  this.byId("onSave").setVisible(false);
+  
+      this.byId("input_prodotto").setVisible(false)
+      this.byId("text_prodotto").setVisible(true)
+      
+      this.byId("input_categoria").setVisible(false)
+      this.byId("text_categoria").setVisible(true)
+  
+      this.byId("input_nome").setVisible(false)
+      this.byId("text_nome").setVisible(true)
+  
+      this.byId("input_quanita").setVisible(false)
+      this.byId("text_quantita").setVisible(true)
+  
+      this.byId("input_prezzo").setVisible(false)
+      this.byId("text_prezzo").setVisible(true)
+  
+      this.byId("input_sconto").setVisible(false)
+      this.byId("text_sconto").setVisible(true)
+  
+      this.byId("input_data").setVisible(false)
+      this.byId("text_data").setVisible(true)
+  
+      this.byId("input_origine").setVisible(false)
+      this.byId("text_origine").setVisible(true)
+  
+      },
+
+    //   this.byId("edit").setVisible(false);
+    // },
+
+>>>>>>> 0a6a01b (cambio fuinzione)
 
 
     getRouter: function () {
