@@ -47,6 +47,8 @@ sap.ui.define([
       
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
 
+    
+
 		},
     
     onSave: function () {
