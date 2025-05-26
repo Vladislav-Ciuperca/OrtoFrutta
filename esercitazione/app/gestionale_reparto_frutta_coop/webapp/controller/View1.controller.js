@@ -18,69 +18,41 @@ sap.ui.define([
     },
     onEdit: function () {
 
-      this.byId("modifica").setVisible(false)
-      this.byId("undo").setVisible(true)
-
-      this.byId("input_categoria").setVisible(true)
-      this.byId("text_categoria").setVisible(false)
-      
-      this.byId("input_nome").setVisible(true)
-      this.byId("text_nome").setVisible(false)
-      
-      this.byId("input_quanita").setVisible(true)
-      this.byId("text_quantita").setVisible(false)
-      
-      this.byId("input_prezzo").setVisible(true)
-      this.byId("text_prezzo").setVisible(false)
-      
-      this.byId("input_sconto").setVisible(true)
-      this.byId("text_sconto").setVisible(false)
-      
-      this.byId("input_data").setVisible(true)
-      this.byId("text_data").setVisible(false)
-      
-      this.byId("input_origine").setVisible(true)
-      this.byId("text_origine").setVisible(false)
-      
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
-
+    this.byId("input_prodotto").setVisible(true)
+    this.byId("text_prodotto").setVisible(false)
     
-    this.byId("modifica").setVisible(false);
+    this.byId("input_categoria").setVisible(true)
+    this.byId("text_categoria").setVisible(false)
 
-    
+    this.byId("input_nome").setVisible(true)
+    this.byId("text_nome").setVisible(false)
+
+    this.byId("input_quanita").setVisible(true)
+    this.byId("text_quantita").setVisible(false)
+
+    this.byId("input_prezzo").setVisible(true)
+    this.byId("text_prezzo").setVisible(false)
+
+    this.byId("input_sconto").setVisible(true)
+    this.byId("text_sconto").setVisible(false)
+
+    this.byId("input_data").setVisible(true)
+    this.byId("text_data").setVisible(false)
+
+    this.byId("input_origine").setVisible(true)
+    this.byId("text_origine").setVisible(false)
 
 		},
-    
-    onSave: function () {
 
-      this.byId("modifica").setVisible(true)
-      this.byId("undo").setVisible(false)
 
-      this.byId("input_categoria").setVisible(false)
-      this.byId("text_categoria").setVisible(true)
-      
-      this.byId("input_nome").setVisible(false)
-      this.byId("text_nome").setVisible(true)
-      
-      this.byId("input_quanita").setVisible(false)
-      this.byId("text_quantita").setVisible(true)
-      
-      this.byId("input_prezzo").setVisible(false)
-      this.byId("text_prezzo").setVisible(true)
-      
-      this.byId("input_sconto").setVisible(false)
-      this.byId("text_sconto").setVisible(true)
-      
-      this.byId("input_data").setVisible(false)
-      this.byId("text_data").setVisible(true)
-      
-      this.byId("input_origine").setVisible(false)
-      this.byId("text_origine").setVisible(true)
-      
-      
-    },
-    
-  
+    // onSave: function () {
+    //   console.log();
+
+    //   this.byId("edit").setVisible(false);
+    // },
+
+
+
     getRouter: function () {
 
       return sap.ui.core.UIComponent.getRouterFor(this);

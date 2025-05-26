@@ -35,7 +35,7 @@
 				<f:actions>
 					<ToolbarSpacer/>
 					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
+					<Button text="{i18n>button_elimina}" type="Transparent"/>
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				
 				</f:actions>
@@ -209,8 +209,7 @@
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Text text="{AddProducts>origine}" wrapping="false" />
-
+						<Text text="{AddProducts/data_origine_prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
