@@ -405,6 +405,7 @@ sap.ui.define([
     // },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> c2c9540 (Revert "cambio origine e data")
 =======
 >>>>>>> 3246643 (Revert "cambio origine e data")
@@ -414,12 +415,15 @@ sap.ui.define([
 
 >>>>>>> ae6cd9d (Revert "cambio origine e data")
 =======
+=======
+>>>>>>> 9bb1f63 (Revert "cambio origine e data")
     // onEdit: function () {
     //   console.log();
 
     //   this.byId("save").setVisible(false);
     // },
 
+<<<<<<< HEAD
     onSave: function () {
       // 	MessageToast.show(evt.getSource().getId() + " Pressed");
       //  this.byId("onSave").setVisible(false);
@@ -449,11 +453,19 @@ sap.ui.define([
       this.byId("text_origine").setVisible(true)
   
       },
+=======
+
+    // onSave: function () {
+    //   console.log();
+>>>>>>> 9bb1f63 (Revert "cambio origine e data")
 
     //   this.byId("edit").setVisible(false);
     // },
 
+<<<<<<< HEAD
 >>>>>>> 4b1a137 (Revert "cambio origine e data")
+=======
+>>>>>>> 9bb1f63 (Revert "cambio origine e data")
 
 
     getRouter: function () {
