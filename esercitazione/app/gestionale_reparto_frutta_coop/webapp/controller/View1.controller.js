@@ -349,7 +349,23 @@ sap.ui.define([
     //   this.byId("edit").setVisible(false);
     // },
 
+<<<<<<< HEAD
 >>>>>>> aeb1540 (Revert "cambio origine e data")
+=======
+    // onEdit: function () {
+    //   console.log();
+
+    //   this.byId("save").setVisible(false);
+    // },
+
+
+    // onSave: function () {
+    //   console.log();
+
+    //   this.byId("edit").setVisible(false);
+    // },
+
+>>>>>>> c2c9540 (Revert "cambio origine e data")
 
 
     getRouter: function () {
