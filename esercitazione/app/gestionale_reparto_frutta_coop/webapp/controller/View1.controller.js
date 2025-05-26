@@ -687,6 +687,7 @@ sap.ui.define([
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b536e36 (Revert "cambio origine e data")
 =======
     // onEdit: function () {
@@ -773,6 +774,8 @@ sap.ui.define([
 <<<<<<< HEAD
 >>>>>>> aeb1540 (Revert "cambio origine e data")
 =======
+=======
+>>>>>>> ae6cd9d (Revert "cambio origine e data")
     // onEdit: function () {
     //   console.log();
 
@@ -783,6 +786,7 @@ sap.ui.define([
     // onSave: function () {
     //   console.log();
 
+<<<<<<< HEAD
 =======
 >>>>>>> a9617c2 (cambio fuinzione)
     //   this.byId("edit").setVisible(false);
@@ -791,6 +795,11 @@ sap.ui.define([
 >>>>>>> c2c9540 (Revert "cambio origine e data")
 =======
 >>>>>>> 3246643 (Revert "cambio origine e data")
+=======
+    //   this.byId("edit").setVisible(false);
+    // },
+
+>>>>>>> ae6cd9d (Revert "cambio origine e data")
 
 
     getRouter: function () {
