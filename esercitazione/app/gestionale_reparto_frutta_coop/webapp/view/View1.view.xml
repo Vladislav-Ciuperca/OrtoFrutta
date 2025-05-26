@@ -16,6 +16,31 @@
 				<f:heading>
 					<Title text="{i18n>titolo}"/>
 				</f:heading>
+				<!-- <f:expandedContent>
+						<Label text="This is a subheading"/>
+					</f:expandedContent> -->
+				<!-- <f:snappedContent>
+						<Label text="This is a subheading"/>
+					</f:snappedContent> -->
+				<!-- <f:snappedTitleOnMobile>
+						<Title text="This is a subheading"/>
+					</f:snappedTitleOnMobile> -->
+				<!-- <f:content>
+						<OverflowToolbar>
+							<GenericTag text="SR" status="Error" press="onGenericTagPress" design="StatusIconHidden">
+								<ObjectNumber number="2" unit="M" emphasized="false" state="Error"/>
+							</GenericTag>
+						</OverflowToolbar>
+					</f:content> -->
+				<f:actions>
+					<ToolbarSpacer/>
+					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
+					<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
+
+					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
+					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
+				
+				</f:actions>
 
 			</f:DynamicPageTitle>
 		</f:title>
@@ -219,13 +244,16 @@
 
 
 		<!-- DynamicPage Footer -->
-		<f:footer>
+		<!-- <f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
 				<Button type="Reject" text="{i18n>rifiuta}"/>
+				
+				
 			</OverflowToolbar>
-		</f:footer>
+		</f:footer> -->
+
 	</f:DynamicPage>
 
 
