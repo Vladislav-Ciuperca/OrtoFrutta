@@ -39,7 +39,6 @@
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				
 				</f:actions>
-
 			</f:DynamicPageTitle>
 		</f:title>
 
