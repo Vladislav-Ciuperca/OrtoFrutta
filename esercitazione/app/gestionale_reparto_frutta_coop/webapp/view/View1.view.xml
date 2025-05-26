@@ -29,18 +29,15 @@
 						<OverflowToolbar>
 							<GenericTag text="SR" status="Error" press="onGenericTagPress" design="StatusIconHidden">
 								<ObjectNumber number="2" unit="M" emphasized="false" state="Error"/>
-							</GenericTag> 
+							</GenericTag>
 						</OverflowToolbar>
 					</f:content> -->
-				<f:actions>
-					<ToolbarSpacer/>
-					<!-- <Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					 <Button id="undo" press="undo" visible="true"  icon="sap-icon://undo"/> -->
-
-					<!-- <Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/> -->
-
-					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
+				<!-- <f:actions> -->
+					<!-- <ToolbarSpacer/> -->
+					<!-- <Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/> -->
+					<!-- <Button press="onSave" text="{i18n>button_elimina}" type="Transparent"/> -->
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
+<<<<<<< HEAD
 				</f:actions>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -51,6 +48,9 @@
 
 >>>>>>> fe7bc59 (commit)
 =======
+=======
+				<!-- </f:actions> -->
+>>>>>>> e30b454 (commit finale di lunedi)
 				
 				
 >>>>>>> 1ccb88d (.)
@@ -67,7 +67,7 @@
 
 		<!-- headewr -->
 		<f:header>
-
+			
 			<f:DynamicPageHeader pinnable="true">
 				<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 					<items>
@@ -93,44 +93,37 @@
 			</f:DynamicPageHeader>
 		</f:header>
 
+		
+		
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
 
 =======
 >>>>>>> fe7bc59 (commit)
+=======
+		
+>>>>>>> e30b454 (commit finale di lunedi)
 		<f:content>
-			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
-		
- 
-			
-			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
-		
- 
-			
 
-				<t:extension>
-					<OverflowToolbar style="Clear">
-					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					 <Button id="undo" press="undo" visible="true"  icon="sap-icon://undo"/>
+				
+				<t:Table rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
 					
-					
-						<!-- <Title text="{AddProducts>categoria}"/> -->
-						<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
-						<Button id="undo" press="onSave" text="{i18n>button_elimina}" type="Transparent" visible="false" />
+					<t:extension>
+						<OverflowToolbar style="Clear">
+							
+						<Button id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/>
+						<Button id="undo" press="onSave" visible="false" icon="sap-icon://undo"  />
 
 					</OverflowToolbar>
 
-			
 				</t:extension>
-
-
-				
 				<t:columns>
-				
 
 					<!-- ID DEL PRODOTTO-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 					<!-- 
 =======
@@ -140,13 +133,24 @@
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>categoria}" wrapping="false" />
+=======
+
+					<t:Column id="text_prodotto" width="8rem" visible="true">
+						<Label text="{i18n>id_prodotto}" />
+						<t:template>
+							<Text text="{categoria}" wrapping="false" />
+>>>>>>> e30b454 (commit finale di lunedi)
 						</t:template>
 					</t:Column> -->
 					<!-- /////////////////////////////// -->
 					<!-- <t:Column id="input_prodotto" width="8rem" visible="false">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
+<<<<<<< HEAD
 							<Input value="{AddProducts>categoria}"/>
+=======
+							<Input value="{AddProducts>/categoria}"/>
+>>>>>>> e30b454 (commit finale di lunedi)
 						</t:template>
 					</t:Column> -->
 
@@ -206,7 +210,7 @@
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column id= "input_prezzo" width="6rem" visible="false">
+					<t:Column  id= "input_prezzo" width="6rem" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
 							<Input value="{AddProducts>prezzo_unitario}"/>
@@ -215,14 +219,14 @@
 
 					<!-- SCONTO -->
 					<t:Column id= "text_sconto" width="5rem" visible="true">
-						<Label text="{i18n>sconto_prodotto}" />
+						<Label  text="{i18n>sconto_prodotto}" />
 						<t:template  >
 							<Text text="{AddProducts>sconto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_sconto" width="5rem" visible="false">
-						<Label text="{i18n>sconto_prodotto}" />
+						<Label  text="{i18n>sconto_prodotto}" />
 						<t:template  >
 							<Input value="{AddProducts>sconto}"/>
 						</t:template>
@@ -232,14 +236,15 @@
 
 					<t:Column id="text_data" width="13rem" visible="true">
 						<Label text="{i18n>data_aggiornamento}" />
+					<t:Column id="text_data" width="13rem" visible="true">
+						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
-							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_data" width="13rem" visible="false">
-						<Label text="{i18n>data_aggiornamento}"/>
+						<Label  text="{i18n>data_aggiornamento}"/>
 						<t:template>
 							<DatePicker value="{
 								path: 'DeliveryDate',
@@ -249,19 +254,17 @@
 						</t:template>
 					</t:Column>
 
-
-
 					<!-- ORIGINE -->
 					<t:Column id="text_origine" width="12rem" visible="true">
-						<Label text="{i18n>origine_prodotto}" />
+						<Label  text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Text text="{AddProducts/origine_prodotto}" wrapping="false" />
-							<Text text="{AddProducts/origine_prodotto}" wrapping="false" />
+								<Text text="{AddProducts/origine}" wrapping="false" />
+						
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_origine" width="12rem" visible="false">
-						<Label text="{i18n>origine_prodotto}" />
+						<Label  text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Select selectedKey="{AddProducts>origine}">
 								<c:Item text="Italia" key="Italia"/>
@@ -290,16 +293,10 @@
 		<f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<!-- <Button type="Accept" text="{i18n>accetta}"/> -->
-				<!-- <Button type="Reject" text="{i18n>rifiuta}"/> -->
-				
-				
-				
-				
+				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
+				<Button type="Reject" text="{i18n>rifiuta}"/>
 			</OverflowToolbar>
-		</f:footer> 
-
+		</f:footer>
 	</f:DynamicPage>
 
 
