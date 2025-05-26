@@ -43,10 +43,15 @@
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				</f:actions>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> fe7bc59 (commit)
+=======
+				
+				
+>>>>>>> 1ccb88d (.)
 			</f:DynamicPageTitle>
 		</f:title>
 
