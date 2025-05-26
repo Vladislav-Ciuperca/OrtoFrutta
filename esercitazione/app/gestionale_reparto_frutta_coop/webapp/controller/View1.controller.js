@@ -18,12 +18,14 @@ sap.ui.define([
     },
     // onEdit: function (evt) {
 		// 	MessageToast.show(evt.getSource().getId() + " Pressed");
+    //  this.byId("onSave").setVisible(false);
 		// },
 
 
 
 // onSave: function (evt) {
 		// 	MessageToast.show(evt.getSource().getId() + " Pressed");
+    //  this.byId("onEdit").setVisible(false);
 		// },
 
 
