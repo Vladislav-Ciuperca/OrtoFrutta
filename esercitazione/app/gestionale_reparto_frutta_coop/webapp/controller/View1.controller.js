@@ -472,6 +472,7 @@ sap.ui.define([
   
       },
 
+<<<<<<< HEAD
     //   this.byId("edit").setVisible(false);
     // },
 
@@ -483,6 +484,8 @@ sap.ui.define([
     //   this.byId("save").setVisible(false);
     // },
 
+=======
+>>>>>>> a9617c2 (cambio fuinzione)
     onSave: function () {
       // 	MessageToast.show(evt.getSource().getId() + " Pressed");
       //  this.byId("onSave").setVisible(false);
@@ -513,6 +516,7 @@ sap.ui.define([
   
       },
 
+<<<<<<< HEAD
     //   this.byId("save").setVisible(false);
     // },
 
@@ -775,6 +779,8 @@ sap.ui.define([
     // onSave: function () {
     //   console.log();
 
+=======
+>>>>>>> a9617c2 (cambio fuinzione)
     //   this.byId("edit").setVisible(false);
     // },
 
