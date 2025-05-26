@@ -667,8 +667,11 @@ sap.ui.define([
     // },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 18a9001 (Revert "cambio origine e data")
 =======
+=======
+>>>>>>> 3246643 (Revert "cambio origine e data")
     // onEdit: function () {
     //   console.log();
 
@@ -682,6 +685,7 @@ sap.ui.define([
     //   this.byId("edit").setVisible(false);
     // },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> b536e36 (Revert "cambio origine e data")
 =======
@@ -785,6 +789,8 @@ sap.ui.define([
     // },
 
 >>>>>>> c2c9540 (Revert "cambio origine e data")
+=======
+>>>>>>> 3246643 (Revert "cambio origine e data")
 
 
     getRouter: function () {
