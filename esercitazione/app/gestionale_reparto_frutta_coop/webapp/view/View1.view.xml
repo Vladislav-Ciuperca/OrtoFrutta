@@ -35,8 +35,6 @@
 				<f:actions>
 					<ToolbarSpacer/>
 					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
-
 					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				
@@ -193,8 +191,8 @@
 
 					<!-- DATA -->
 
-					<t:Column id="text_data" width="13rem">
-						<Label text="{i18n>data_aggiornamento}" />
+					<t:Column width="13rem">
+						<Label id="text_data" text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
