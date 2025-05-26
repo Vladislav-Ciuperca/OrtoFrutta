@@ -35,7 +35,8 @@
 				<f:actions>
 					<ToolbarSpacer/>
 					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					
+					<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
+
 					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				
@@ -280,13 +281,16 @@
 
 
 		<!-- DynamicPage Footer -->
-		<f:footer>
+		<!-- <f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button type="Accept" text="{i18n>accetta}"/>
 				<Button type="Reject" text="{i18n>rifiuta}"/>
+				
+				
 			</OverflowToolbar>
-		</f:footer>
+		</f:footer> -->
+
 	</f:DynamicPage>
 
 
