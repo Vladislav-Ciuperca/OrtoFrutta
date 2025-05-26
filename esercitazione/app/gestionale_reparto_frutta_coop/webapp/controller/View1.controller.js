@@ -18,7 +18,7 @@ sap.ui.define([
     },
     onEdit: function () {
 		// 	MessageToast.show(evt.getSource().getId() + " Pressed");
-    //  this.byId("onSave").setVisible(false);
+     this.byId("onSave").setVisible(false);
 
     this.byId("input_prodotto").setVisible(true)
     this.byId("text_prodotto").setVisible(false)
@@ -45,12 +45,13 @@ sap.ui.define([
     this.byId("text_origine").setVisible(false)
 
 		},
-
+    
     onSave: function () {
       // 	MessageToast.show(evt.getSource().getId() + " Pressed");
       //  this.byId("onSave").setVisible(false);
-      this.byId("onEdit").setVisible(false);
-
+      this.byId("edit").setVisible(true);
+      this.byId("undo").setVisible(false);
+      
       this.byId("input_prodotto").setVisible(false)
       this.byId("text_prodotto").setVisible(true)
       
@@ -74,6 +75,8 @@ sap.ui.define([
   
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
+
+      
   
       },
 
