@@ -34,8 +34,10 @@
 					</f:content> -->
 				<f:actions>
 					<ToolbarSpacer/>
-					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
+					<!-- <Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
+					 <Button id="undo" press="undo" visible="true"  icon="sap-icon://undo"/> -->
+
+					<!-- <Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/> -->
 
 					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
@@ -233,8 +235,8 @@
 
 					<!-- DATA -->
 
-					<t:Column id="text_data"  width="13rem">
-						<Label text="{i18n>data_aggiornamento}" />
+					<t:Column id="text_data" width="13rem" visible="true">
+						<Label  text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 						</t:template>
@@ -256,17 +258,7 @@
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Select selectedKey="{AddProducts/origine}">
-								<c:Item text="Italia" key="Italia"/>
-								<c:Item text="Nuova Zelanda" key="Nuova"/>
-								<c:Item text="Cina" key="Cina"/>
-								<c:Item text="Messico" key="Messico"/>
-								<c:Item text="Indonesia" key="Indonesia"/>
-								<c:Item text="India" key="India"/>
-								<c:Item text="Sud America" key="Sud"/>
-								<c:Item text="iran" key="iran"/>
-								<c:Item text="Persia" key="Persia"/>
-							</Select>
+							<Text text="{AddProducts/origine_prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
@@ -308,15 +300,16 @@
 
 
 		<!-- DynamicPage Footer -->
-		<!-- <f:footer>
+		<f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Button type="Accept" text="{i18n>accetta}"/>
-				<Button type="Reject" text="{i18n>rifiuta}"/>
+				<Button id= "Accept" press="onSave" type="Accept" text="{i18n>accetta}"/>
+				<!-- <Button type="Accept" text="{i18n>accetta}"/> -->
+				<!-- <Button type="Reject" text="{i18n>rifiuta}"/> -->
 				
 				
 			</OverflowToolbar>
-		</f:footer> -->
+		</f:footer> 
 
 	</f:DynamicPage>
 
