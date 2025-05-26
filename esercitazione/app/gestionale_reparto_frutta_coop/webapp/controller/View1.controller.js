@@ -162,7 +162,23 @@ sap.ui.define([
     //   this.byId("edit").setVisible(false);
     // },
 
+<<<<<<< HEAD
 >>>>>>> 0a6a01b (cambio fuinzione)
+=======
+    // onEdit: function () {
+    //   console.log();
+
+    //   this.byId("save").setVisible(false);
+    // },
+
+
+    // onSave: function () {
+    //   console.log();
+
+    //   this.byId("edit").setVisible(false);
+    // },
+
+>>>>>>> f25c122 (Revert "cambio origine e data")
 
 
     getRouter: function () {
