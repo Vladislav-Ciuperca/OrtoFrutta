@@ -13,20 +13,25 @@ sap.ui.define([
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
 
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
-     
-     
+
+
     },
-    // onEdit: function (evt) {
-		// 	MessageToast.show(evt.getSource().getId() + " Pressed");
-    //  this.byId("onSave").setVisible(false);
-		// },
 
 
 
-// onSave: function (evt) {
-		// 	MessageToast.show(evt.getSource().getId() + " Pressed");
-    //  this.byId("onEdit").setVisible(false);
-		// },
+
+    // onEdit: function () {
+    //   console.log();
+
+    //   this.byId("save").setVisible(false);
+    // },
+
+
+    // onSave: function () {
+    //   console.log();
+
+    //   this.byId("edit").setVisible(false);
+    // },
 
 
 
@@ -45,7 +50,7 @@ sap.ui.define([
 
         }.bind(that),
         //   dove trova gli errori
-        function (error) {}.bind(that));
+        function (error) { }.bind(that));
     },
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
@@ -67,13 +72,13 @@ sap.ui.define([
     },
 
 
-    edit: function(){
+    edit: function () {
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
 
     },
 
 
-  
+
 
 
   });
