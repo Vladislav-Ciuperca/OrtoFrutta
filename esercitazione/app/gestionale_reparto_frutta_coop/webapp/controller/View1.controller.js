@@ -371,6 +371,19 @@ sap.ui.define([
     //   this.byId("edit").setVisible(false);
     // },
 
+    // onEdit: function () {
+    //   console.log();
+
+    //   this.byId("save").setVisible(false);
+    // },
+
+
+    // onSave: function () {
+    //   console.log();
+
+    //   this.byId("edit").setVisible(false);
+    // },
+
 
 
     getRouter: function () {
