@@ -34,7 +34,7 @@
 					</f:content> -->
 				<f:actions>
 					<ToolbarSpacer/>
-					<Button press="edit" text="{i18n>button_edita}" type="Emphasized"/>
+					<Button press="onEdit" text="{i18n>button_edita}" type="Emphasized"/>
 					<Button text="{i18n>button_elimina}" type="Transparent"/>
 					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
 				</f:actions>
@@ -72,70 +72,70 @@
 				<t:extension>
 					<OverflowToolbar style="Clear">
 						<!-- <Title text="{AddProducts>categoria}"/> -->
-						
+
 					</OverflowToolbar>
-					
+
 				</t:extension>
 				<t:columns>
 
 					<!-- ID DEL PRODOTTO-->
-					
-					<t:Column id="text_prodotto" width="8rem">
+
+					<t:Column id="text_prodotto" width="8rem" visible="true">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts/categoria}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column id="input_prodotto" width="8rem">
+					<t:Column id="input_prodotto" width="8rem" visible="false">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
 							<Input value="placeholder"/>
 						</t:template>
 					</t:Column>
-					
-					
+
+
 					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_categoria" width="6rem">
+					<t:Column id="text_categoria" width="6rem" visible="true">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts/categoria}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column id="input_categoria" width="6rem">
+					<t:Column id="input_categoria" width="6rem" visible="false">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
 							<Input value="placeholder"/>
 						</t:template>
 					</t:Column>
-					
+
 					<!-- NOME PRODOTTO -->
-					<t:Column width="9rem">
-						<Label id= "text_nome" text="{i18n>nome_prodotto}" />
+					<t:Column id= "text_nome" width="9rem" visible="true">
+						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts/prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="9rem">
-						<Label id= "input_nome" text="{i18n>nome_prodotto}" />
+					<t:Column id= "input_nome" width="9rem" visible="false">
+						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Input value="placeholder"/>
 						</t:template>
 					</t:Column>
-					
-					
+
+
 					<!-- QUANTITA -->
-					<t:Column width="11rem">
-						<Label id= "text_quantita" text="{i18n>quantità_prodotto}" />
+					<t:Column id= "text_quantita" width="11rem" visible="true">
+						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
 							<Label text="{AddProducts/quantit}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="11rem">
-						<Label id= "input_quanita" text="{i18n>quantità_prodotto}" />
+					<t:Column id= "input_quanita" width="11rem" visible="false">
+						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
 							<Input value="placeholder"/>
 						</t:template>
@@ -147,32 +147,32 @@
 							</t:template>
 						</t:Column> -->
 
-						
+
 					<!-- PREZZO -->
-					<t:Column width="6rem">
-						<Label id= "text_prezzo" text="{i18n>prezzo_prodotto}" />
+					<t:Column id= "text_prezzo" width="6rem" visible="true">
+						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
 							<u:Currency value="{AddProducts/prezzo_unitario}" currency="{CurrencyCode}"/>
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="6rem">
-						<Label id= "input_prezzo" text="{i18n>prezzo_prodotto}" />
+					<t:Column  id= "input_prezzo" width="6rem" visible="false">
+						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
 							<Input value="placeholder"/>
 						</t:template>
 					</t:Column>
 
 					<!-- SCONTO -->
-					<t:Column width="5rem">
-						<Label id= "text_sconto" text="{i18n>sconto_prodotto}" />
+					<t:Column id= "text_sconto" width="5rem" visible="true">
+						<Label  text="{i18n>sconto_prodotto}" />
 						<t:template  >
 							<Text text="{AddProducts/sconto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="5rem">
-						<Label id="input_sconto" text="{i18n>sconto_prodotto}" />
+					<t:Column id="input_sconto" width="5rem" visible="false">
+						<Label  text="{i18n>sconto_prodotto}" />
 						<t:template  >
 							<Input value="placeholder"/>
 						</t:template>
@@ -215,8 +215,8 @@
 
 					<!-- DATA -->
 
-					<t:Column width="13rem">
-						<Label id="text_data" text="{i18n>data_aggiornamento}" />
+					<t:Column id="text_data" width="13rem" visible="true">
+						<Label  text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<DatePicker value="{
 								path: 'DeliveryDate',
@@ -226,8 +226,8 @@
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="13rem">
-						<Label id="input_data" text="{i18n>data_aggiornamento}" />
+					<t:Column id="input_data" width="13rem" visible="false">
+						<Label  text="{i18n>data_aggiornamento}"/>
 						<t:template>
 							<DatePicker value="{
 								path: 'DeliveryDate',
@@ -238,8 +238,8 @@
 					</t:Column>
 
 					<!-- ORIGINE -->
-					<t:Column width="12rem">
-						<Label id="text_origine" text="{i18n>origine_prodotto}" />
+					<t:Column id="text_origine" width="12rem" visible="true">
+						<Label  text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Select selectedKey="{AddProducts/origine}">
 								<c:Item text="Italia" key="Italia"/>
@@ -255,8 +255,8 @@
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="12rem">
-						<Label id="input_origine" text="{i18n>origine_prodotto}" />
+					<t:Column id="input_origine" width="12rem" visible="false">
+						<Label  text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Select selectedKey="{AddProducts/origine}">
 								<c:Item text="Italia" key="Italia"/>
