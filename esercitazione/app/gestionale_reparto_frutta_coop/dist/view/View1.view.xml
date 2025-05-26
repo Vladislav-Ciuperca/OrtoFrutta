@@ -72,9 +72,7 @@
 				<t:extension>
 					<OverflowToolbar style="Clear">
 						<!-- <Title text="{AddProducts>categoria}"/> -->
-						
 					</OverflowToolbar>
-					
 				</t:extension>
 				<t:columns>
 
@@ -288,6 +286,7 @@
 			</t:Table>
 
 		</f:content>
+
 
 
 

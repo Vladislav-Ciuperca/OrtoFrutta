@@ -20,7 +20,8 @@
     "mbt": "^1.2.29"
   },
   "scripts": {
-    "start": "cds watch --profile hybrid",
+    "start": "cds-serve",
+    "start1": "cds watch --profile hybrid",
     "hybrid": "cds watch --profile hybrid",
     "watch-gestionale_reparto_frutta_coop": "cds watch --open gestionale_reparto_frutta_coop/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy esercitazione --delete-services --delete-service-keys --delete-service-brokers",

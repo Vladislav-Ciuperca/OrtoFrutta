@@ -16,7 +16,9 @@ sap.ui.define([
      
      
     },
-   
+    onedit: function (evt) {
+			MessageToast.show(evt.getSource().getId() + " Pressed");
+		},
 
     getRouter: function () {
 
