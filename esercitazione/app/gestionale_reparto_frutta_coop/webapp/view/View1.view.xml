@@ -125,6 +125,7 @@
 					<!-- ID DEL PRODOTTO-->
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<!-- 
 =======
 					
@@ -140,6 +141,13 @@
 						<t:template>
 							<Text text="{categoria}" wrapping="false" />
 >>>>>>> e30b454 (commit finale di lunedi)
+=======
+<!-- 
+					<t:Column id="text_prodotto" width="8rem" visible="true">
+						<Label text="{i18n>id_prodotto}" />
+						<t:template>
+							<Text text="{AddProducts>categoria}" wrapping="false" />
+>>>>>>> 9173bc3 (expose dei dati :))
 						</t:template>
 					</t:Column> -->
 					<!-- /////////////////////////////// -->
@@ -147,10 +155,14 @@
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
 <<<<<<< HEAD
+<<<<<<< HEAD
 							<Input value="{AddProducts>categoria}"/>
 =======
 							<Input value="{AddProducts>/categoria}"/>
 >>>>>>> e30b454 (commit finale di lunedi)
+=======
+							<Input value="{AddProducts>categoria}"/>
+>>>>>>> 9173bc3 (expose dei dati :))
 						</t:template>
 					</t:Column> -->
 
@@ -258,7 +270,7 @@
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label  text="{i18n>origine_prodotto}" />
 						<t:template>
-								<Text text="{AddProducts/origine}" wrapping="false" />
+								<Text text="{AddProducts>origine}" wrapping="false" />
 						
 						</t:template>
 					</t:Column>

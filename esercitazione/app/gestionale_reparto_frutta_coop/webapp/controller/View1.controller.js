@@ -14,6 +14,7 @@ sap.ui.define([
 
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
 
+      // alert(JSON.stringify(this.getView().getModel("AddProducts").getProperty("/Prodotti"), null, 2));
       
     },
     onEdit: function () {
@@ -21,8 +22,8 @@ sap.ui.define([
       this.byId("edit").setVisible(false);
       this.byId("undo").setVisible(true);
       
-      this.byId("input_prodotto").setVisible(true)
-      this.byId("text_prodotto").setVisible(false)
+      // this.byId("input_prodotto").setVisible(true)
+      // this.byId("text_prodotto").setVisible(false)
       
       this.byId("input_categoria").setVisible(true)
       this.byId("text_categoria").setVisible(false)
@@ -226,8 +227,8 @@ sap.ui.define([
       this.byId("undo").setVisible(false)
 
       
-      this.byId("input_prodotto").setVisible(false)
-      this.byId("text_prodotto").setVisible(true)
+      // this.byId("input_prodotto").setVisible(false)
+      // this.byId("text_prodotto").setVisible(true)
       
       this.byId("input_categoria").setVisible(false)
       this.byId("text_categoria").setVisible(true)
@@ -519,9 +520,13 @@ sap.ui.define([
         function (data) {
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
 >>>>>>> e30b454 (commit finale di lunedi)
+=======
+          // alert(JSON.stringify(this.getView().getModel("AddProducts").getProperty("/Prodotti"), null, 2));
+>>>>>>> 9173bc3 (expose dei dati :))
         }.bind(that),
         function (error) { }.bind(that));
     },
