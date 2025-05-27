@@ -10,6 +10,7 @@
 
 
 	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
+	
 
 		<f:title>
 			<f:DynamicPageTitle>
@@ -33,7 +34,6 @@
 										<ObjectAttribute title="{i18n>title_posizione}" text="{i18n>text_magazzino}"/>
 										<ObjectAttribute title="{i18n>title_corridoio}" text="{i18n>text_corridoio}"/>
 										<ObjectAttribute title="{i18n>title_rastrelliera}" text="{i18n>text_rastrelliera}"/>
-										<ObjectAttribute title="sd.m,kjfgdaslfiujhapslwdikjhcvlakisdjhcbqldaskhfdlqawksjfhliausd" />
 
 									</layout:VerticalLayout>
 									<layout:VerticalLayout>
@@ -45,25 +45,39 @@
 						</Panel>
 					</items>
 				</FlexBox>
+				
 			</f:DynamicPageHeader>
 		</f:header>
 
 
+
+
+
 		<f:content>
 
+			<t:Table id= "tabella" rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
+			
 
-			<t:Table id="tavola" rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
-
-				<t:extension>
+				<t:extension >
 					<OverflowToolbar style="Clear">
-
-						<Button id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/>
+					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
+					<ToolbarSpacer />
+						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
 						<Button id="undo" press="undo" visible="false" icon="sap-icon://undo" />
-
+						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
+						
 					</OverflowToolbar>
 
+			
 				</t:extension>
+
+				
+				
 				<t:columns>
+				
+					
+						
+					
 
 					<!-- ID DEL PRODOTTO-->
 					<!-- 
@@ -83,7 +97,7 @@
 
 
 					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_categoria" width="6rem" visible="true">
+					<t:Column id="text_categoria" width="6rem" visible="true" sortProperty="categoria" filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>categoria}" wrapping="false" />
@@ -98,7 +112,7 @@
 					</t:Column>
 
 					<!-- NOME PRODOTTO -->
-					<t:Column id= "text_nome" width="9rem" visible="true">
+					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prodotto" filterProperty="prodotto" resizable="false">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
@@ -124,7 +138,7 @@
 					<t:Column id= "input_quanita" width="11rem" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
-							<Input value="{AddProducts>quantita_giacenza}"/>
+							<Input value="{AddProducts>giacenza}"/>
 						</t:template>
 					</t:Column>
 
@@ -164,11 +178,8 @@
 					<t:Column id="text_data" width="13rem">
 						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
-							<DatePicker value="{
-								path: 'DeliveryDate',
-								type: 'sap.ui.model.type.Date',
-								formatOptions: {source: {pattern: 'timestamp'}}
-							}"/>
+							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
+							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
