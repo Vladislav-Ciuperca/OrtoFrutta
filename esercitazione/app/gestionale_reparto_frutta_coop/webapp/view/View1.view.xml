@@ -17,22 +17,28 @@
 					<Title text="{i18n>titolo}"/>
 				</f:heading>
 
+
 			</f:DynamicPageTitle>
 		</f:title>
 
 		<!-- headewr -->
+		<!-- headewr -->
 		<f:header>
+
 
 			<f:DynamicPageHeader pinnable="true">
 				<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 					<items>
 						<Panel backgroundDesign="Transparent" class="sapUiNoContentPadding">
 							<content >
+							<content >
 								<layout:HorizontalLayout allowWrapping="true">
 									<layout:VerticalLayout class="sapUiMediumMarginEnd">
 										<ObjectAttribute title="{i18n>title_posizione}" text="{i18n>text_magazzino}"/>
 										<ObjectAttribute title="{i18n>title_corridoio}" text="{i18n>text_corridoio}"/>
 										<ObjectAttribute title="{i18n>title_rastrelliera}" text="{i18n>text_rastrelliera}"/>
+										<ObjectAttribute title="sd.m,kjfgdaslfiujhapslwdikjhcvlakisdjhcbqldaskhfdlqawksjfhliausd" />
+
 										<ObjectAttribute title="sd.m,kjfgdaslfiujhapslwdikjhcvlakisdjhcbqldaskhfdlqawksjfhliausd" />
 
 									</layout:VerticalLayout>
@@ -52,13 +58,22 @@
 
 
 
+
+
+
+
 		<f:content>
+
+
 
 
 			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
 
 				<t:extension>
 					<OverflowToolbar style="Clear">
+
+						<Button id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/>
+						<Button id="undo" press="onSave" visible="false" icon="sap-icon://undo" />
 
 						<Button id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/>
 						<Button id="undo" press="onSave" visible="false" icon="sap-icon://undo" />
@@ -70,18 +85,24 @@
 
 					<!-- ID DEL PRODOTTO-->
 					<!-- 
+					<!-- 
 					<t:Column id="text_prodotto" width="8rem" visible="true">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>categoria}" wrapping="false" />
+							<Text text="{AddProducts>categoria}" wrapping="false" />
 						</t:template>
 					</t:Column> -->
+					</t:Column> -->
 					<!-- /////////////////////////////// -->
+					<!-- <t:Column id="input_prodotto" width="8rem" visible="false">
 					<!-- <t:Column id="input_prodotto" width="8rem" visible="false">
 						<Label text="{i18n>id_prodotto}" />
 						<t:template>
 							<Input value="{AddProducts>categoria}"/>
+							<Input value="{AddProducts>categoria}"/>
 						</t:template>
+					</t:Column> -->
 					</t:Column> -->
 
 
@@ -90,12 +111,14 @@
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>categoria}" wrapping="false" />
+							<Text text="{AddProducts>categoria}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_categoria" width="6rem" visible="false">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
+							<Input value="{AddProducts>categoria}"/>
 							<Input value="{AddProducts>categoria}"/>
 						</t:template>
 					</t:Column>
@@ -105,12 +128,14 @@
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
+							<Text text="{AddProducts>prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id= "input_nome" width="9rem" visible="false">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
+							<Input value="{AddProducts>prodotto}"/>
 							<Input value="{AddProducts>prodotto}"/>
 						</t:template>
 					</t:Column>
@@ -121,12 +146,14 @@
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
 							<Label text="{AddProducts>giacenza}" wrapping="false" />
+							<Label text="{AddProducts>giacenza}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id= "input_quanita" width="11rem" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
+							<Input value="{AddProducts>giacenza}"/>
 							<Input value="{AddProducts>giacenza}"/>
 						</t:template>
 					</t:Column>
@@ -137,12 +164,16 @@
 						<t:template >
 							<!-- <u:Currency value="{AddProducts>prezzo_unitario}" currency="{CurrencyCode}"/> -->
 							<Label text="{AddProducts>prezzo_unitario}"/>
+							<!-- <u:Currency value="{AddProducts>prezzo_unitario}" currency="{CurrencyCode}"/> -->
+							<Label text="{AddProducts>prezzo_unitario}"/>
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id= "input_prezzo" width="6rem" visible="false">
+					<t:Column id= "input_prezzo" width="6rem" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
+							<Input value="{AddProducts>prezzo_unitario}"/>
 							<Input value="{AddProducts>prezzo_unitario}"/>
 						</t:template>
 					</t:Column>
@@ -150,14 +181,18 @@
 					<!-- SCONTO -->
 					<t:Column id= "text_sconto" width="5rem" visible="true">
 						<Label text="{i18n>sconto_prodotto}" />
+						<Label text="{i18n>sconto_prodotto}" />
 						<t:template  >
+							<Text text="{AddProducts>sconto}" wrapping="false" />
 							<Text text="{AddProducts>sconto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_sconto" width="5rem" visible="false">
 						<Label text="{i18n>sconto_prodotto}" />
+						<Label text="{i18n>sconto_prodotto}" />
 						<t:template  >
+							<Input value="{AddProducts>sconto}"/>
 							<Input value="{AddProducts>sconto}"/>
 						</t:template>
 					</t:Column>
@@ -168,10 +203,12 @@
 						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
+							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_data" width="13rem" visible="false">
+						<Label text="{i18n>data_aggiornamento}"/>
 						<Label text="{i18n>data_aggiornamento}"/>
 						<t:template>
 							<DatePicker value="{
@@ -183,10 +220,14 @@
 					</t:Column>
 
 
+
 					<!-- ORIGINE -->
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label text="{i18n>origine_prodotto}" />
+						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
+							<Text text="{AddProducts>origine}" wrapping="false" />
+
 							<Text text="{AddProducts>origine}" wrapping="false" />
 
 						</t:template>
@@ -194,7 +235,9 @@
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_origine" width="12rem" visible="false">
 						<Label text="{i18n>origine_prodotto}" />
+						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
+							<Select selectedKey="{AddProducts>origine}">
 							<Select selectedKey="{AddProducts>origine}">
 								<c:Item text="Italia" key="Italia"/>
 								<c:Item text="Nuova Zelanda" key="Nuova"/>
@@ -222,6 +265,7 @@
 		<f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
+				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
 				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
 				<Button type="Reject" text="{i18n>rifiuta}"/>
 			</OverflowToolbar>
