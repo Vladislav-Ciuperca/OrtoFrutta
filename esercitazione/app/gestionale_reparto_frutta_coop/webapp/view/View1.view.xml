@@ -234,7 +234,7 @@
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<Button type="Reject" text="{i18n>rifiuta}"/>
+				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/>
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
