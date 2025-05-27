@@ -52,7 +52,7 @@
 		<f:content>
 
 
-			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
+			<t:Table id="tavola" rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
 
 				<t:extension>
 					<OverflowToolbar style="Clear">
