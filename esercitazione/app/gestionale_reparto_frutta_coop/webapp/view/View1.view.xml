@@ -10,34 +10,14 @@
 
 
 	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
+	
 
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
 					<Title text="{i18n>titolo}"/>
 				</f:heading>
-				<!-- <f:expandedContent>
-						<Label text="This is a subheading"/>
-					</f:expandedContent> -->
-				<!-- <f:snappedContent>
-						<Label text="This is a subheading"/>
-					</f:snappedContent> -->
-				<!-- <f:snappedTitleOnMobile>
-						<Title text="This is a subheading"/>
-					</f:snappedTitleOnMobile> -->
-				<!-- <f:content>
-						<OverflowToolbar>
-							<GenericTag text="SR" status="Error" press="onGenericTagPress" design="StatusIconHidden">
-								<ObjectNumber number="2" unit="M" emphasized="false" state="Error"/>
-							</GenericTag>
-						</OverflowToolbar>
-					</f:content> -->
-				<f:actions>
-					<ToolbarSpacer/>
-					<Button id="edit" press="onEdit" text="{i18n>button_edita}" type="Emphasized" />
-					<!-- <Button text="{i18n>button_elimina}" type="Transparent"/> -->
-					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
-				</f:actions>
+
 			</f:DynamicPageTitle>
 		</f:title>
 
@@ -65,30 +45,39 @@
 						</Panel>
 					</items>
 				</FlexBox>
+				
 			</f:DynamicPageHeader>
 		</f:header>
 
 
+
+
+
 		<f:content>
 
-
-
-
-			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
+			<t:Table id= "tabella" rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
+			
 
 				<t:extension >
 					<OverflowToolbar style="Clear">
-
-						<Button id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/>
+					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
+					<ToolbarSpacer />
+						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
 						<Button id="undo" press="undo" visible="false" icon="sap-icon://undo" />
-
+						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
+						
 					</OverflowToolbar>
+
 			
-   
-
-
 				</t:extension>
+
+				
+				
 				<t:columns>
+				
+					
+						
+					
 
 					<!-- ID DEL PRODOTTO-->
 					<!-- 
@@ -108,7 +97,7 @@
 
 
 					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_categoria" width="6rem" visible="true">
+					<t:Column id="text_categoria" width="6rem" visible="true" sortProperty="categoria" filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>categoria}" wrapping="false" />
@@ -123,7 +112,7 @@
 					</t:Column>
 
 					<!-- NOME PRODOTTO -->
-					<t:Column id= "text_nome" width="9rem" visible="true">
+					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prodotto" filterProperty="prodotto" resizable="false">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
@@ -149,7 +138,7 @@
 					<t:Column id= "input_quanita" width="11rem" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
-							<Input value="{AddProducts>quantita_giacenza}"/>
+							<Input value="{AddProducts>giacenza}"/>
 						</t:template>
 					</t:Column>
 
@@ -186,8 +175,8 @@
 
 					<!-- DATA -->
 
-					<t:Column width="13rem">
-						<Label id="text_data" text="{i18n>data_aggiornamento}" />
+					<t:Column id="text_data" width="13rem">
+						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
@@ -205,7 +194,6 @@
 						</t:template>
 					</t:Column>
 
-					
 					<!-- ORIGINE -->
 					<t:Column id="text_origine" width="12rem" visible="true">
 						<Label text="{i18n>origine_prodotto}" />
@@ -242,14 +230,13 @@
 
 
 		<!-- DynamicPage Footer -->
-		<!-- <f:footer>
+		<f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/>
+				<Button type="Reject" text="{i18n>rifiuta}"/>
 			</OverflowToolbar>
-		</f:footer> -->
-
+		</f:footer>
 	</f:DynamicPage>
 
 
