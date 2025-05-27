@@ -24,8 +24,8 @@ sap.ui.define([
       this.byId("undo").setVisible(true)
 
       
-      this.byId("input_prodotto").setVisible(true)
-      this.byId("text_prodotto").setVisible(false)
+      // this.byId("input_prodotto").setVisible(true)
+      // this.byId("text_prodotto").setVisible(false)
       
       this.byId("input_categoria").setVisible(true)
       this.byId("text_categoria").setVisible(false)
@@ -48,7 +48,7 @@ sap.ui.define([
       this.byId("input_origine").setVisible(true)
       this.byId("text_origine").setVisible(false)
       
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
 
     
     this.byId("modifica").setVisible(false);
@@ -58,15 +58,10 @@ sap.ui.define([
 		},
     
     onSave: function () {
-      // 	MessageToast.show(evt.getSource().getId() + " Pressed");
-      // console.log(this.byId("edit"));
+
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
-      
-      this.byId("input_prodotto").setVisible(false)
-      this.byId("text_prodotto").setVisible(true)
-      
       this.byId("input_categoria").setVisible(false)
       this.byId("text_categoria").setVisible(true)
       
@@ -89,8 +84,6 @@ sap.ui.define([
       this.byId("text_origine").setVisible(true)
       
       
-      // this.byId("edit").setVisible(false);
-      
     },
     
   
@@ -106,9 +99,7 @@ sap.ui.define([
         sUrl + "fruttarolo",
         function (data) {
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
-          console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
         }.bind(that),
-        //   dove trova gli errori
         function (error) { }.bind(that));
     },
 
@@ -126,18 +117,8 @@ sap.ui.define([
             errorCallback(error);
           }
         },
-        // async: false,
       });
     },
-
-
-    // edit: function () {
-    //   console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-
-    // },
-
-
-
 
 
   });
