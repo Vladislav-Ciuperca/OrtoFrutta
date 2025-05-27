@@ -33,7 +33,6 @@
 										<ObjectAttribute title="{i18n>title_posizione}" text="{i18n>text_magazzino}"/>
 										<ObjectAttribute title="{i18n>title_corridoio}" text="{i18n>text_corridoio}"/>
 										<ObjectAttribute title="{i18n>title_rastrelliera}" text="{i18n>text_rastrelliera}"/>
-										<ObjectAttribute title="sd.m,kjfgdaslfiujhapslwdikjhcvlakisdjhcbqldaskhfdlqawksjfhliausd" />
 
 									</layout:VerticalLayout>
 									<layout:VerticalLayout>
@@ -57,15 +56,18 @@
 
 
 
-			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
+			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
 
-				<t:extension>
+				<t:extension >
 					<OverflowToolbar style="Clear">
-
-						<Button id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/>
+					<ToolbarSpacer />
+						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
 						<Button id="undo" press="onSave" visible="false" icon="sap-icon://undo" />
 
 					</OverflowToolbar>
+			
+   
+
 
 				</t:extension>
 				<t:columns>
