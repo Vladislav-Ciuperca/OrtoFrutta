@@ -62,7 +62,7 @@
 					<OverflowToolbar style="Clear">
 					<ToolbarSpacer />
 						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
-						<Button id="undo" press="onSave" visible="false" icon="sap-icon://undo" />
+						<Button id="undo" press="undo" visible="false" icon="sap-icon://undo" />
 
 					</OverflowToolbar>
 			
