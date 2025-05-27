@@ -164,7 +164,11 @@
 					<t:Column id="text_data" width="13rem">
 						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
-							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
+							<DatePicker value="{
+								path: 'DeliveryDate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {source: {pattern: 'timestamp'}}
+							}"/>
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
@@ -178,7 +182,6 @@
 							}"/>
 						</t:template>
 					</t:Column>
-
 
 					<!-- ORIGINE -->
 					<t:Column id="text_origine" width="12rem" visible="true">
