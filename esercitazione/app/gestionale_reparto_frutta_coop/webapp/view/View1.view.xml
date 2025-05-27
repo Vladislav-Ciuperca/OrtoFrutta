@@ -58,7 +58,7 @@
 					<OverflowToolbar style="Clear">
 
 						<Button id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true"/>
-						<Button id="undo" press="onSave" visible="false" icon="sap-icon://undo" />
+						<Button id="undo" press="undo" visible="false" icon="sap-icon://undo" />
 
 					</OverflowToolbar>
 
@@ -124,7 +124,7 @@
 					<t:Column id= "input_quanita" width="11rem" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
-							<Input value="{AddProducts>giacenza}"/>
+							<Input value="{AddProducts>quantita_giacenza}"/>
 						</t:template>
 					</t:Column>
 
@@ -220,7 +220,7 @@
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<Button type="Reject" text="{i18n>rifiuta}"/>
+				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/>
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
