@@ -12,6 +12,8 @@
 	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
 	
 
+	
+
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
@@ -46,6 +48,7 @@
 					</items>
 				</FlexBox>
 				
+				
 			</f:DynamicPageHeader>
 		</f:header>
 
@@ -61,9 +64,10 @@
 				<t:extension >
 					<OverflowToolbar style="Clear">
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
+					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<ToolbarSpacer />
 						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
-						<Button id="undo" press="undo" visible="false" icon="sap-icon://undo" />
+						<Button id="undo" press="onUndo" visible="false" icon="sap-icon://undo" />
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
 						
 					</OverflowToolbar>
@@ -112,7 +116,7 @@
 					</t:Column>
 
 					<!-- NOME PRODOTTO -->
-					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prodotto" filterProperty="prodotto">
+					<t:Column id= "text_nome" width="9rem" visible="true">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
@@ -216,6 +220,12 @@
 								<c:Item text="iran" key="iran"/>
 								<c:Item text="Persia" key="Persia"/>
 							</Select>
+						</t:template>
+					</t:Column>
+					<t:Column id="delete" width="6rem" visible="false">
+						<t:template>
+							<Button icon="sap-icon://delete" type="Reject" press="delete" tooltip="{delete}" />
+
 						</t:template>
 					</t:Column>
 

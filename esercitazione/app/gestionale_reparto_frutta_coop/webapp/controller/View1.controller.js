@@ -78,11 +78,14 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(true)
       this.byId("text_origine").setVisible(false)
+      
 
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
+      this.byId("delete").setVisible(true)
 
 
-      this.byId("modifica").setVisible(false);
+      this.byId("modifica").setVisible(false)
+      
 
 
     },
@@ -115,10 +118,12 @@ sap.ui.define([
 
       this.byId("barra").setVisible(false)
 
+      this.byId("delete").setVisible(false)
 
     },
 
-    undo: function () {
+    onUndo: function () {
+      
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
       this.byId("barra").setVisible(false)
@@ -145,8 +150,8 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
-     
-
+      this.byId("delete").setVisible(false)
+      
     },
 
     debug: function () {
@@ -161,9 +166,9 @@ sap.ui.define([
       const newProductRow = {
         categoria: "",
         prodotto: "",
-        giacenza: 0,
-        prezzo_unitario: 0,
-        sconto: 0,
+        giacenza: "",
+        prezzo_unitario: "",
+        sconto: "",
         data_aggiornamento: new Date().toISOString(),
         origine: "",
       };
@@ -176,6 +181,8 @@ sap.ui.define([
       this.getView().getModel("AddProducts").setProperty("/Prodotti",prova)
 
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+
+      this.byId("modifica").firePress()
     },
 
     debug: function () {
