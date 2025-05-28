@@ -4,7 +4,7 @@ sap.ui.define([
   "sap/ui/model/FilterOperator",
 ], function (Controller, Filter, FilterOperator) {
   "use strict";
-  
+
 
   return Controller.extend("gestionalerepartofruttacoop.controller.View1", {
     onInit() {
@@ -22,15 +22,15 @@ sap.ui.define([
 
     // onSearch: function (oEvent) {
     //   console.log("scrivendo.....");
-      
+
     //   var sQuery = oEvent.getSource().getValue();
     //   var aFilters = [];
 
     //   if (sQuery && sQuery.length > 0) {
     //     var filter = new Filter([
-            
+
     //         new Filter("prodotto", FilterOperator.Contains, sQuery),
-           
+
     //       ],
     //     );
 
@@ -40,7 +40,7 @@ sap.ui.define([
     //   var oList = this.byId("tabella");
     //   var oBinding = oList.getBinding("rows");
     //   oBinding.filter(aFilters, "Application");
-      
+
 
     // },
 
@@ -78,14 +78,14 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(true)
       this.byId("text_origine").setVisible(false)
-      
+
 
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
       this.byId("delete").setVisible(true)
 
 
       this.byId("modifica").setVisible(false)
-      
+
 
 
     },
@@ -123,7 +123,7 @@ sap.ui.define([
     },
 
     onUndo: function () {
-      
+
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
       this.byId("barra").setVisible(false)
@@ -151,18 +151,18 @@ sap.ui.define([
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
       this.byId("delete").setVisible(false)
-      
+
     },
 
     debug: function () {
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-      
+
     },
 
     add: function () {
 
       this.byId("barra").setVisible(true)
-    
+
       const newProductRow = {
         categoria: "",
         prodotto: "",
@@ -172,13 +172,13 @@ sap.ui.define([
         data_aggiornamento: new Date().toISOString(),
         origine: "",
       };
-    
+
       this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
-      
-      let prova =  this.getView().getModel("AddProducts").getProperty("/Prodotti")
+
+      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")
       // console.log(prova);
-      
-      this.getView().getModel("AddProducts").setProperty("/Prodotti",prova)
+
+      this.getView().getModel("AddProducts").setProperty("/Prodotti", prova)
 
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
 
