@@ -118,6 +118,7 @@ sap.ui.define([
 
       this.byId("barra").setVisible(false)
 
+      this.byId("delete").setVisible(false)
 
     },
 
