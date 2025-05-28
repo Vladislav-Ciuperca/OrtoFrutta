@@ -6,7 +6,6 @@ sap.ui.define([
   "use strict";
 
 
-
   return Controller.extend("gestionalerepartofruttacoop.controller.View1", {
     onInit() {
       this.AddModel = new sap.ui.model.json.JSONModel()
@@ -24,7 +23,6 @@ sap.ui.define([
     // onSearch: function (oEvent) {
     //   console.log("scrivendo.....");
 
-
     //   var sQuery = oEvent.getSource().getValue();
     //   var aFilters = [];
 
@@ -32,7 +30,6 @@ sap.ui.define([
     //     var filter = new Filter([
 
     //         new Filter("prodotto", FilterOperator.Contains, sQuery),
-
 
     //       ],
     //     );
@@ -43,7 +40,6 @@ sap.ui.define([
     //   var oList = this.byId("tabella");
     //   var oBinding = oList.getBinding("rows");
     //   oBinding.filter(aFilters, "Application");
-
 
 
     // },
@@ -84,13 +80,11 @@ sap.ui.define([
       this.byId("text_origine").setVisible(false)
 
 
-
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
       this.byId("delete").setVisible(true)
 
 
       this.byId("modifica").setVisible(false)
-
 
 
 
@@ -130,7 +124,6 @@ sap.ui.define([
 
     onUndo: function () {
 
-
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
       this.byId("barra").setVisible(false)
@@ -159,12 +152,10 @@ sap.ui.define([
       this.byId("text_origine").setVisible(true)
       this.byId("delete").setVisible(false)
 
-
     },
 
     debug: function () {
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-
 
     },
 
@@ -194,7 +185,6 @@ sap.ui.define([
 
       this.byId("barra").setVisible(true)
 
-
       const newProductRow = {
         categoria: "",
         prodotto: "",
@@ -205,15 +195,10 @@ sap.ui.define([
         origine: "",
       };
 
-
       this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
 
       let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")
-
-      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")
       // console.log(prova);
-
-      this.getView().getModel("AddProducts").setProperty("/Prodotti", prova)
 
       this.getView().getModel("AddProducts").setProperty("/Prodotti", prova)
 
@@ -228,6 +213,12 @@ sap.ui.define([
     },
 
 
+
+
+    getRouter: function () {
+
+      return sap.ui.core.UIComponent.getRouterFor(this);
+    },
 
     _gestioniProdottiMatched: function () {
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
