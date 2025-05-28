@@ -1,7 +1,10 @@
 sap.ui.define([
-  "sap/ui/core/mvc/Controller"
-], (Controller) => {
+  "sap/ui/core/mvc/Controller",
+  "sap/ui/model/Filter",
+  "sap/ui/model/FilterOperator",
+], function (Controller, Filter, FilterOperator) {
   "use strict";
+  
 
   return Controller.extend("gestionalerepartofruttacoop.controller.View1", {
     onInit() {
@@ -16,6 +19,33 @@ sap.ui.define([
 
       
     },
+
+    // onSearch: function (oEvent) {
+    //   console.log("scrivendo.....");
+      
+    //   var sQuery = oEvent.getSource().getValue();
+    //   var aFilters = [];
+
+    //   if (sQuery && sQuery.length > 0) {
+    //     var filter = new Filter([
+            
+    //         new Filter("prodotto", FilterOperator.Contains, sQuery),
+           
+    //       ],
+    //     );
+
+    //     aFilters.push(filter);
+    //     // console.log(aFilters);
+    //   }
+    //   var oList = this.byId("tabella");
+    //   var oBinding = oList.getBinding("rows");
+    //   oBinding.filter(aFilters, "Application");
+      
+
+    // },
+
+
+
     onEdit: function () {
       // 	MessageToast.show(evt.getSource().getId() + " Pressed");
       // this.byId("edit").setVisible(false);
@@ -85,9 +115,41 @@ sap.ui.define([
       
       
     },
-    
-   
-    
+
+
+    undo: function () {
+      this.byId("modifica").setVisible(true)
+      this.byId("undo").setVisible(false)
+
+      this._gestioniProdottiMatched()
+
+      this.byId("input_categoria").setVisible(false)
+      this.byId("text_categoria").setVisible(true)
+      
+      this.byId("input_nome").setVisible(false)
+      this.byId("text_nome").setVisible(true)
+      
+      this.byId("input_quanita").setVisible(false)
+      this.byId("text_quantita").setVisible(true)
+      
+      this.byId("input_prezzo").setVisible(false)
+      this.byId("text_prezzo").setVisible(true)
+      
+      this.byId("input_sconto").setVisible(false)
+      this.byId("text_sconto").setVisible(true)
+      
+      this.byId("input_data").setVisible(false)
+      this.byId("text_data").setVisible(true)
+      
+      this.byId("input_origine").setVisible(false)
+      this.byId("text_origine").setVisible(true)
+
+    },
+
+    debug :function(){
+      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
+
+    },
   
     getRouter: function () {
 
