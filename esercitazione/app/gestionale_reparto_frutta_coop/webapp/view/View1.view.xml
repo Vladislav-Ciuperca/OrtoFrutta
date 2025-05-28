@@ -116,7 +116,7 @@
 					</t:Column>
 
 					<!-- NOME PRODOTTO -->
-					<t:Column id= "text_nome" width="9rem" visible="true">
+					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prdotto" filterProperty="prodotto">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
