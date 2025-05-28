@@ -52,6 +52,7 @@ sap.ui.define([
       // this.byId("undo").setVisible(true);
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
+      this.byId("barra").setVisible(true)
 
 
       // this.byId("input_prodotto").setVisible(true)
@@ -112,12 +113,15 @@ sap.ui.define([
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
 
+      this.byId("barra").setVisible(false)
+
 
     },
 
     undo: function () {
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
+      this.byId("barra").setVisible(false)
 
       this._gestioniProdottiMatched()
 
@@ -141,45 +145,18 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
+     
 
     },
 
     debug: function () {
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-
-    },
-
-    undo: function () {
-      this.byId("modifica").setVisible(true)
-      this.byId("undo").setVisible(false)
-
-      this._gestioniProdottiMatched()
-
-      this.byId("input_categoria").setVisible(false)
-      this.byId("text_categoria").setVisible(true)
-
-      this.byId("input_nome").setVisible(false)
-      this.byId("text_nome").setVisible(true)
-
-      this.byId("input_quanita").setVisible(false)
-      this.byId("text_quantita").setVisible(true)
-
-      this.byId("input_prezzo").setVisible(false)
-      this.byId("text_prezzo").setVisible(true)
-
-      this.byId("input_sconto").setVisible(false)
-      this.byId("text_sconto").setVisible(true)
-
-      this.byId("input_data").setVisible(false)
-      this.byId("text_data").setVisible(true)
-
-      this.byId("input_origine").setVisible(false)
-      this.byId("text_origine").setVisible(true)
-
+      
     },
 
     add: function () {
-      
+
+      this.byId("barra").setVisible(true)
     
       const newProductRow = {
         categoria: "",

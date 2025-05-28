@@ -12,8 +12,6 @@
 	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
 	
 
-	
-
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
@@ -59,36 +57,23 @@
 
 			<t:Table id= "tabella" rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
 			
-			<t:Table id= "tabella" rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto">
-			
 
 				<t:extension >
 					<OverflowToolbar style="Clear">
-					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<ToolbarSpacer />
 						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
 						<Button id="undo" press="undo" visible="false" icon="sap-icon://undo" />
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
 						
-						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
-						
 					</OverflowToolbar>
 
-			
 			
 				</t:extension>
 
 				
 				
-
-				
-				
 				<t:columns>
-				
-					
-						
-					
 				
 					
 						
@@ -127,7 +112,7 @@
 					</t:Column>
 
 					<!-- NOME PRODOTTO -->
-					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="nome_prodotto" filterProperty="nome_prodotto" resizable="false">
+					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prodotto" filterProperty="prodotto" resizable="false">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
@@ -204,7 +189,8 @@
 							<DatePicker value="{
 								path: 'DeliveryDate',
 								type: 'sap.ui.model.type.Date',
-								formatOptions: {source: {pattern: 'timestamp'}/>
+								formatOptions: {source: {pattern: 'timestamp'}}
+							}"/>
 						</t:template>
 					</t:Column>
 
@@ -245,10 +231,12 @@
 
 		<!-- DynamicPage Footer -->
 		<f:footer>
-			<OverflowToolbar>
+			<OverflowToolbar id= "barra" visible="false">
 				<ToolbarSpacer/>
-				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/>
+				<!-- <Button press="onSave" type="Accept" text="{i18n>accetta}"/>
+				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/> -->
+				<Button id="save" press="onSave" visible="true" icon="sap-icon://save" />
+				<!-- <Button id="delete" press="undo" visible="true" icon="sap-icon://decline" /> -->
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
