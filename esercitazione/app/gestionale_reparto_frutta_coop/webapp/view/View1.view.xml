@@ -12,6 +12,8 @@
 	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
 	
 
+	
+
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
@@ -46,6 +48,7 @@
 					</items>
 				</FlexBox>
 				
+				
 			</f:DynamicPageHeader>
 		</f:header>
 
@@ -60,6 +63,7 @@
 
 				<t:extension >
 					<OverflowToolbar style="Clear">
+					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<ToolbarSpacer />
 						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
@@ -112,7 +116,7 @@
 					</t:Column>
 
 					<!-- NOME PRODOTTO -->
-					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prodotto" filterProperty="prodotto" resizable="false">
+					<t:Column id= "text_nome" width="9rem" visible="true">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
