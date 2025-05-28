@@ -235,10 +235,12 @@
 
 		<!-- DynamicPage Footer -->
 		<f:footer>
-			<OverflowToolbar>
+			<OverflowToolbar id= "barra" visible="false">
 				<ToolbarSpacer/>
-				<Button press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/>
+				<!-- <Button press="onSave" type="Accept" text="{i18n>accetta}"/>
+				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/> -->
+				<Button id="save" press="onSave" visible="true" icon="sap-icon://save" />
+				<!-- <Button id="delete" press="undo" visible="true" icon="sap-icon://decline" /> -->
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
