@@ -165,9 +165,9 @@ sap.ui.define([
       const newProductRow = {
         categoria: "",
         prodotto: "",
-        giacenza: 0,
-        prezzo_unitario: 0,
-        sconto: 0,
+        giacenza: "",
+        prezzo_unitario: "",
+        sconto: "",
         data_aggiornamento: new Date().toISOString(),
         origine: "",
       };
@@ -180,6 +180,8 @@ sap.ui.define([
       this.getView().getModel("AddProducts").setProperty("/Prodotti",prova)
 
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+
+      this.byId("modifica").firePress()
     },
 
     debug: function () {
