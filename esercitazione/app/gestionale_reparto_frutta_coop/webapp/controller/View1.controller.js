@@ -192,12 +192,6 @@ sap.ui.define([
 
 
 
-
-    getRouter: function () {
-
-      return sap.ui.core.UIComponent.getRouterFor(this);
-    },
-
     _gestioniProdottiMatched: function () {
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
       var that = this
