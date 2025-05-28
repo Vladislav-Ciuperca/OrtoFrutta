@@ -163,12 +163,7 @@ sap.ui.define([
     
       this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
       
-      let prova =  this.getView().getModel("AddProducts").getProperty("/Prodotti")
-      // console.log(prova);
-      
-      this.getView().getModel("AddProducts").setProperty("/Prodotti",prova)
-
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+      \
     },
 
     debug: function () {
