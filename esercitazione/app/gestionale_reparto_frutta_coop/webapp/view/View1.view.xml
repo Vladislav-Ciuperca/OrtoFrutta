@@ -224,7 +224,7 @@
 					</t:Column>
 					<t:Column id="delete" width="6rem" visible="false">
 						<t:template>
-							<Button icon="sap-icon://delete" type="Reject" press="delete" tooltip="{delete}" />
+							<Button icon="sap-icon://delete" type="Reject" press="onDelete" tooltip="{delete}" />
 
 						</t:template>
 					</t:Column>
