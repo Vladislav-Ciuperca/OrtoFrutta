@@ -63,7 +63,7 @@
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<ToolbarSpacer />
 						<Button  id="modifica" press="onEdit" text="{i18n>button_edita}" type="Emphasized" visible="true" />
-						<Button id="undo" press="undo" visible="false" icon="sap-icon://undo" />
+						<Button id="undo" press="onUndo" visible="false" icon="sap-icon://undo" />
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
 						
 					</OverflowToolbar>
@@ -217,6 +217,12 @@
 								<c:Item text="iran" key="iran"/>
 								<c:Item text="Persia" key="Persia"/>
 							</Select>
+						</t:template>
+					</t:Column>
+					<t:Column id="delete" width="6rem" visible="false">
+						<t:template>
+							<Button icon="sap-icon://delete" type="Reject" press="delete" tooltip="{delete}" />
+
 						</t:template>
 					</t:Column>
 
