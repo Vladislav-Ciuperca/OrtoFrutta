@@ -97,7 +97,7 @@
 
 
 					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_categoria" width="6rem" visible="true" sortProperty="categoria" filterProperty="categoria" resizable="false">
+					<t:Column id="text_categoria" width="6rem" visible="true" sortProperty="categoria" filterProperty="categoria">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>categoria}" wrapping="false" />
@@ -112,7 +112,7 @@
 					</t:Column>
 
 					<!-- NOME PRODOTTO -->
-					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prodotto" filterProperty="prodotto" resizable="false">
+					<t:Column id= "text_nome" width="9rem" visible="true" sortProperty="prodotto" filterProperty="prodotto">
 						<Label text="{i18n>nome_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>prodotto}" wrapping="false" />
@@ -128,7 +128,7 @@
 
 
 					<!-- QUANTITA -->
-					<t:Column id= "text_quantita" width="11rem" visible="true">
+					<t:Column id= "text_quantita" width="11rem" visible="true" sortProperty="giacenza" filterProperty="giacenza">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template >
 							<Label text="{AddProducts>giacenza}" wrapping="false" />
@@ -143,7 +143,7 @@
 					</t:Column>
 
 					<!-- PREZZO -->
-					<t:Column id= "text_prezzo" width="6rem" visible="true">
+					<t:Column id= "text_prezzo" width="6rem" visible="true" sortProperty="prezzo_unitario" filterProperty="prezzo_unitario" >
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template >
 							<!-- <u:Currency value="{AddProducts>prezzo_unitario}" currency="{CurrencyCode}"/> -->
@@ -159,7 +159,7 @@
 					</t:Column>
 
 					<!-- SCONTO -->
-					<t:Column id= "text_sconto" width="5rem" visible="true">
+					<t:Column id= "text_sconto" width="5rem" visible="true" sortProperty="sconto" filterProperty="sconto" >
 						<Label text="{i18n>sconto_prodotto}" />
 						<t:template  >
 							<Text text="{AddProducts>sconto}" wrapping="false" />
@@ -175,10 +175,9 @@
 
 					<!-- DATA -->
 
-					<t:Column id="text_data" width="13rem">
+					<t:Column id="text_data" width="13rem" sortProperty="data_aggiornamento" filterProperty="data_aggiornamento" >
 						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
-							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
 						</t:template>
 					</t:Column>
@@ -195,7 +194,7 @@
 					</t:Column>
 
 					<!-- ORIGINE -->
-					<t:Column id="text_origine" width="12rem" visible="true">
+					<t:Column id="text_origine" width="12rem" visible="true" sortProperty="origine" filterProperty="origine">
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Text text="{AddProducts>origine}" wrapping="false" />
