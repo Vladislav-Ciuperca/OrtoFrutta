@@ -201,7 +201,8 @@
 								path: 'DeliveryDate',
 								type: 'sap.ui.model.type.Date',
 								formatOptions: {source: {pattern: 'timestamp'}}
-							}"/>
+							}"
+							placeholder="{i18n>data_aggiornamento}"/>
 						</t:template>
 					</t:Column>
 
@@ -225,7 +226,7 @@
 								<c:Item text="Indonesia" key="Indonesia"/>
 								<c:Item text="India" key="India"/>
 								<c:Item text="Sud America" key="Sud"/>
-								<c:Item text="iran" key="iran"/>
+								<c:Item text="Iran" key="iran"/>
 								<c:Item text="Persia" key="Persia"/>
 							</Select>
 						</t:template>
