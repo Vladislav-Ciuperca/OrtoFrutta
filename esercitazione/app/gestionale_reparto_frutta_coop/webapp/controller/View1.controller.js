@@ -47,16 +47,9 @@ sap.ui.define([
 
 
     onEdit: function () {
-      // 	MessageToast.show(evt.getSource().getId() + " Pressed");
-      // this.byId("edit").setVisible(false);
-      // this.byId("undo").setVisible(true);
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
       this.byId("barra").setVisible(true)
-
-
-      // this.byId("input_prodotto").setVisible(true)
-      // this.byId("text_prodotto").setVisible(false)
 
       this.byId("input_categoria").setVisible(true)
       this.byId("text_categoria").setVisible(false)
@@ -79,19 +72,13 @@ sap.ui.define([
       this.byId("input_origine").setVisible(true)
       this.byId("text_origine").setVisible(false)
 
-
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
       this.byId("delete").setVisible(true)
-
-
-      this.byId("modifica").setVisible(false)
-
-
 
     },
 
     onSave: function () {
 
+  
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
@@ -226,6 +213,8 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
+          console.log(data.value);
+          
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
         function (error) {}.bind(that));
