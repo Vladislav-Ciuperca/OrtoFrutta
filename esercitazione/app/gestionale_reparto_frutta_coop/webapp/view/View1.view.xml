@@ -216,11 +216,12 @@
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_origine" visible="false">
-						<Label text="{i18n>origine_prodotto}"/>
+						<!-- <Label text="{i18n>origine_prodotto}"/> -->
+						<Label text="{AddProducts>origine}"/>
 						<t:template>
 							<Select selectedKey="{AddProducts>origine}" >
 								<c:Item text="Italia" key="Italia"/>
-								<c:Item text="Nuova Zelanda" key="Nuova"/>
+								<c:Item text="Nuova Zelanda" key="Nuova Zelanda"/>
 								<c:Item text="Cina" key="Cina"/>
 								<c:Item text="Messico" key="Messico"/>
 								<c:Item text="Indonesia" key="Indonesia"/>
