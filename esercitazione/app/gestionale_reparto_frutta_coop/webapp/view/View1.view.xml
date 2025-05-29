@@ -185,6 +185,9 @@
 						</t:template>
 					</t:Column>
 
+
+
+					
 					<!-- DATA -->
 
 					<t:Column id="text_data" sortProperty="data_aggiornamento" filterProperty="data_aggiornamento" resizable="false">
