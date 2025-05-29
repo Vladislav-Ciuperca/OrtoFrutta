@@ -72,11 +72,13 @@
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
 						
 					</OverflowToolbar>
-					<!-- <OverflowToolbar style="Clear">
+					<OverflowToolbar style="Clear">
+					
+					<Title text="{i18n>tabella_prodotti}" />
 							
-						</OverflowToolbar> -->
+						</OverflowToolbar>
 
-					<!-- <Label text="" width="100%" /> -->
+					
 
 			
 				</t:extension>
@@ -213,9 +215,9 @@
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_origine" visible="false">
-						<Label text="{i18n>origine_prodotto}" />
+						<Label text="{i18n>origine_prodotto}"/>
 						<t:template>
-							<Select selectedKey="{AddProducts>origine}">
+							<Select selectedKey="{AddProducts>origine}" >
 								<c:Item text="Italia" key="Italia"/>
 								<c:Item text="Nuova Zelanda" key="Nuova"/>
 								<c:Item text="Cina" key="Cina"/>
@@ -228,6 +230,8 @@
 							</Select>
 						</t:template>
 					</t:Column>
+
+					<!-- TASTI FOOTER -->
 					<t:Column id="delete" width="3rem" visible="false">
 						<t:template>
 							<Button icon="sap-icon://delete" type="Reject" press="onDelete" tooltip="{delete}" />
