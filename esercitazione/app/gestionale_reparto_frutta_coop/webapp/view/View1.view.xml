@@ -199,11 +199,7 @@
 						<Label text="{i18n>data_aggiornamento}"/>
 						<t:template>
 							<!-- <DatePicker value="{AddProducts>data_aggiornamento}"/> -->
-							<DatePicker value="{
-								path: 'AddProducts>data_aggiornamento',
-								type: 'sap.ui.model.type.Date',
-								formatOptions: {source: {pattern: 'timestamp'}}
-							}"/>
+							<DatePicker value="{AddProducts>data_aggiornamento}"/>
 						</t:template>
 					</t:Column>
 
@@ -219,17 +215,18 @@
 					<t:Column id="input_origine" visible="false">
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Select selectedKey="{AddProducts>origine}"> 
-								<!-- <c:Item text="Seleziona origine..." key="null" /> -->
-								<c:Item text="Italia" key="Italia"/>
-								<c:Item text="Nuova Zelanda" key="Nuova"/>
-								<c:Item text="Cina" key="Cina"/>
+							<Select  selectedKey="{AddProducts>origine}"> 
+
+								<c:Item text="Seleziona un paese..." key=""/>
 								<c:Item text="Messico" key="Messico"/>
+								<c:Item text="Italia" key="Italia"/>
+								<c:Item text="Nuova Zelanda " key="Nuova Zelanda"/>
+								<c:Item text="Cina" key="Cina"/>
 								<c:Item text="Indonesia" key="Indonesia"/>
 								<c:Item text="India" key="India"/>
 								<c:Item text="Sud America" key="Sud"/>
 								<c:Item text="iran" key="iran"/>
-								<!-- <c:Item text="Persia" key="Persia"/> -->
+								<c:Item text="Persia" key="Persia"/>
 							</Select>
 						</t:template>
 					</t:Column>
