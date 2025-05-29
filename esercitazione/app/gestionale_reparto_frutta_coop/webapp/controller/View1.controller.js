@@ -54,6 +54,7 @@ sap.ui.define([
       this.byId("undo").setVisible(true)
       this.byId("barra").setVisible(true)
 
+      
 
       // this.byId("input_prodotto").setVisible(true)
       // this.byId("text_prodotto").setVisible(false)
@@ -79,6 +80,7 @@ sap.ui.define([
       this.byId("input_origine").setVisible(true)
       this.byId("text_origine").setVisible(false)
 
+      
 
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
       this.byId("delete").setVisible(true)
@@ -226,6 +228,8 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
+          console.log(data.value);
+          
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
         function (error) {}.bind(that));
