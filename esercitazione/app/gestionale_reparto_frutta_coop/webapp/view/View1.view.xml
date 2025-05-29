@@ -33,14 +33,14 @@
 							<content >
 								<layout:HorizontalLayout allowWrapping="true">
 									<layout:VerticalLayout class="sapUiMediumMarginEnd">
-										<ObjectAttribute title="{i18n>title_posizione}" text="{i18n>text_magazzino}"/>
-										<ObjectAttribute title="{i18n>title_corridoio}" text="{i18n>text_corridoio}"/>
-										<ObjectAttribute title="{i18n>title_rastrelliera}" text="{i18n>text_rastrelliera}"/>
+										<ObjectAttribute title="{i18n>title_reparto}" text="{i18n>text_freschi}"/>
+										<ObjectAttribute title="{i18n>title_aggiornamento}" text="{i18n>text_giornaliera}"/>
+										<ObjectAttribute title="{i18n>title_temperatura}" text="{i18n>text_gradi}"/>
 
 									</layout:VerticalLayout>
 									<layout:VerticalLayout>
-										<ObjectAttribute title="{i18n>title_disponibilità}"/>
-										<ObjectStatus text="{i18n>text_disponibilità}" state="Success" />
+										<ObjectAttribute title="{i18n>title_promozioni}"/>
+										<ObjectStatus text="{i18n>text_nessuna}" state="Error" />
 									</layout:VerticalLayout>
 								</layout:HorizontalLayout>
 							</content>
