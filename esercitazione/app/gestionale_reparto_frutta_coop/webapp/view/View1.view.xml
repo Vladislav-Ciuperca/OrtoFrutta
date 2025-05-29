@@ -219,8 +219,7 @@
 						<t:template>
 							<Select  selectedKey="{AddProducts>origine}"> 
 
-								<c:Item text="Seleziona un paese..." key=""/>
-								<c:Item text="Messico" key="Messico"/>
+S								<c:Item text="Messico" key="Messico"/>
 								<c:Item text="Italia" key="Italia"/>
 								<c:Item text="Nuova Zelanda " key="Nuova Zelanda"/>
 								<c:Item text="Cina" key="Cina"/>
