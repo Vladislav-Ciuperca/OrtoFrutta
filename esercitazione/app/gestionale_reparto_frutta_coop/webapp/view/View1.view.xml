@@ -72,11 +72,13 @@
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add" icon="sap-icon://add"/>
 						
 					</OverflowToolbar>
-					<!-- <OverflowToolbar style="Clear">
+					<OverflowToolbar style="Clear">
+					
+					<Title text="{i18n>tabella_prodotti}" />
 							
-						</OverflowToolbar> -->
+						</OverflowToolbar>
 
-					<!-- <Label text="" width="100%" /> -->
+					
 
 			
 				</t:extension>
@@ -183,23 +185,23 @@
 						</t:template>
 					</t:Column>
 
+
+
+					
 					<!-- DATA -->
 
 					<t:Column id="text_data" sortProperty="data_aggiornamento" filterProperty="data_aggiornamento" resizable="false">
 						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
-							<Text text="{AddProducts/data_aggiornamento}" wrapping="false" />
+							<Text text="{AddProducts>data_aggiornamento}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_data" visible="false">
 						<Label text="{i18n>data_aggiornamento}"/>
 						<t:template>
-							<DatePicker value="{
-								path: 'DeliveryDate',
-								type: 'sap.ui.model.type.Date',
-								formatOptions: {source: {pattern: 'timestamp'}}
-							}"/>
+							<!-- <DatePicker value="{AddProducts>data_aggiornamento}"/> -->
+							<DatePicker value="{AddProducts>data_aggiornamento}"/>
 						</t:template>
 					</t:Column>
 
@@ -213,14 +215,15 @@
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_origine" visible="false">
-						<Label text="{i18n>origine_prodotto}" />
+						<Label text="{i18n>origine_prodotto}"/>
 						<t:template>
-							<Select selectedKey="{AddProducts>origine}">
-							    <c:Item text="--Seleziona origine-- " />
-								<c:Item text="Italia" key="Italia"/>
-								<c:Item text="Nuova Zelanda" key="Nuova"/>
-								<c:Item text="Cina" key="Cina"/>
+							<Select  selectedKey="{AddProducts>origine}"> 
+
+								<c:Item text="Seleziona un paese..." key=""/>
 								<c:Item text="Messico" key="Messico"/>
+								<c:Item text="Italia" key="Italia"/>
+								<c:Item text="Nuova Zelanda " key="Nuova Zelanda"/>
+								<c:Item text="Cina" key="Cina"/>
 								<c:Item text="Indonesia" key="Indonesia"/>
 								<c:Item text="India" key="India"/>
 								<c:Item text="Sud America" key="Sud"/>
@@ -229,6 +232,8 @@
 							</Select>
 						</t:template>
 					</t:Column>
+
+					<!-- TASTI FOOTER -->
 					<t:Column id="delete" width="3rem" visible="false">
 						<t:template>
 							<Button icon="sap-icon://delete" type="Reject" press="onDelete" tooltip="{delete}" />
