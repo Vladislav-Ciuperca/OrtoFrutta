@@ -11,3 +11,5 @@ service CatalogFruttarolo {
 // tabelle per le app
 entity fruttarolo as projection on my.fruttarolo
 }
+
+

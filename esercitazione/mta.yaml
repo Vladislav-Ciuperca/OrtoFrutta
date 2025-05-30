@@ -9,7 +9,7 @@ modules:
   requires:
   - name: esercitazione-db
   - name: esercitazione-auth
-  - name: hdi_esercitazione
+  # - name: hdi_esercitazione
   provides:
   - name: srv-api
     properties:
@@ -114,15 +114,15 @@ resources:
     service: html5-apps-repo
     service-name: esercitazione-html5-app-host-service
     service-plan: app-host
-- name: hdi_esercitazione
-  type: com.sap.xs.hdi-container
-  parameters:
-    config:
-      schema: esercitazione
-    service: hana
-    service-plan: hdi-shared
-  properties:
-    hdi-container-name: ${service-name}
+# - name: hdi_esercitazione
+#   type: com.sap.xs.hdi-container
+#   parameters:
+#     config:
+#       schema: esercitazione
+#     service: hana
+#     service-plan: hdi-shared
+#   properties:
+#     hdi-container-name: ${service-name}
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
