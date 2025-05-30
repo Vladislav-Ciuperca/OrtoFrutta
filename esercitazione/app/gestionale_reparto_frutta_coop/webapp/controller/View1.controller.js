@@ -78,7 +78,7 @@ sap.ui.define([
 
     onSave: function () {
 
-  
+
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
@@ -214,7 +214,7 @@ sap.ui.define([
         sUrl + "fruttarolo",
         function (data) {
           console.log(data.value);
-          
+
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
         function (error) {}.bind(that));
