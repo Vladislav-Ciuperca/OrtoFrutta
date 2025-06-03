@@ -33,9 +33,14 @@
 							<content >
 								<layout:HorizontalLayout allowWrapping="true">
 									<layout:VerticalLayout class="sapUiMediumMarginEnd">
-										<ObjectAttribute title="{i18n>title_reparto}" text="{i18n>text_freschi}"/>
-										<ObjectAttribute title="{i18n>title_aggiornamento}" text="{i18n>text_giornaliera}"/>
-										<ObjectAttribute title="{i18n>title_temperatura}" text="{i18n>text_gradi}"/>
+										<ObjectAttribute title="{i18n>title_reparto}" text="{i18n>text_freschi}" />
+										<layout:VerticalLayout>
+										<ObjectStatus title="{i18n>title_aggiornamento}" text="{i18n>text_giornaliera}" state="Success"/>
+									</layout:VerticalLayout>
+										<layout:VerticalLayout>
+										<ObjectStatus title="{i18n>title_temperatura}"  text="{i18n>text_gradi}" state="Information" />
+									</layout:VerticalLayout>
+										<!-- <ObjectAttribute title="{i18n>title_temperatura}" text="{i18n>text_gradi}"/> -->
 
 									</layout:VerticalLayout>
 									<layout:VerticalLayout>
@@ -62,7 +67,10 @@
 			
 
 				<t:extension >
-					<OverflowToolbar style="Clear" class= "sapUiTinyMarginBottom">
+			<Label text="" />
+
+					<OverflowToolbar style="Clear">
+					
 					<!-- apUiTinyMarginBottom (4px) sapUiMediumMarginBottom (16px) sapUiLargeMarginBottom (32px) -->
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
@@ -219,7 +227,6 @@
 						<Label text="{AddProducts>origine}"/>
 						<t:template>
 							<Select  selectedKey="{AddProducts>origine}"> 
-
 								<c:Item text="Seleziona un paese..." key=""/>
 								<c:Item text="Messico" key="Messico"/>
 								<c:Item text="Italia" key="Italia"/>
