@@ -62,7 +62,7 @@
 			
 
 				<t:extension >
-					<OverflowToolbar style="Clear" class= "sapUiTinyMarginBottom">
+					<OverflowToolbar style="Clear">
 					<!-- apUiTinyMarginBottom (4px) sapUiMediumMarginBottom (16px) sapUiLargeMarginBottom (32px) -->
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
 					<!-- <SearchField liveChange="onSearch" width="80%"  placeholder="{i18n>search}" /> -->
@@ -218,7 +218,6 @@
 						<Label text="{i18n>origine_prodotto}"/>
 						<t:template>
 							<Select  selectedKey="{AddProducts>origine}"> 
-
 								<c:Item text="Seleziona un paese..." key=""/>
 								<c:Item text="Messico" key="Messico"/>
 								<c:Item text="Italia" key="Italia"/>
