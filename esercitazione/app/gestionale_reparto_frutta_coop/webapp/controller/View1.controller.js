@@ -77,8 +77,6 @@ sap.ui.define([
     },
 
     onSave: function () {
-
-  
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
@@ -147,8 +145,6 @@ sap.ui.define([
     },
 
     onDelete: function (oEvent) {
-
-
       // definisco il numero dell'indice dell'oevent
       var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
       console.log(numero);
