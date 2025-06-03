@@ -2,9 +2,9 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-  	"sap/m/MessageBox",
-	"sap/m/MessageToast",
-], function (Controller, Filter, FilterOperator,MessageBox,MessageToast) {
+  "sap/m/MessageBox",
+  "sap/m/MessageToast",
+], function (Controller, Filter, FilterOperator, MessageBox, MessageToast) {
   "use strict";
 
 
@@ -76,8 +76,6 @@ sap.ui.define([
 
     onSave: function () {
 
-      alert("ciaoooooooooo")
-
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
@@ -140,37 +138,74 @@ sap.ui.define([
 
     },
 
-    debug: function () {
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-
-    },
 
     onDelete: function (oEvent) {
 
-      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]
-
-      console.log(prova);
+      let that = this
+      var banana = oEvent.getSource().getParent()
+      console.log(banana);
       
+      MessageBox.confirm("Initial button focus is set by attribute \n initialFocus: sap.m.MessageBox.Action.CANCEL", {
+        icon: MessageBox.Icon.WARNING,
+        title: "Stai cancellando un elemento"+ banana,
+        actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+        emphasizedAction: MessageBox.Action.OK,
+        // initialFocus: MessageBox.Action.CANCEL,
+        // styleClass: sResponsivePaddingClasses,
+        dependentOn: this.getView(),
 
-      MessageBox.confirm( "sto cancellando");
+        onClose: function (oAction) {
+          if (oAction === MessageBox.Action.OK) {
+            // definisco il numero dell'indice dell'oevent
+            var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
+            console.log(numero);
+            // console log dell'elemento nell'arrey che andrò a cancellare
+            console.log("sto cancellando", that.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]);
+
+            // tolto  l'ellemento dall'arrey usando "numero"
+            // splice accetta 2 valori : il primo è l'indice dove agire il secondo è il numero di elementi da "spliceare" dopo quell indice
+            // esempio splice(all'indice 3 , per una volta)
+            that.getView().getModel("AddProducts").getProperty("/Prodotti").splice(numero, 1)
+            // console log del modello per vedere cos'hp cancellato
+            console.log(that.getView().getModel("AddProducts").getProperty("/Prodotti"));
+            // mi "salvo" il nuovo modello temporaneo in una variabile
+            var getModello = that.getView().getModel("AddProducts").getProperty("/Prodotti")
+            // prendo il mio modello attuale e gli dico che adesso è uguale al mio modello temporaneo vhe è getModello
+            that.getView().getModel("AddProducts").setProperty("/Prodotti", getModello)
+            console.log("hai premuito ok amore");
+          } else if (oAction === MessageBox.Action.CANCEL) {
+            console.log("non te ghe premuo na sega tesoro");
+
+          }
+        },
+
+      });
+
+    },
+    debug: function () {
+      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
+    },
+
+
+    confirmDelete: function () {
+      console.log("asdasdsad");
 
       // definisco il numero dell'indice dell'oevent
-      var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
-      console.log(numero);
-      // console log dell'elemento nell'arrey che andrò a cancellare
-      console.log("sto cancellando", this.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]);
+      // var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
+      // console.log(numero);
+      // // console log dell'elemento nell'arrey che andrò a cancellare
+      // console.log("sto cancellando", this.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]);
 
-      // tolto  l'ellemento dall'arrey usando "numero"
-      // splice accetta 2 valori : il primo è l'indice dove agire il secondo è il numero di elementi da "spliceare" dopo quell indice
-      // esempio splice(all'indice 3 , per una volta)
-      this.getView().getModel("AddProducts").getProperty("/Prodotti").splice(numero, 1)
-      // console log del modello per vedere cos'hp cancellato
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
-      // mi "salvo" il nuovo modello temporaneo in una variabile
-      var getModello = this.getView().getModel("AddProducts").getProperty("/Prodotti")
-      // prendo il mio modello attuale e gli dico che adesso è uguale al mio modello temporaneo vhe è getModello
-      this.getView().getModel("AddProducts").setProperty("/Prodotti", getModello)
-
+      // // tolto  l'ellemento dall'arrey usando "numero"
+      // // splice accetta 2 valori : il primo è l'indice dove agire il secondo è il numero di elementi da "spliceare" dopo quell indice
+      // // esempio splice(all'indice 3 , per una volta)
+      // this.getView().getModel("AddProducts").getProperty("/Prodotti").splice(numero, 1)
+      // // console log del modello per vedere cos'hp cancellato
+      // console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+      // // mi "salvo" il nuovo modello temporaneo in una variabile
+      // var getModello = this.getView().getModel("AddProducts").getProperty("/Prodotti")
+      // // prendo il mio modello attuale e gli dico che adesso è uguale al mio modello temporaneo vhe è getModello
+      // this.getView().getModel("AddProducts").setProperty("/Prodotti", getModello)
     },
 
     add: function () {
@@ -258,42 +293,42 @@ sap.ui.define([
     },
 
     getArray: function () {
-        console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
     },
 
-    save: function () {
-      var categoria = this.getView().getModel("AddProducts").getProperty("/categoria")
-      var prodotto = this.getView().getModel("AddProducts").getProperty("/prodotto")
-      var quantita_giacenza = this.getView().getModel("AddProducts").getProperty("/quantita_giacenza")
-      var prezzo_unitario = this.getView().getModel("AddProducts").getProperty("/prezzo_unitario")
-      var data_aggiornamento = this.getView().getModel("AddProducts").getProperty("/data_aggiornamento")
-      var sconto = this.getView().getModel("AddProducts").getProperty("/sconto")
-      var origine = this.getView().getModel("AddProducts").getProperty("/origine")
+    // save: function () {
+    //   var categoria = this.getView().getModel("AddProducts").getProperty("/categoria")
+    //   var prodotto = this.getView().getModel("AddProducts").getProperty("/prodotto")
+    //   var quantita_giacenza = this.getView().getModel("AddProducts").getProperty("/quantita_giacenza")
+    //   var prezzo_unitario = this.getView().getModel("AddProducts").getProperty("/prezzo_unitario")
+    //   var data_aggiornamento = this.getView().getModel("AddProducts").getProperty("/data_aggiornamento")
+    //   var sconto = this.getView().getModel("AddProducts").getProperty("/sconto")
+    //   var origine = this.getView().getModel("AddProducts").getProperty("/origine")
 
-      var obj = {
-        "categoria": categoria,
-        "prodotto": prodotto,
-        "quantita_giacenza": quantita_giacenza,
-        "prezzo_unitario": prezzo_unitario,
-        "data_aggiornamento": data_aggiornamento,
-        "sconto": sconto,
-        "origine": origine,
-      }
+    //   var obj = {
+    //     "categoria": categoria,
+    //     "prodotto": prodotto,
+    //     "quantita_giacenza": quantita_giacenza,
+    //     "prezzo_unitario": prezzo_unitario,
+    //     "data_aggiornamento": data_aggiornamento,
+    //     "sconto": sconto,
+    //     "origine": origine,
+    //   }
 
-      var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
-      jQuery.ajax({
-        url: sUrl + "fruttarolo",
-        contentType: "application/json",
-        type: "POST",
-        data: JSON.stringify(obj),
-        dataType: "json",
-        success: function () {
-          console.log("bella li");
-        },
-        error: function () {
-          console.log("belloooooooooo");
-        }
-      })
-    },
+    //   var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
+    //   jQuery.ajax({
+    //     url: sUrl + "fruttarolo",
+    //     contentType: "application/json",
+    //     type: "POST",
+    //     data: JSON.stringify(obj),
+    //     dataType: "json",
+    //     success: function () {
+    //       console.log("bella li");
+    //     },
+    //     error: function () {
+    //       console.log("belloooooooooo");
+    //     }
+    //   })
+    // },
   });
 });
