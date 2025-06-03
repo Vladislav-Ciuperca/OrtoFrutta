@@ -76,8 +76,6 @@ sap.ui.define([
 
     onSave: function () {
 
-      alert("ciaoooooooooo")
-
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
@@ -147,9 +145,11 @@ sap.ui.define([
 
     onDelete: function (oEvent) {
 
-      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]
+      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")[1]
 
-      console.log(prova);
+      console.log(numero
+        
+      );
       
 
       MessageBox.confirm( "sto cancellando");
