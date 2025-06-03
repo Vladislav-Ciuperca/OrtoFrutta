@@ -216,7 +216,6 @@
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Select  selectedKey="{AddProducts>origine}"> 
-
 								<c:Item text="Seleziona un paese..." key=""/>
 								<c:Item text="Messico" key="Messico"/>
 								<c:Item text="Italia" key="Italia"/>
