@@ -1,3 +1,5 @@
+
+
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
@@ -20,35 +22,25 @@ sap.ui.define([
 
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
 
+
+      this.oModel = this.getView().getModel("AddProducts");
+
+
     },
 
 
-
-    // onSearch: function (oEvent) {
-    //   console.log("scrivendo.....");
-
-    //   var sQuery = oEvent.getSource().getValue();
-    //   var aFilters = [];
-
-    //   if (sQuery && sQuery.length > 0) {
-    //     var filter = new Filter([
-
-    //         new Filter("prodotto", FilterOperator.Contains, sQuery),
-
-    //       ],
-    //     );
-
-    //     aFilters.push(filter);
-    //     // console.log(aFilters);
-    //   }
-    //   var oList = this.byId("tabella");
-    //   var oBinding = oList.getBinding("rows");
-    //   oBinding.filter(aFilters, "Application");
-
-
-    // },
-
     onEdit: function () {
+
+      // let parseModel = this.getView().getModel("AddProducts").getProperty('/Prodotti')
+
+      console.log(this.getView().getModel("AddProducts").getProperty('/Matcher'));
+
+
+
+      // this.getView().getModel("AddProducts").setProperty('/Matcher',parseModel)
+
+      // console.log(this.getView().getModel("AddProducts").getProperty('/Matcher'))
+
 
 
 
@@ -82,7 +74,6 @@ sap.ui.define([
 
     onSave: function () {
 
-      alert("ciaoooooooooo")
 
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
@@ -115,19 +106,64 @@ sap.ui.define([
     },
 
     onUndo: function () {
+      var that = this
+      var oModel = this.getView().getModel("AddProducts");
+      var currentData = oModel.getProperty("/Prodotti");
+      var initialData = this.savedData;
 
-      let actualModel = this.getView().getModel("AddProducts").getProperty('/Prodotti')
+      var isEqual = JSON.stringify(currentData) === JSON.stringify(initialData);
 
-      console.log("jashxgbasjqh", this.savedData);
+      console.log(currentData);
+      console.log(initialData);
+      console.log(isEqual);
 
-      if (actualModel == this.savedData) {
-        console.log("peace and love");
 
+      if (isEqual) {
+        console.log("Nessuna modifica");
+        this.undoShit()
       } else {
-        console.log("te ghe cambiato quialcossa");
+        console.log("Hai fatto modifiche");
+        MessageBox.confirm("Vuoi annulare le modifiche?", {
+          icon: MessageBox.Icon.WARNING,
+          title: "Annulla",
+          actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+          emphasizedAction: MessageBox.Action.OK,
+          // initialFocus: MessageBox.Action.CANCEL,
+          // styleClass: sResponsivePaddingClasses,
+          dependentOn: this.getView(),
 
+          onClose: function (oAction) {
+            if (oAction === MessageBox.Action.OK) {
+              console.log("hai premuto ok zio");
+              that.undoShit()
+            }
+            else if (MessageBox.Action.CANCEL){
+              console.log("hai premuto cancel");
+              
+            }
+          }
+        })
       }
 
+      
+
+    },
+
+    // let actualModel = this.getView().getModel("AddProducts").getProperty('/Prodotti')
+
+    // console.log("1",  this.parseModel);
+    // console.log("2", actualModel);
+
+    // for (let i = 0; i <  this.parseModel.length; i++) {
+    //   const parseElement =  this.parseModel[i];
+    //   const actualElement = actualModel[i];
+    //   console.log(JSON.stringify( this.parseModel));
+    //   console.log(JSON.stringify(actualElement));
+    // }
+
+    // 
+
+    undoShit: function () {
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
       this.byId("barra").setVisible(false)
@@ -140,7 +176,6 @@ sap.ui.define([
       this.byId("input_nome").setVisible(false)
       this.byId("text_nome").setVisible(true)
 
-      this.byId("input_quanita").setVisible(false)
       this.byId("text_quantita").setVisible(true)
 
       this.byId("input_prezzo").setVisible(false)
@@ -207,12 +242,12 @@ sap.ui.define([
       });
 
     },
-    debug: function () {
+    // debug: function () {
 
-      console.log(this.savedData);
-      
+    //   console.log(this.savedData);
 
-    },
+
+    // },
 
     add: function () {
 
@@ -240,7 +275,7 @@ sap.ui.define([
       this.byId("modifica").firePress()
     },
 
-    
+
 
     getRouter: function () {
 
@@ -259,9 +294,9 @@ sap.ui.define([
           // console.log(this.savedData);
 
 
-
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
 
+          that.savedData = JSON.parse(JSON.stringify(that.oModel.getProperty("/Prodotti")));
 
         }.bind(that),
         function (error) {}.bind(that));
@@ -275,13 +310,15 @@ sap.ui.define([
         success: function (data) {
           if (typeof successCallback === "function") {
             successCallback(data);
-            // console.log("asdasd", data.value);
-            
-            that.arrayThingy = []
-            
-            that.arrayThingy.push(data.value)
-            that.savedData = that.arrayThingy[0]
-            console.log("mnmnmnmnmnmmmnm",that.savedData);
+
+            that.getView().getModel("AddProducts").setProperty('/Matcher', data.value)
+            // // console.log("asdasd", data.value);
+
+            // that.arrayThingy = []
+
+            // that.arrayThingy.push(data.value)
+            // that.savedData = that.arrayThingy[0]
+            // console.log("mnmnmnmnmnmmmnm",that.savedData);
           }
         },
         error: function (error) {
@@ -332,3 +369,8 @@ sap.ui.define([
     // },
   });
 });
+
+
+
+// {"ID":"04c096b3-10cc-4553-8cb3-cbe7ae14ecf4","categoria":"frutta","data_aggiornamento":"Italy","origine":null,"prezzo_unitario":"1,80","prodotto":"mele","quantita_giacenza":"20 kg","sconto":null}
+// {"ID":"04c096b3-10cc-4553-8cb3-cbe7ae14ecf4","categoria":"frutta","data_aggiornamento":"Italy","origine":null,"prezzo_unitario":"1,80","prodotto":"mele","quantita_giacenza":"20 kg","sconto":null}
