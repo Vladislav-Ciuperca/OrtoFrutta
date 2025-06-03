@@ -9,6 +9,7 @@ sap.ui.define([
 
 
   return Controller.extend("gestionalerepartofruttacoop.controller.View1", {
+
     onInit() {
       this.AddModel = new sap.ui.model.json.JSONModel()
 
@@ -20,6 +21,8 @@ sap.ui.define([
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
 
     },
+
+
 
     // onSearch: function (oEvent) {
     //   console.log("scrivendo.....");
@@ -46,6 +49,9 @@ sap.ui.define([
     // },
 
     onEdit: function () {
+
+
+
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
       this.byId("barra").setVisible(true)
@@ -110,6 +116,18 @@ sap.ui.define([
 
     onUndo: function () {
 
+      let actualModel = this.getView().getModel("AddProducts").getProperty('/Prodotti')
+
+      console.log("jashxgbasjqh", this.savedData);
+
+      if (actualModel == this.savedData) {
+        console.log("peace and love");
+
+      } else {
+        console.log("te ghe cambiato quialcossa");
+
+      }
+
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
       this.byId("barra").setVisible(false)
@@ -144,12 +162,17 @@ sap.ui.define([
     onDelete: function (oEvent) {
 
       let that = this
-      var banana = oEvent.getSource().getParent()
-      console.log(banana);
-      
-      MessageBox.confirm("Initial button focus is set by attribute \n initialFocus: sap.m.MessageBox.Action.CANCEL", {
+      var clickIndex = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
+
+      let focusObject = this.getView().getModel("AddProducts").getProperty("/Prodotti")[clickIndex].prodotto
+
+      console.log(focusObject);
+
+
+
+      MessageBox.confirm("Stai cancellando l' elemento " + focusObject, {
         icon: MessageBox.Icon.WARNING,
-        title: "Stai cancellando un elemento"+ banana,
+        title: "Elimina",
         actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
         emphasizedAction: MessageBox.Action.OK,
         // initialFocus: MessageBox.Action.CANCEL,
@@ -185,29 +208,10 @@ sap.ui.define([
 
     },
     debug: function () {
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-    },
 
+      console.log(this.savedData);
+      
 
-    confirmDelete: function () {
-      console.log("asdasdsad");
-
-      // definisco il numero dell'indice dell'oevent
-      // var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
-      // console.log(numero);
-      // // console log dell'elemento nell'arrey che andrò a cancellare
-      // console.log("sto cancellando", this.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]);
-
-      // // tolto  l'ellemento dall'arrey usando "numero"
-      // // splice accetta 2 valori : il primo è l'indice dove agire il secondo è il numero di elementi da "spliceare" dopo quell indice
-      // // esempio splice(all'indice 3 , per una volta)
-      // this.getView().getModel("AddProducts").getProperty("/Prodotti").splice(numero, 1)
-      // // console log del modello per vedere cos'hp cancellato
-      // console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
-      // // mi "salvo" il nuovo modello temporaneo in una variabile
-      // var getModello = this.getView().getModel("AddProducts").getProperty("/Prodotti")
-      // // prendo il mio modello attuale e gli dico che adesso è uguale al mio modello temporaneo vhe è getModello
-      // this.getView().getModel("AddProducts").setProperty("/Prodotti", getModello)
     },
 
     add: function () {
@@ -236,28 +240,7 @@ sap.ui.define([
       this.byId("modifica").firePress()
     },
 
-    debug: function () {
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
-
-    },
-
-    getArray: function () {
-      const prodotti = [];
-
-      const prodotto = {
-        categoria: this.byId("inputCategoria").getValue(),
-        prodotto: this.byId("inputProdotto").getValue(),
-        giacenza: this.byId("inputGiacenza").getValue(),
-        prezzo_unitario: this.byId("inputPrezzo").getValue(),
-        sconto: this.byId("inputSconto").getValue(),
-        data_aggiornamento: new Date().toISOString(),
-        origine: this.byId("inputOrigine").getValue(),
-      };
-
-      prodotti.push(prodotto);
-
-      console.log(prodotti);
-    },
+    
 
     getRouter: function () {
 
@@ -270,20 +253,35 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
-          console.log(data.value);
+          // console.log(data.value);
+          // that.savedData = data.value
+
+          // console.log(this.savedData);
+
+
 
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
+
+
         }.bind(that),
         function (error) {}.bind(that));
     },
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
+      let that = this
       jQuery.ajax({
         url: url,
         dataType: "json",
         success: function (data) {
           if (typeof successCallback === "function") {
             successCallback(data);
+            // console.log("asdasd", data.value);
+            
+            that.arrayThingy = []
+            
+            that.arrayThingy.push(data.value)
+            that.savedData = that.arrayThingy[0]
+            console.log("mnmnmnmnmnmmmnm",that.savedData);
           }
         },
         error: function (error) {
