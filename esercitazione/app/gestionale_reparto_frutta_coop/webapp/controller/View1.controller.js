@@ -2,7 +2,9 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-], function (Controller, Filter, FilterOperator) {
+  	"sap/m/MessageBox",
+	"sap/m/MessageToast",
+], function (Controller, Filter, FilterOperator,MessageBox,MessageToast) {
   "use strict";
 
 
@@ -16,7 +18,6 @@ sap.ui.define([
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
 
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
-
 
     },
 
@@ -43,8 +44,6 @@ sap.ui.define([
 
 
     // },
-
-
 
     onEdit: function () {
       this.byId("modifica").setVisible(false)
@@ -73,12 +72,12 @@ sap.ui.define([
       this.byId("text_origine").setVisible(false)
 
       this.byId("delete").setVisible(true)
-
     },
 
     onSave: function () {
 
-  
+      alert("ciaoooooooooo")
+
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
@@ -148,6 +147,12 @@ sap.ui.define([
 
     onDelete: function (oEvent) {
 
+      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]
+
+      console.log(prova);
+      
+
+      MessageBox.confirm( "sto cancellando");
 
       // definisco il numero dell'indice dell'oevent
       var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
@@ -157,7 +162,7 @@ sap.ui.define([
 
       // tolto  l'ellemento dall'arrey usando "numero"
       // splice accetta 2 valori : il primo è l'indice dove agire il secondo è il numero di elementi da "spliceare" dopo quell indice
-      // esempio splice(all indice 3 , per una volta)
+      // esempio splice(all'indice 3 , per una volta)
       this.getView().getModel("AddProducts").getProperty("/Prodotti").splice(numero, 1)
       // console log del modello per vedere cos'hp cancellato
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
@@ -199,8 +204,23 @@ sap.ui.define([
 
     },
 
+    getArray: function () {
+      const prodotti = [];
 
+      const prodotto = {
+        categoria: this.byId("inputCategoria").getValue(),
+        prodotto: this.byId("inputProdotto").getValue(),
+        giacenza: this.byId("inputGiacenza").getValue(),
+        prezzo_unitario: this.byId("inputPrezzo").getValue(),
+        sconto: this.byId("inputSconto").getValue(),
+        data_aggiornamento: new Date().toISOString(),
+        origine: this.byId("inputOrigine").getValue(),
+      };
 
+      prodotti.push(prodotto);
+
+      console.log(prodotti);
+    },
 
     getRouter: function () {
 
@@ -214,7 +234,7 @@ sap.ui.define([
         sUrl + "fruttarolo",
         function (data) {
           console.log(data.value);
-          
+
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
         function (error) {}.bind(that));
@@ -237,6 +257,43 @@ sap.ui.define([
       });
     },
 
+    getArray: function () {
+        console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+    },
 
+    save: function () {
+      var categoria = this.getView().getModel("AddProducts").getProperty("/categoria")
+      var prodotto = this.getView().getModel("AddProducts").getProperty("/prodotto")
+      var quantita_giacenza = this.getView().getModel("AddProducts").getProperty("/quantita_giacenza")
+      var prezzo_unitario = this.getView().getModel("AddProducts").getProperty("/prezzo_unitario")
+      var data_aggiornamento = this.getView().getModel("AddProducts").getProperty("/data_aggiornamento")
+      var sconto = this.getView().getModel("AddProducts").getProperty("/sconto")
+      var origine = this.getView().getModel("AddProducts").getProperty("/origine")
+
+      var obj = {
+        "categoria": categoria,
+        "prodotto": prodotto,
+        "quantita_giacenza": quantita_giacenza,
+        "prezzo_unitario": prezzo_unitario,
+        "data_aggiornamento": data_aggiornamento,
+        "sconto": sconto,
+        "origine": origine,
+      }
+
+      var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
+      jQuery.ajax({
+        url: sUrl + "fruttarolo",
+        contentType: "application/json",
+        type: "POST",
+        data: JSON.stringify(obj),
+        dataType: "json",
+        success: function () {
+          console.log("bella li");
+        },
+        error: function () {
+          console.log("belloooooooooo");
+        }
+      })
+    },
   });
 });
