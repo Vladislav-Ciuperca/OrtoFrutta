@@ -75,10 +75,6 @@ sap.ui.define([
     },
 
     onSave: function () {
-<<<<<<< HEAD
-=======
-
->>>>>>> dev_svilupppo
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
 
@@ -110,7 +106,6 @@ sap.ui.define([
     },
 
     onUndo: function () {
-
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
       this.byId("barra").setVisible(false)
@@ -139,6 +134,17 @@ sap.ui.define([
       this.byId("text_origine").setVisible(true)
       this.byId("delete").setVisible(false)
 
+      MessageBox.confirm("Vuoi annulare le modifiche?", {
+        icon: MessageBox.Icon.WARNING,
+        title: "Annulla",
+        actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+        emphasizedAction: MessageBox.Action.OK,
+        // initialFocus: MessageBox.Action.CANCEL,
+        // styleClass: sResponsivePaddingClasses,
+        dependentOn: this.getView(),
+
+        })
+
     },
 
 
@@ -148,9 +154,9 @@ sap.ui.define([
       var banana = oEvent.getSource().getParent()
       console.log(banana);
       
-      MessageBox.confirm("Initial button focus is set by attribute \n initialFocus: sap.m.MessageBox.Action.CANCEL", {
+      MessageBox.confirm("Sicuro di voler eliminare?", {
         icon: MessageBox.Icon.WARNING,
-        title: "Stai cancellando un elemento"+ banana,
+        title: "Elimina",
         actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
         emphasizedAction: MessageBox.Action.OK,
         // initialFocus: MessageBox.Action.CANCEL,
