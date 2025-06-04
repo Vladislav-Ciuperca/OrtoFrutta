@@ -1,5 +1,3 @@
-
-
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
@@ -108,7 +106,9 @@ sap.ui.define([
     onUndo: function () {
       var that = this
       var oModel = this.getView().getModel("AddProducts");
+
       var currentData = oModel.getProperty("/Prodotti");
+
       var initialData = this.savedData;
 
       var isEqual = JSON.stringify(currentData) === JSON.stringify(initialData);
@@ -136,16 +136,15 @@ sap.ui.define([
             if (oAction === MessageBox.Action.OK) {
               console.log("hai premuto ok zio");
               that.undoShit()
-            }
-            else if (MessageBox.Action.CANCEL){
+            } else if (MessageBox.Action.CANCEL) {
               console.log("hai premuto cancel");
-              
+
             }
           }
         })
       }
 
-      
+
 
     },
 
@@ -170,12 +169,16 @@ sap.ui.define([
 
       this._gestioniProdottiMatched()
 
+
+
       this.byId("input_categoria").setVisible(false)
       this.byId("text_categoria").setVisible(true)
 
       this.byId("input_nome").setVisible(false)
       this.byId("text_nome").setVisible(true)
 
+
+      this.byId("input_quanita").setVisible(false)
       this.byId("text_quantita").setVisible(true)
 
       this.byId("input_prezzo").setVisible(false)
