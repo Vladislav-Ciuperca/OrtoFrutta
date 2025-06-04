@@ -14,8 +14,8 @@ entity fruttarolo : cuid {
     prodotto: String;
     quantita_giacenza: String;
     prezzo_unitario: String;
-    data_aggiornamento: String;
+    origine: String;
     sconto: String;
-    origine: String
+    data_aggiornamento: String;
 }
 

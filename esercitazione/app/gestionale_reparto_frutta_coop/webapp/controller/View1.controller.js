@@ -23,8 +23,10 @@ sap.ui.define([
 
       this.oModel = this.getView().getModel("AddProducts");
 
-
+ 
     },
+
+
 
 
     onEdit: function () {
