@@ -42,8 +42,6 @@ sap.ui.define([
       // console.log(this.getView().getModel("AddProducts").getProperty('/Matcher'))
 
 
-
-
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
       this.byId("barra").setVisible(true)
@@ -175,7 +173,8 @@ sap.ui.define([
 
       this.byId("input_nome").setVisible(false)
       this.byId("text_nome").setVisible(true)
-
+      
+      this.byId("input_quanita").setVisible(false)
       this.byId("text_quantita").setVisible(true)
 
       this.byId("input_prezzo").setVisible(false)
@@ -189,18 +188,9 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
+
       this.byId("delete").setVisible(false)
 
-      MessageBox.confirm("Vuoi annulare le modifiche?", {
-        icon: MessageBox.Icon.WARNING,
-        title: "Annulla",
-        actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
-        emphasizedAction: MessageBox.Action.OK,
-        // initialFocus: MessageBox.Action.CANCEL,
-        // styleClass: sResponsivePaddingClasses,
-        dependentOn: this.getView(),
-
-        })
 
     },
 
