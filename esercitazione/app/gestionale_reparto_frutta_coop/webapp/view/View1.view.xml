@@ -112,6 +112,13 @@
 
 
 					<!-- CATEGORIA PRODOTTO -->
+					<t:Column id="text_numeratore" visible="true" sortProperty="categoria"
+						filterProperty="categoria" resizable="true">
+						<Label text="N°" />
+						<t:template>
+							<Text text="1" wrapping="false" />
+						</t:template>
+					</t:Column>
 					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
