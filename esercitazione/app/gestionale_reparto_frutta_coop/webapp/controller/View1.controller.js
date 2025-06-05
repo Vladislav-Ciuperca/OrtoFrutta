@@ -334,6 +334,18 @@ sap.ui.define([
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
     },
 
+    onNumberOnly: function (oEvent) {
+      var sValue = oEvent.getParameter("value");
+
+      console.log("scrivendo");
+      
+      // Solo cifre (0-9)
+      if (!/^\d*$/.test(sValue)) {
+        oEvent.getSource().setValue(sValue.replace(/\D/g, ""));
+      }
+    }
+    
+
   });
 });
 
