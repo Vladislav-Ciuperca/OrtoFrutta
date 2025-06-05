@@ -93,30 +93,12 @@
 
 				<t:columns>
 
-
-					<!-- ID DEL PRODOTTO-->
-					<!-- 
-					<t:Column id="text_prodotto" width="8rem" visible="true">
-						<Label text="{i18n>id_prodotto}" />
-						<t:template>
-							<Text text="{AddProducts>categoria}" wrapping="false" />
-						</t:template>
-					</t:Column> -->
-					<!-- /////////////////////////////// -->
-					<!-- <t:Column id="input_prodotto" width="8rem" visible="false">
-						<Label text="{i18n>id_prodotto}" />
-						<t:template>
-							<Input value="{AddProducts>categoria}"/>
-						</t:template>
-					</t:Column> -->
-
-
 					<!-- CATEGORIA PRODOTTO -->
 					<t:Column id="text_numeratore" visible="true" sortProperty="categoria"
-						filterProperty="categoria" resizable="true">
+						filterProperty="categoria" resizable="true" width="50px">
 						<Label text="N°" />
 						<t:template>
-							<Text text="1" wrapping="false" />
+							<Text text="{AddProducts>numero}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
@@ -234,14 +216,13 @@
 						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
 							<Select selectedKey="{AddProducts>origine}">
-								<c:Item text="Seleziona un paese..." key="" />
-								<c:Item text="Messico" key="Messico" />
-								<c:Item text="Italia" key="Italia" />
-								<c:Item text="Nuova Zelanda " key="Nuova Zelanda" />
+								<c:Item text="Messico" key="messico" />
+								<c:Item text="Italy" key="Italy" />
+								<c:Item text="New Zeland" key="New Zeland" />
 								<c:Item text="Cina" key="Cina" />
 								<c:Item text="Indonesia" key="Indonesia" />
 								<c:Item text="India" key="India" />
-								<c:Item text="Sud America" key="Sud" />
+								<c:Item text="Sud America" key="sudamerica" />
 								<c:Item text="iran" key="iran" />
 								<c:Item text="Persia" key="Persia" />
 							</Select>
