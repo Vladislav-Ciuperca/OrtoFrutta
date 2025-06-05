@@ -23,7 +23,7 @@ sap.ui.define([
 
       this.oModel = this.getView().getModel("AddProducts");
 
- 
+
     },
 
 
@@ -33,7 +33,7 @@ sap.ui.define([
 
       // let parseModel = this.getView().getModel("AddProducts").getProperty('/Prodotti')
 
-      console.log(this.getView().getModel("AddProducts").getProperty('/Matcher'));
+      // console.log(this.getView().getModel("AddProducts").getProperty('/Matcher'));
 
 
 
@@ -74,15 +74,17 @@ sap.ui.define([
 
     onSave: function () {
 
-
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
+      this.byId("barra").setVisible(false)
+
 
       this.byId("input_categoria").setVisible(false)
       this.byId("text_categoria").setVisible(true)
 
       this.byId("input_nome").setVisible(false)
       this.byId("text_nome").setVisible(true)
+
 
       this.byId("input_quanita").setVisible(false)
       this.byId("text_quantita").setVisible(true)
@@ -98,14 +100,51 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
-
-      this.byId("barra").setVisible(false)
-
       this.byId("delete").setVisible(false)
+
+
+      this.checkOfferte()
 
     },
 
+    checkOfferte: function () {
+      let campiSconto = this.oModel.getProperty("/Prodotti").map(p => p.sconto)
+
+
+      console.log(campiSconto);
+
+
+      let campoOffertte = this.byId("statoOfferte")
+
+      let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+      let testoTradotto = oResourceBundle.getText("text_nessuna");
+
+      console.log(campoOffertte);
+
+      let offerteIndex = 0
+
+      campiSconto.forEach(element => {
+
+        if (element) {
+          offerteIndex++
+        }
+
+        if (offerteIndex > 0) {
+          campoOffertte.setState("Success");
+          campoOffertte.setText(offerteIndex)
+        } else if (offerteIndex == 0) {
+          campoOffertte.setState("Error");
+          campoOffertte.setText(testoTradotto)
+        }
+
+      });
+    },
+
+
+
+
     onUndo: function () {
+
       var that = this
       var oModel = this.getView().getModel("AddProducts");
 
@@ -170,7 +209,6 @@ sap.ui.define([
       this.byId("barra").setVisible(false)
 
       this._gestioniProdottiMatched()
-
 
 
       this.byId("input_categoria").setVisible(false)
@@ -303,8 +341,12 @@ sap.ui.define([
 
           that.savedData = JSON.parse(JSON.stringify(that.oModel.getProperty("/Prodotti")));
 
+          this.checkOfferte()
+
+
         }.bind(that),
         function (error) {}.bind(that));
+
     },
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
@@ -316,7 +358,7 @@ sap.ui.define([
           if (typeof successCallback === "function") {
             successCallback(data);
 
-            that.getView().getModel("AddProducts").setProperty('/Matcher', data.value)
+            // that.getView().getModel("AddProducts").setProperty('/Matcher', data.value)
             // // console.log("asdasd", data.value);
 
             // that.arrayThingy = []
