@@ -94,13 +94,13 @@
 				<t:columns>
 
 					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_numeratore" visible="true" sortProperty="categoria"
+					<!-- <t:Column id="text_numeratore" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="true" width="50px">
 						<Label text="N°" />
 						<t:template>
 							<Text text="{AddProducts>numero}" wrapping="false" />
 						</t:template>
-					</t:Column>
+					</t:Column> -->
 					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />

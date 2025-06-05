@@ -11,6 +11,7 @@ sap.ui.define([
   return Controller.extend("gestionalerepartofruttacoop.controller.View1", {
 
     onInit() {
+
       this.AddModel = new sap.ui.model.json.JSONModel()
 
       this.getView().setModel(this.AddModel, "AddProducts");
@@ -23,64 +24,10 @@ sap.ui.define([
 
       this.oModel = this.getView().getModel("AddProducts");
 
-      this.x = 0
     },
-
-
-
-
-
-
-    
-
-    stampaNumero: function (numero) {
-      console.log("sto stampando e poi", numero);
-
-    },
-
-    moltiplicaNumero: function (numero, moltiplicatore) {
-      console.log("moltiplicato = ", numero * moltiplicatore)
-
-    },
-
-    aggiungi: function () {
-
-      if (this.x % 5 == 0) {
-        this.stampaNumero(this.x)
-      }
-
-
-      this.x++
-      console.log(this.x);
-
-
-    },
-    sottrai: function () {
-      if (this.x % 2 == 0) {
-        this.moltiplicaNumero(this.x, 3)
-
-      }
-      console.log(this.x);
-      this.x--
-    },
-
-
 
 
     onEdit: function () {
-
-      // let parseModel = this.getView().getModel("AddProducts").getProperty('/Prodotti')
-
-      console.log(this.getView().getModel("AddProducts").getProperty('/Matcher'));
-
-
-
-      // this.getView().getModel("AddProducts").setProperty('/Matcher',parseModel)
-
-      // console.log(this.getView().getModel("AddProducts").getProperty('/Matcher'))
-
-
-
 
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
@@ -112,15 +59,17 @@ sap.ui.define([
 
     onSave: function () {
 
-
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
+      this.byId("barra").setVisible(false)
+
 
       this.byId("input_categoria").setVisible(false)
       this.byId("text_categoria").setVisible(true)
 
       this.byId("input_nome").setVisible(false)
       this.byId("text_nome").setVisible(true)
+
 
       this.byId("input_quanita").setVisible(false)
       this.byId("text_quantita").setVisible(true)
@@ -136,14 +85,51 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
-
-      this.byId("barra").setVisible(false)
-
       this.byId("delete").setVisible(false)
+
+
+      this.checkOfferte()
 
     },
 
+    checkOfferte: function () {
+      let campiSconto = this.oModel.getProperty("/Prodotti").map(p => p.sconto)
+
+
+      console.log(campiSconto);
+
+
+      let campoOffertte = this.byId("statoOfferte")
+
+      let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+      let testoTradotto = oResourceBundle.getText("text_nessuna");
+
+      console.log(campoOffertte);
+
+      let offerteIndex = 0
+
+      campiSconto.forEach(element => {
+
+        if (element) {
+          offerteIndex++
+        }
+
+        if (offerteIndex > 0) {
+          campoOffertte.setState("Success");
+          campoOffertte.setText(offerteIndex)
+        } else if (offerteIndex == 0) {
+          campoOffertte.setState("Error");
+          campoOffertte.setText(testoTradotto)
+        }
+
+      });
+    },
+
+
+
+
     onUndo: function () {
+
       var that = this
       var oModel = this.getView().getModel("AddProducts");
 
@@ -188,19 +174,6 @@ sap.ui.define([
 
     },
 
-    // let actualModel = this.getView().getModel("AddProducts").getProperty('/Prodotti')
-
-    // console.log("1",  this.parseModel);
-    // console.log("2", actualModel);
-
-    // for (let i = 0; i <  this.parseModel.length; i++) {
-    //   const parseElement =  this.parseModel[i];
-    //   const actualElement = actualModel[i];
-    //   console.log(JSON.stringify( this.parseModel));
-    //   console.log(JSON.stringify(actualElement));
-    // }
-
-    // 
 
     undoShit: function () {
       this.byId("modifica").setVisible(true)
@@ -208,7 +181,6 @@ sap.ui.define([
       this.byId("barra").setVisible(false)
 
       this._gestioniProdottiMatched()
-
 
 
       this.byId("input_categoria").setVisible(false)
@@ -245,7 +217,6 @@ sap.ui.define([
       let focusObject = this.getView().getModel("AddProducts").getProperty("/Prodotti")[clickIndex].prodotto
 
       console.log(focusObject);
-
 
 
       MessageBox.confirm("Stai cancellando l' elemento " + focusObject, {
@@ -285,12 +256,6 @@ sap.ui.define([
       });
 
     },
-    // debug: function () {
-
-    //   console.log(this.savedData);
-
-
-    // },
 
     add: function () {
 
@@ -309,7 +274,6 @@ sap.ui.define([
       this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
 
       let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")
-      // console.log(prova);
 
       this.getView().getModel("AddProducts").setProperty("/Prodotti", prova)
 
@@ -318,8 +282,6 @@ sap.ui.define([
       this.byId("modifica").firePress()
     },
 
-
-
     getRouter: function () {
 
       return sap.ui.core.UIComponent.getRouterFor(this);
@@ -327,22 +289,26 @@ sap.ui.define([
 
     _gestioniProdottiMatched: function () {
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
-      var that = this
+      var that = this;
+
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
-          // console.log(data.value);
-          // that.savedData = data.value
+          var prodottiNumerati = data.value.map(function (item, index) {
+            item.numero = index + 1;
+            return item;
+          });
 
-          // console.log(this.savedData);
-
-
-          that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
+          that.getView().getModel("AddProducts").setProperty('/Prodotti', prodottiNumerati);
 
           that.savedData = JSON.parse(JSON.stringify(that.oModel.getProperty("/Prodotti")));
 
+          this.checkOfferte();
+
         }.bind(that),
-        function (error) {}.bind(that));
+
+        function (error) {}.bind(that)
+      );
     },
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
@@ -354,14 +320,6 @@ sap.ui.define([
           if (typeof successCallback === "function") {
             successCallback(data);
 
-            that.getView().getModel("AddProducts").setProperty('/Matcher', data.value)
-            // // console.log("asdasd", data.value);
-
-            // that.arrayThingy = []
-
-            // that.arrayThingy.push(data.value)
-            // that.savedData = that.arrayThingy[0]
-            // console.log("mnmnmnmnmnmmmnm",that.savedData);
           }
         },
         error: function (error) {
@@ -376,44 +334,7 @@ sap.ui.define([
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
     },
 
-    // save: function () {
-    //   var categoria = this.getView().getModel("AddProducts").getProperty("/categoria")
-    //   var prodotto = this.getView().getModel("AddProducts").getProperty("/prodotto")
-    //   var quantita_giacenza = this.getView().getModel("AddProducts").getProperty("/quantita_giacenza")
-    //   var prezzo_unitario = this.getView().getModel("AddProducts").getProperty("/prezzo_unitario")
-    //   var data_aggiornamento = this.getView().getModel("AddProducts").getProperty("/data_aggiornamento")
-    //   var sconto = this.getView().getModel("AddProducts").getProperty("/sconto")
-    //   var origine = this.getView().getModel("AddProducts").getProperty("/origine")
-
-    //   var obj = {
-    //     "categoria": categoria,
-    //     "prodotto": prodotto,
-    //     "quantita_giacenza": quantita_giacenza,
-    //     "prezzo_unitario": prezzo_unitario,
-    //     "data_aggiornamento": data_aggiornamento,
-    //     "sconto": sconto,
-    //     "origine": origine,
-    //   }
-
-    //   var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
-    //   jQuery.ajax({
-    //     url: sUrl + "fruttarolo",
-    //     contentType: "application/json",
-    //     type: "POST",
-    //     data: JSON.stringify(obj),
-    //     dataType: "json",
-    //     success: function () {
-    //       console.log("bella li");
-    //     },
-    //     error: function () {
-    //       console.log("belloooooooooo");
-    //     }
-    //   })
-    // },
   });
 });
 
 
-
-// {"ID":"04c096b3-10cc-4553-8cb3-cbe7ae14ecf4","categoria":"frutta","data_aggiornamento":"Italy","origine":null,"prezzo_unitario":"1,80","prodotto":"mele","quantita_giacenza":"20 kg","sconto":null}
-// {"ID":"04c096b3-10cc-4553-8cb3-cbe7ae14ecf4","categoria":"frutta","data_aggiornamento":"Italy","origine":null,"prezzo_unitario":"1,80","prodotto":"mele","quantita_giacenza":"20 kg","sconto":null}
