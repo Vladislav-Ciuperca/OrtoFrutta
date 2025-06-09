@@ -1,3 +1,5 @@
+
+
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
@@ -59,36 +61,58 @@ sap.ui.define([
 
     onSave: function () {
 
-      this.byId("modifica").setVisible(true)
-      this.byId("undo").setVisible(false)
-      this.byId("barra").setVisible(false)
+      let allInputs = this.getView().getModel("AddProducts").getProperty("/Prodotti")
+
+      let requiredInputs
+
+      allInputs.forEach(element => {
+        console.log(element);
+        debugger
+        if (element.prodotto && element.quantita_giacenza) {
+          requiredInputs = true
+
+        } else {
+          debugger
+          requiredInputs = false
+          console.log("manca");
+          MessageBox.error("Nome e Quantià sono dei campi obbligatori");
+        }
+        debugger
+      });
+
+      if (requiredInputs) {
+        console.log("ce tutto");
+        this.byId("modifica").setVisible(true)
+        this.byId("undo").setVisible(false)
+        this.byId("barra").setVisible(false)
 
 
-      this.byId("input_categoria").setVisible(false)
-      this.byId("text_categoria").setVisible(true)
+        this.byId("input_categoria").setVisible(false)
+        this.byId("text_categoria").setVisible(true)
 
-      this.byId("input_nome").setVisible(false)
-      this.byId("text_nome").setVisible(true)
-
-
-      this.byId("input_quanita").setVisible(false)
-      this.byId("text_quantita").setVisible(true)
-
-      this.byId("input_prezzo").setVisible(false)
-      this.byId("text_prezzo").setVisible(true)
-
-      this.byId("input_sconto").setVisible(false)
-      this.byId("text_sconto").setVisible(true)
-
-      this.byId("input_data").setVisible(false)
-      this.byId("text_data").setVisible(true)
-
-      this.byId("input_origine").setVisible(false)
-      this.byId("text_origine").setVisible(true)
-      this.byId("delete").setVisible(false)
+        this.byId("input_nome").setVisible(false)
+        this.byId("text_nome").setVisible(true)
 
 
-      this.checkOfferte()
+        this.byId("input_quanita").setVisible(false)
+        this.byId("text_quantita").setVisible(true)
+
+        this.byId("input_prezzo").setVisible(false)
+        this.byId("text_prezzo").setVisible(true)
+
+        this.byId("input_sconto").setVisible(false)
+        this.byId("text_sconto").setVisible(true)
+
+        this.byId("input_data").setVisible(false)
+        this.byId("text_data").setVisible(true)
+
+        this.byId("input_origine").setVisible(false)
+        this.byId("text_origine").setVisible(true)
+        this.byId("delete").setVisible(false)
+
+
+        this.checkOfferte()
+      }
 
     },
 
@@ -154,7 +178,7 @@ sap.ui.define([
           title: "Annulla",
           actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
           emphasizedAction: MessageBox.Action.OK,
-          // initialFocus: MessageBox.Action.CANCEL,
+          initialFocus: MessageBox.Action.CANCEL,
           // styleClass: sResponsivePaddingClasses,
           dependentOn: this.getView(),
 
@@ -173,7 +197,29 @@ sap.ui.define([
 
 
     },
+    onlyNumbers: function (oEvent) {
+      let oInput = oEvent.getSource();
+      let contenuto = oInput.getValue();
 
+      if (/^[0-9.,]*$/.test(contenuto)) {
+        console.log("okok");
+      } else {
+        console.log("nonono");
+
+        let arrayCaratteri = contenuto.split("");
+
+        arrayCaratteri.splice(arrayCaratteri.length - 1, 1);
+
+        let nuovoValore = arrayCaratteri.join("");
+
+        oInput.setValue(nuovoValore);
+        sap.m.MessageToast.show("Questo campo accetta solo numeri", {
+          duration: 1000,
+          width: "20em",
+
+        });
+      }
+    },
 
     undoShit: function () {
       this.byId("modifica").setVisible(true)
@@ -261,14 +307,19 @@ sap.ui.define([
 
       this.byId("barra").setVisible(true)
 
+      // let asd =sap.ui.core.format.DateFormat.getDateInstance({ pattern: "d MMM yyyy" }, sap.ui.getCore().getConfiguration().getFormatLocale()).format(new Date()),
       const newProductRow = {
         categoria: "",
-        prodotto: "",
-        giacenza: "",
-        prezzo_unitario: "",
-        sconto: "",
-        data_aggiornamento: new Date().toISOString(),
+        data_aggiornamento: new Date().toLocaleDateString({
+          day: "2-digit",
+          month: "2-digit",
+          year: "2-digit"
+        }),
         origine: "",
+        prezzo_unitario: "",
+        prodotto: "",
+        quantita_giacenza: "",
+        sconto: "",
       };
 
       this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
@@ -336,5 +387,3 @@ sap.ui.define([
 
   });
 });
-
-

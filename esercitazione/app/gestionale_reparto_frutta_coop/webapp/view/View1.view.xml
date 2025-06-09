@@ -145,7 +145,7 @@
 					<t:Column id="input_quanita" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>giacenza}" />
+							<Input value="{AddProducts>giacenza}" liveChange="onlyNumbers"/>
 						</t:template>
 					</t:Column>
 
@@ -163,7 +163,7 @@
 					<t:Column id="input_prezzo" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>prezzo_unitario}" />
+							<Input value="{AddProducts>prezzo_unitario}" liveChange="onlyNumbers"/>
 						</t:template>
 					</t:Column>
 
@@ -179,7 +179,7 @@
 					<t:Column id="input_sconto" visible="false">
 						<Label text="{i18n>sconto_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>sconto}" />
+							<Input value="{AddProducts>sconto}" liveChange="onlyNumbers"/>
 						</t:template>
 					</t:Column>
 
