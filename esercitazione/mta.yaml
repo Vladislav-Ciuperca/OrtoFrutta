@@ -56,6 +56,20 @@ modules:
         existing_destinations_policy: ignore
   build-parameters:
     no-source: true
+- name: esercitazione-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: esercitazione_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - gestionalerepartofruttacoop.zip
+      name: gestionalerepartofruttacoop
+      target-path: resources/
 - name: gestionalerepartofruttacoop
   type: html5
   path: app/gestionale_reparto_frutta_coop
@@ -114,15 +128,6 @@ resources:
     service: html5-apps-repo
     service-name: esercitazione-html5-app-host-service
     service-plan: app-host
-# - name: hdi_esercitazione
-#   type: com.sap.xs.hdi-container
-#   parameters:
-#     config:
-#       schema: esercitazione
-#     service: hana
-#     service-plan: hdi-shared
-#   properties:
-#     hdi-container-name: ${service-name}
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
