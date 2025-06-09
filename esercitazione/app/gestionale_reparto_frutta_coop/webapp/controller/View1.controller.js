@@ -67,17 +67,17 @@ sap.ui.define([
 
       allInputs.forEach(element => {
         console.log(element);
-        debugger
+        // debugger
         if (element.prodotto && element.quantita_giacenza) {
           requiredInputs = true
 
         } else {
-          debugger
+          // debugger
           requiredInputs = false
           console.log("manca");
           MessageBox.error("Nome e Quantià sono dei campi obbligatori");
         }
-        debugger
+        // debugger
       });
 
       if (requiredInputs) {
@@ -316,8 +316,8 @@ sap.ui.define([
           year: "2-digit"
         }),
         origine: "",
-        prezzo_unitario: "",
         prodotto: "",
+        prezzo_unitario: "",
         quantita_giacenza: "",
         sconto: "",
       };
@@ -338,6 +338,7 @@ sap.ui.define([
       return sap.ui.core.UIComponent.getRouterFor(this);
     },
 
+   
     _gestioniProdottiMatched: function () {
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
       var that = this;
@@ -345,22 +346,10 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
-          var prodottiNumerati = data.value.map(function (item, index) {
-            item.numero = index + 1;
-            return item;
-          });
-
-          that.getView().getModel("AddProducts").setProperty('/Prodotti', prodottiNumerati);
-
-          that.savedData = JSON.parse(JSON.stringify(that.oModel.getProperty("/Prodotti")));
-
-          this.checkOfferte();
-
+          that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
-
-        function (error) {}.bind(that)
-      );
-    },
+        function (error) { }.bind(that));
+      },
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
       let that = this
@@ -387,3 +376,14 @@ sap.ui.define([
 
   });
 });
+
+
+
+// categoria obbligatorio
+// prezzo obbligatorio
+
+// expression binding
+
+// se il campo ce o non ce, euroi di conseguenza
+
+// messasgebox con i18n

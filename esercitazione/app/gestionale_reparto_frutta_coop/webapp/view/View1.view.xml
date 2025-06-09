@@ -138,25 +138,25 @@
 						filterProperty="giacenza" resizable="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-							<Label text="{AddProducts>giacenza}" wrapping="false" />
+							<Label text="{AddProducts>quantita_giacenza} Kg" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_quanita" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>giacenza}" liveChange="onlyNumbers"/>
+							<Input value="{AddProducts>quantita_giacenza}" liveChange="onlyNumbers"/>
 						</t:template>
 					</t:Column>
 
 					<!-- PREZZO -->
 					<t:Column id="text_prezzo" visible="true" sortProperty="prezzo_unitario"
 						filterProperty="prezzo_unitario" resizable="false">
-						<Label text="{i18n>prezzo_prodotto}" />
+						<Label text="{i18n>prezzo_prodotto} " />
 						<t:template>
 							<!-- <u:Currency value="{AddProducts>prezzo_unitario}"
 							currency="{CurrencyCode}"/> -->
-							<Label text="{AddProducts>prezzo_unitario}" />
+							<Label text="{AddProducts>prezzo_unitario} €" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
