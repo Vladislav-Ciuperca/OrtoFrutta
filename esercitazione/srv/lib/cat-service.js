@@ -11,7 +11,7 @@ module.exports = class CatalogFruttarolo extends cds.ApplicationService {
     }
     async functionGetFlusso() {
 
-        console.log("banana");
+        console.log("modifica");
 
 
     }
