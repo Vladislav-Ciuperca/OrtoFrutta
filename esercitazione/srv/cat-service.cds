@@ -7,6 +7,6 @@ using esercitazione as my from '../db/data-model';
 // my ovvero fruttrolo è fruttarolo.fruttarolo dentro il db fruttarolo
 service CatalogFruttarolo {
     // tabelle per le app
+    function functionGetFlusso() returns fruttarolo;
     entity fruttarolo as projection on my.fruttarolo;
-    // function functionGetFlusso() returns fruttarolo
 }
