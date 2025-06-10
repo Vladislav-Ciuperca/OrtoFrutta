@@ -92,15 +92,15 @@
 
 
 				<t:columns>
-
-					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_numeratore" visible="true" sortProperty="categoria"
+					<!-- <t:Column id="text_numeratore" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="true" width="50px">
 						<Label text="N°" />
 						<t:template>
 							<Text text="{AddProducts>numero}" wrapping="false" />
 						</t:template>
-					</t:Column>
+					</t:Column> -->
+
+					<!-- CATEGORIA PRODOTTO -->
 					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
@@ -145,7 +145,7 @@
 					<t:Column id="input_quanita" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>giacenza}" />
+							<Input value="{AddProducts>giacenza}"  liveChange="onNumberOnly"/>
 						</t:template>
 					</t:Column>
 
@@ -163,7 +163,7 @@
 					<t:Column id="input_prezzo" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>prezzo_unitario}" />
+							<Input value="{AddProducts>prezzo_unitario}"  liveChange="onNumberOnly"/>
 						</t:template>
 					</t:Column>
 
@@ -179,7 +179,7 @@
 					<t:Column id="input_sconto" visible="false">
 						<Label text="{i18n>sconto_prodotto}" />
 						<t:template>
-							<Input value="{AddProducts>sconto}" />
+							<Input value="{AddProducts>sconto}" type="Number" liveChange="onNumberOnly"/>
 						</t:template>
 					</t:Column>
 
