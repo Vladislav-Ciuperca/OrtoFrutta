@@ -1,139 +1,139 @@
 _schema-version: 3.3.0
 ID: esercitazione
-description: A simple CAP project.
 version: 1.0.0
+description: A simple CAP project.
+
 modules:
-- name: esercitazione-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: esercitazione-db
-  - name: esercitazione-auth
-  # - name: hdi_esercitazione
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-    instances: 1
-  build-parameters:
-    builder: npm-ci
-- name: esercitazione-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: esercitazione-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: esercitazione-destination-content
-  type: com.sap.application.content
-  requires:
-  - name: esercitazione-destination-service
-    parameters:
-      content-target: true
-  - name: esercitazione_html_repo_host
-    parameters:
-      service-key:
-        name: esercitazione_html_repo_host-key
-  - name: esercitazione-auth
-    parameters:
-      service-key:
-        name: esercitazione-auth-key
-  parameters:
-    content:
-      instance:
-        destinations:
-        - Name: esercitazione_esercitazione_html_repo_host
-          ServiceInstanceName: esercitazione-html5-app-host-service
-          ServiceKeyName: esercitazione_html_repo_host-key
-          sap.cloud.service: esercitazione
-        - Authentication: OAuth2UserTokenExchange
-          Name: esercitazione_esercitazione_auth
-          ServiceInstanceName: esercitazione-auth
-          ServiceKeyName: esercitazione-auth-key
-          sap.cloud.service: esercitazione
-        existing_destinations_policy: ignore
-  build-parameters:
-    no-source: true
-- name: esercitazione-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: esercitazione_html_repo_host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: esercitazione-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - gestionalerepartofruttacoop.zip
-      name: gestionalerepartofruttacoop
-      target-path: resources/
-- name: gestionalerepartofruttacoop
-  type: html5
-  path: app/gestionale_reparto_frutta_coop
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-resources:
-- name: esercitazione-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: esercitazione-auth
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      tenant-mode: dedicated
-      xsappname: esercitazione-${org}-${space}
-    path: ./xs-security.json
-    service: xsuaa
-    service-plan: application
-- name: esercitazione-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      init_data:
+      - name: esercitazione-db
+      - name: esercitazione-auth
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+    build-parameters:
+      builder: npm-ci
+
+  - name: esercitazione-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: esercitazione-db
+    parameters:
+      buildpack: nodejs_buildpack
+
+  - name: gestionalerepartofruttacoop
+    type: html5
+    path: app/gestionale_reparto_frutta_coop
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms: []
+    requires:
+      - name: esercitazione_html_repo_host
+        parameters:
+          service-key:
+            name: esercitazione_html_repo_host-key
+
+  - name: esercitazione-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: esercitazione-destination-service
+        parameters:
+          content-target: true
+      - name: esercitazione_html_repo_host
+        parameters:
+          service-key:
+            name: esercitazione_html_repo_host-key
+      - name: esercitazione-auth
+        parameters:
+          service-key:
+            name: esercitazione-auth-key
+    parameters:
+      content:
         instance:
           destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: esercitazione-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: esercitazione-destination-service
-    service-plan: lite
-  requires:
-  - name: srv-api
-- name: esercitazione_html_repo_host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: esercitazione-html5-app-host-service
-    service-plan: app-host
+            - Name: esercitazione_esercitazione_html_repo_host
+              ServiceInstanceName: esercitazione-html5-app-host-service
+              ServiceKeyName: esercitazione_html_repo_host-key
+              sap.cloud.service: esercitazione
+            - Authentication: OAuth2UserTokenExchange
+              Name: esercitazione_esercitazione_auth
+              ServiceInstanceName: esercitazione-auth
+              ServiceKeyName: esercitazione-auth-key
+              sap.cloud.service: esercitazione
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
+
+resources:
+  - name: esercitazione-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+  - name: esercitazione-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        tenant-mode: dedicated
+        xsappname: esercitazione-${org}-${space}
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+
+  - name: esercitazione-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+              - Authentication: NoAuthentication
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                Name: esercitazione-srv-api
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: esercitazione-destination-service
+      service-plan: lite
+    requires:
+      - name: srv-api
+
+  - name: esercitazione_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: esercitazione-html5-app-host-service
+      service-plan: app-host
+
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
+
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm ci
-    - npx cds build --production
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
