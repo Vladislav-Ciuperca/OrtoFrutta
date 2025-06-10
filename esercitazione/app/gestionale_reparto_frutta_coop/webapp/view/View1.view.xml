@@ -94,13 +94,7 @@
 				<t:columns>
 
 					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_numeratore" visible="true" sortProperty="categoria"
-						filterProperty="categoria" resizable="true" width="50px">
-						<Label text="N°" />
-						<t:template>
-							<Text text="{AddProducts>numero}" wrapping="false" />
-						</t:template>
-					</t:Column>
+	
 					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
@@ -138,7 +132,7 @@
 						filterProperty="giacenza" resizable="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-							<Label text="{AddProducts>quantita_giacenza} Kg" wrapping="false" />
+							<Label text="{AddProducts>quantita_giacenza} {= ${AddProducts>quantita_giacenza} ? 'Kg' : '' }" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
@@ -156,7 +150,7 @@
 						<t:template>
 							<!-- <u:Currency value="{AddProducts>prezzo_unitario}"
 							currency="{CurrencyCode}"/> -->
-							<Label text="{AddProducts>prezzo_unitario} €" />
+							<Label text="{AddProducts>prezzo_unitario} {= ${AddProducts>prezzo_unitario} ? '€' : '' }" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
@@ -172,7 +166,7 @@
 						filterProperty="sconto" resizable="false">
 						<Label text="{i18n>sconto_prodotto}" />
 						<t:template>
-							<Text text="{AddProducts>sconto}" wrapping="false" />
+							<Text text="{AddProducts>sconto}  {= ${AddProducts>sconto} ? '%' : '' }" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
