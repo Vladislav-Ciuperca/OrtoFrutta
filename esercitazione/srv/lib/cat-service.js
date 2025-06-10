@@ -3,15 +3,17 @@
 
 
 const cds = require('@sap/cds');
-// const fetch  = require ("node-fetch")
+const fetch = require("node-fetch")
 
 
 module.exports = class CatalogFruttarolo extends cds.ApplicationService {
 
-    functionGetFlusso() {
+    async init() {
+
+    }
+    async functionGetFlusso() {
 
         console.log("banana");
-
 
     }
 }
