@@ -32,12 +32,28 @@ sap.ui.define([
 
 
 
-    debug : function (){
-
+    debug: function () {
       console.log("DEBUGGNADOOOOOOOOOOOOOO");
-      
-
-    }
+  
+      var oModel = this.getView().getModel();  // Assicurati che il modello OData V4 sia correttamente associato alla vista
+  
+      // Percorso della funzione OData
+      var sFunctionUrl = "/functionGetFlusso";  // Modifica con il percorso corretto della funzione
+  
+      // Chiamata alla funzione OData
+      oModel.callFunction(sFunctionUrl, {
+          method: "GET",  // Metodo HTTP per chiamare la funzione
+          success: function (data) {
+              console.log("Successo:", data);
+              // Gestisci i dati qui
+          },
+          error: function (error) {
+              console.log("Errore:", error);
+              // Gestisci l'errore qui
+          }
+      });
+  },
+  
 
 
 
