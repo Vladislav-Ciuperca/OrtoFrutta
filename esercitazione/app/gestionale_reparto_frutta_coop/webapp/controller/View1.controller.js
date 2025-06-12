@@ -1,5 +1,3 @@
-
-
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
@@ -27,6 +25,31 @@ sap.ui.define([
       this.oModel = this.getView().getModel("AddProducts");
 
     },
+
+
+
+
+
+
+
+    debug : function (){
+
+      console.log("DEBUGGNADOOOOOOOOOOOOOO");
+      
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     onEdit: function () {
@@ -76,7 +99,9 @@ sap.ui.define([
           requiredInputs = false
           console.log("manca");
           MessageBox.error("Nome e Quantià sono dei campi obbligatori");
+         
         }
+        
         // debugger
       });
 
@@ -338,7 +363,7 @@ sap.ui.define([
       return sap.ui.core.UIComponent.getRouterFor(this);
     },
 
-   
+
     _gestioniProdottiMatched: function () {
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
       var that = this;
@@ -348,8 +373,8 @@ sap.ui.define([
         function (data) {
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
-        function (error) { }.bind(that));
-      },
+        function (error) {}.bind(that));
+    },
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
       let that = this

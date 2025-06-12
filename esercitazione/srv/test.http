@@ -7,3 +7,8 @@
 GET  {{server}}/odata/v4/catalog-fruttarolo/functionGetFlusso()
 # Authorization: Bearer {{tokenValue}}
 Content-Type: application/json
+
+
+
+    # post da frontend,
+    # chiamata verso function getflusso
