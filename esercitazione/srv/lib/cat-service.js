@@ -15,7 +15,6 @@ module.exports = class CatalogFruttarolo extends cds.ApplicationService {
             console.log(raw);
             console.log(myHeaders);
 
-
             const requestOptions = {
                 method: "POST",
                 headers: myHeaders,
