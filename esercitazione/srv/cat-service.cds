@@ -8,6 +8,22 @@ using esercitazione as my from '../db/data-model';
 service CatalogFruttarolo {
     // tabelle per le app
     entity fruttarolo as projection on my.fruttarolo;
-    action functionGetFlusso returns fruttarolo;
+
+    action functionGetFlusso(
+
+    arrayProducts : array of {
+        // ID        : UUID;
+        // ID_UTENTE : UUID;
+        // ATIVITA   : String;
+        categoria          : String;
+        data_aggiornamento : String;
+        ID                 : UUID;
+        origine            : String;
+        prezzo_unitario    : String;
+        prodotto           : String;
+        quantita_giacenza  : String;
+        sconto             : String;
+
+    }) returns String;
 
 }

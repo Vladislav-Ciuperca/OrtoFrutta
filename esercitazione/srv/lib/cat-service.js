@@ -3,19 +3,47 @@ const fetch = require('node-fetch')
 
 module.exports = class CatalogFruttarolo extends cds.ApplicationService {
     async init() {
+
+        this.on('functionGetFlusso', async (req) => {
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", "Basic c2ItNjNjYjhlYWYtNzFiNC00ZjVjLWFmZDAtYzFkZWQwZWQzYmJhIWI2MzQ5OHxpdC1ydC1hZmMyM2IzZHRyaWFsIWIxOTY6Y2Q1MTA4MTItNjg2MS00OWIzLWI2NDEtN2U5YTNmNzE3MDVhJDlEdzk4bVNpMloyVGlVaGhJUmhjMlhJOXVJVDJid3d1bmNIMFpaWHhQYnM9");
+
+            const raw = JSON.stringify(req.data.arrayProducts);
+
+            console.log(raw);
+            console.log(myHeaders);
+
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            fetch("https://afc23b3dtrial.it-cpitrial03-rt.cfapps.ap21.hana.ondemand.com/http/updatedrive", requestOptions)
+                .then((response) => response.text())
+                .then((result) => console.log(result))
+                .catch((error) => console.error(error));
+
+
+
+        });
+
         await super.init();
     }
+    async functionGetFlussoDue() {
 
-    async functionGetFlusso() {
-        console.log("banana");
-
+        console.log("inizio a fare le mie cosine");
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", "Basic c2ItNjNjYjhlYWYtNzFiNC00ZjVjLWFmZDAtYzFkZWQwZWQzYmJhIWI2MzQ5OHxpdC1ydC1hZmMyM2IzZHRyaWFsIWIxOTY6Y2Q1MTA4MTItNjg2MS00OWIzLWI2NDEtN2U5YTNmNzE3MDVhJDlEdzk4bVNpMloyVGlVaGhJUmhjMlhJOXVJVDJid3d1bmNIMFpaWHhQYnM9");
 
         const raw = JSON.stringify({
-            "fruttarolo": [{
+            "arrayProducts": [{
                     "categoria": "frutta",
                     "prodotto": "mele",
                     "prezzo_unitario": "1,80",
@@ -79,6 +107,11 @@ module.exports = class CatalogFruttarolo extends cds.ApplicationService {
             .then((result) => console.log(result))
             .catch((error) => console.error(error));
 
-
+        console.log("finisco le mie cosine");
     }
 }
+
+
+
+
+// chiamata post da frontednd

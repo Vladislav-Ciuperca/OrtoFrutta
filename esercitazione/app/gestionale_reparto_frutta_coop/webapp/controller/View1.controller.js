@@ -27,33 +27,66 @@ sap.ui.define([
     },
 
 
+    
 
-
-
-
-
-    debug: function () {
-      console.log("DEBUGGNADOOOOOOOOOOOOOO");
-  
-      var oModel = this.getView().getModel();  // Assicurati che il modello OData V4 sia correttamente associato alla vista
-  
-      // Percorso della funzione OData
-      var sFunctionUrl = "/functionGetFlusso";  // Modifica con il percorso corretto della funzione
-  
-      // Chiamata alla funzione OData
-      oModel.callFunction(sFunctionUrl, {
-          method: "GET",  // Metodo HTTP per chiamare la funzione
-          success: function (data) {
-              console.log("Successo:", data);
-              // Gestisci i dati qui
-          },
-          error: function (error) {
-              console.log("Errore:", error);
-              // Gestisci l'errore qui
-          }
+    callFunctionGetFlusso: function () {
+      let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti");
+      let oPayload = {
+        arrayProducts: aProducts
+      };
+    
+      console.log(JSON.stringify(oPayload));
+    
+      jQuery.ajax({
+        url: "/odata/v4/catalog-fruttarolo/functionGetFlusso",
+        method: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(oPayload),
+        success: function (data) {
+          console.log("Risposta funzione:", data?.value);
+        },
+        error: function (xhr, status, error) {
+          console.error("Errore nella chiamata:", error);
+          console.log("Dettagli errore:", xhr.responseText);
+        }
       });
-  },
-  
+    },
+    
+
+
+    // callFunctionGetFlusso: async function () {
+
+    //   let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti")
+
+    //   console.log(JSON.stringify({
+    //     arrayProducts: aProducts
+    //   }));
+
+    //   await fetch("/odata/v4/catalog-fruttarolo/functionGetFlusso", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify({
+    //         arrayProducts: aProducts
+    //       })
+    //     })
+    //     .then((res) => {
+    //       if (!res.ok) throw new Error("Errore HTTP " + res.status);
+    //       return res.json();
+    //     })
+    //     .then((data) => {
+    //       console.log("Risposta funzione:", data.value);
+    //     })
+    //     .catch((err) => {
+    //       console.error("ze nda  in error3:", err);
+    //       console.log(err);
+    //     });
+    // },
+
+
+
 
 
 
@@ -115,9 +148,9 @@ sap.ui.define([
           requiredInputs = false
           console.log("manca");
           MessageBox.error("Nome e Quantià sono dei campi obbligatori");
-         
+
         }
-        
+
         // debugger
       });
 
