@@ -64,19 +64,11 @@
 
 				<t:extension>
 					<OverflowToolbar style="Clear">
-						<!-- apUiTinyMarginBottom (4px) sapUiMediumMarginBottom (16px)
-						sapUiLargeMarginBottom (32px) -->
-						<!-- <SearchField liveChange="onSearch" width="80%"
-						placeholder="{i18n>search}" /> -->
-						<!-- <SearchField liveChange="onSearch" width="80%"
-						placeholder="{i18n>search}" /> -->
+	
 						<ToolbarSpacer />
 						<Button id="modifica" press="onEdit" text="{i18n>button_edita}"
 							type="Emphasized" visible="true" />
 						<Button id="undo" press="onUndo" visible="false" icon="sap-icon://undo" />
-
-						<!-- <Button id="debug" press="debug" visible="true" icon="sap-icon://undo"
-						/> -->
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add"
 							icon="sap-icon://add" />
 
@@ -243,10 +235,7 @@
 		<f:footer>
 			<OverflowToolbar id="barra" visible="false">
 				<ToolbarSpacer />
-				<!-- <Button press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/> -->
 				<Button id="save" press="onSave" visible="true" icon="sap-icon://save" />
-				<!-- <Button id="delete" press="undo" visible="true" icon="sap-icon://decline" /> -->
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
