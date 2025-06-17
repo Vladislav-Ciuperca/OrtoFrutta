@@ -1,0 +1,14 @@
+@server = http://localhost:4004
+
+## Bulk API for TT02
+
+### ------------------------------------------------------------------------
+# POST {{server}}/PostNumberTileDynamic
+GET  {{server}}/odata/v4/catalog-fruttarolo/functionGetFlusso()
+# Authorization: Bearer {{tokenValue}}
+Content-Type: application/json
+
+
+
+    # post da frontend,
+    # chiamata verso function getflusso

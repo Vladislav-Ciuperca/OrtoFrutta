@@ -9,40 +9,22 @@
 	xmlns:layout="sap.ui.layout" height="100%">
 
 
-	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
+	<f:DynamicPage id="PageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}"
+		showFooter="true" fitContent="true">
+
 
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="{i18n>titolo}"/>
+					<Title text="{i18n>titolo}" />
 				</f:heading>
-				<!-- <f:expandedContent>
-						<Label text="This is a subheading"/>
-					</f:expandedContent> -->
-				<!-- <f:snappedContent>
-						<Label text="This is a subheading"/>
-					</f:snappedContent> -->
-				<!-- <f:snappedTitleOnMobile>
-						<Title text="This is a subheading"/>
-					</f:snappedTitleOnMobile> -->
-				<!-- <f:content>
-						<OverflowToolbar>
-							<GenericTag text="SR" status="Error" press="onGenericTagPress" design="StatusIconHidden">
-								<ObjectNumber number="2" unit="M" emphasized="false" state="Error"/>
-							</GenericTag>
-						</OverflowToolbar>
-					</f:content> -->
-				<f:actions>
-					<ToolbarSpacer/>
-					<Button press="edit" text="{i18n>button_edita}" type="Emphasized"/>
-					<Button text="{i18n>button_elimina}" type="Transparent"/>
-					<!-- <Button text="Copy" type="Transparent"/> <Button icon="sap-icon://action" type="Transparent"/> -->
-				</f:actions>
+
 			</f:DynamicPageTitle>
 		</f:title>
 
-		<!-- DynamicPage Header -->
+		<!-- headewr -->
 		<f:header>
+
 			<f:DynamicPageHeader pinnable="true">
 				<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 					<items>
@@ -50,236 +32,205 @@
 							<content>
 								<layout:HorizontalLayout allowWrapping="true">
 									<layout:VerticalLayout class="sapUiMediumMarginEnd">
-										<ObjectAttribute title="{i18n>title_posizione}" text="{i18n>text_magazzino}"/>
-										<ObjectAttribute title="{i18n>title_corridoio}" text="{i18n>text_corridoio}"/>
-										<ObjectAttribute title="{i18n>title_rastrelliera}" text="{i18n>text_rastrelliera}"/>
+										<ObjectAttribute title="{i18n>title_reparto}"
+											text="{i18n>text_freschi}" />
+										<ObjectAttribute title="{i18n>title_aggiornamento}"
+											text="{i18n>text_giornaliera}" />
+										<ObjectAttribute title="{i18n>title_temperatura}"
+											text="{i18n>text_gradi}" />
+
 									</layout:VerticalLayout>
 									<layout:VerticalLayout>
-										<ObjectAttribute title="{i18n>title_disponibilità}"/>
-										<ObjectStatus text="{i18n>text_disponibilità}" state="Success" />
+										<ObjectAttribute title="{i18n>title_promozioni}" />
+										<ObjectStatus id="statoOfferte" text="{i18n>text_nessuna}"
+											state="Error" />
 									</layout:VerticalLayout>
 								</layout:HorizontalLayout>
 							</content>
 						</Panel>
 					</items>
 				</FlexBox>
+
+
 			</f:DynamicPageHeader>
 		</f:header>
 
+
 		<f:content>
-			<t:Table rows="{AddProducts>/Prodotti}" selectionMode="MultiToggle" rowMode="Auto">
+
+			<t:Table id="tabella" rows="{AddProducts>/Prodotti}" selectionMode="None" rowMode="Auto"
+				width="auto" enableColumnReordering="true">
+
 
 				<t:extension>
 					<OverflowToolbar style="Clear">
-						<!-- <Title text="{AddProducts>categoria}"/> -->
+						<!-- apUiTinyMarginBottom (4px) sapUiMediumMarginBottom (16px)
+						sapUiLargeMarginBottom (32px) -->
+						<!-- <SearchField liveChange="onSearch" width="80%"
+						placeholder="{i18n>search}" /> -->
+						<!-- <SearchField liveChange="onSearch" width="80%"
+						placeholder="{i18n>search}" /> -->
+						<ToolbarSpacer />
+						<Button id="modifica" press="onEdit" text="{i18n>button_edita}"
+							type="Emphasized" visible="true" />
+						<Button id="undo" press="onUndo" visible="false" icon="sap-icon://undo" />
+
+						<!-- <Button id="debug" press="debug" visible="true" icon="sap-icon://undo"
+						/> -->
+						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add"
+							icon="sap-icon://add" />
+
 					</OverflowToolbar>
+					<OverflowToolbar style="Clear">
+
+						<Title text="{i18n>tabella_prodotti}" />
+
+					</OverflowToolbar>
+
+
 				</t:extension>
+
+
 				<t:columns>
 
-					<!-- ID DEL PRODOTTO-->
-					
-					<t:Column id="text_prodotto" width="8rem">
-						<Label text="{i18n>id_prodotto}" />
-						<t:template>
-							<Text text="{AddProducts/categoria}" wrapping="false" />
-						</t:template>
-					</t:Column>
-					<!-- /////////////////////////////// -->
-					<t:Column id="input_prodotto" width="8rem">
-						<Label text="{i18n>id_prodotto}" />
-						<t:template>
-							<Input value="placeholder"/>
-						</t:template>
-					</t:Column>
-					
-					
 					<!-- CATEGORIA PRODOTTO -->
-					<t:Column id="text_categoria" width="6rem">
+	
+					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
+						filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
-							<Text text="{AddProducts/categoria}" wrapping="false" />
+							<Text text="{AddProducts>categoria}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column id="input_categoria" width="6rem">
+					<t:Column id="input_categoria" visible="false">
 						<Label text="{i18n>categoria_prodotto}" />
 						<t:template>
-							<Input value="placeholder"/>
+							<Input value="{AddProducts>categoria}" />
 						</t:template>
 					</t:Column>
-					
-					<!-- NOME PRODOTTO -->
-					<t:Column width="9rem">
-						<Label id= "text_nome" text="{i18n>nome_prodotto}" />
-						<t:template>
-							<Text text="{AddProducts/prodotto}" wrapping="false" />
-						</t:template>
-					</t:Column>
-					<!-- /////////////////////////////// -->
-					<t:Column width="9rem">
-						<Label id= "input_nome" text="{i18n>nome_prodotto}" />
-						<t:template>
-							<Input value="placeholder"/>
-						</t:template>
-					</t:Column>
-					
-					
-					<!-- QUANTITA -->
-					<t:Column width="11rem">
-						<Label id= "text_quantita" text="{i18n>quantità_prodotto}" />
-						<t:template >
-							<Label text="{AddProducts/quantit}" wrapping="false" />
-						</t:template>
-					</t:Column>
-					<!-- /////////////////////////////// -->
-					<t:Column width="11rem">
-						<Label id= "input_quanita" text="{i18n>quantità_prodotto}" />
-						<t:template >
-							<Input value="placeholder"/>
-						</t:template>
-					</t:Column>
-					<!-- <t:Column width="9rem">
-							<Label text="Status" />
-							<t:template>
-								<ObjectStatus text="asd"/>
-							</t:template>
-						</t:Column> -->
 
-						
-					<!-- PREZZO -->
-					<t:Column width="6rem">
-						<Label id= "text_prezzo" text="{i18n>prezzo_prodotto}" />
-						<t:template >
-							<u:Currency value="{AddProducts/prezzo_unitario}" currency="{CurrencyCode}"/>
+					<!-- NOME PRODOTTO -->
+					<t:Column id="text_nome" visible="true" sortProperty="prdotto"
+						filterProperty="prodotto" resizable="false">
+						<Label text="{i18n>nome_prodotto}" />
+						<t:template>
+							<Text text="{AddProducts>prodotto}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="6rem">
-						<Label id= "input_prezzo" text="{i18n>prezzo_prodotto}" />
-						<t:template >
-							<Input value="placeholder"/>
+					<t:Column id="input_nome" visible="false">
+						<Label text="{i18n>nome_prodotto}" />
+						<t:template>
+							<Input value="{AddProducts>prodotto}" />
+						</t:template>
+					</t:Column>
+
+
+					<!-- QUANTITA -->
+					<t:Column id="text_quantita" visible="true" sortProperty="giacenza"
+						filterProperty="giacenza" resizable="false">
+						<Label text="{i18n>quantità_prodotto}" />
+						<t:template>
+							<Label text="{AddProducts>quantita_giacenza} {= ${AddProducts>quantita_giacenza} ? 'Kg' : '' }" wrapping="false" />
+						</t:template>
+					</t:Column>
+					<!-- /////////////////////////////// -->
+					<t:Column id="input_quanita" visible="false">
+						<Label text="{i18n>quantità_prodotto}" />
+						<t:template>
+							<Input value="{AddProducts>quantita_giacenza}" liveChange="onlyNumbers"/>
+						</t:template>
+					</t:Column>
+
+					<!-- PREZZO -->
+					<t:Column id="text_prezzo" visible="true" sortProperty="prezzo_unitario"
+						filterProperty="prezzo_unitario" resizable="false">
+						<Label text="{i18n>prezzo_prodotto} " />
+						<t:template>
+							<!-- <u:Currency value="{AddProducts>prezzo_unitario}"
+							currency="{CurrencyCode}"/> -->
+							<Label text="{AddProducts>prezzo_unitario} {= ${AddProducts>prezzo_unitario} ? '€' : '' }" />
+						</t:template>
+					</t:Column>
+					<!-- /////////////////////////////// -->
+					<t:Column id="input_prezzo" visible="false">
+						<Label text="{i18n>prezzo_prodotto}" />
+						<t:template>
+							<Input value="{AddProducts>prezzo_unitario}" liveChange="onlyNumbers"/>
 						</t:template>
 					</t:Column>
 
 					<!-- SCONTO -->
-					<t:Column width="5rem">
-						<Label id= "text_sconto" text="{i18n>sconto_prodotto}" />
-						<t:template  >
-							<Text text="{AddProducts/sconto}" wrapping="false" />
+					<t:Column id="text_sconto" visible="true" sortProperty="sconto"
+						filterProperty="sconto" resizable="false">
+						<Label text="{i18n>sconto_prodotto}" />
+						<t:template>
+							<Text text="{AddProducts>sconto}  {= ${AddProducts>sconto} ? '%' : '' }" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="5rem">
-						<Label id="input_sconto" text="{i18n>sconto_prodotto}" />
-						<t:template  >
-							<Input value="placeholder"/>
+					<t:Column id="input_sconto" visible="false">
+						<Label text="{i18n>sconto_prodotto}" />
+						<t:template>
+							<Input value="{AddProducts>sconto}" liveChange="onlyNumbers"/>
 						</t:template>
 					</t:Column>
 
-
-					<!-- <t:Column width="12rem">
-							<Label text="Supplier" />
-							<t:template>
-								<ComboBox value="{SupplierName}" items="{/Suppliers}">
-									<c:Item text="{Name}"/>
-								</ComboBox>
-							</t:template>
-						</t:Column> -->
-
-
-					<!-- <t:Column width="9rem">
-							<Label text="Image" />
-							<t:template>
-								<Link text="Show Image" href="{ProductPicUrl}" target="_blank"/>
-							</t:template>
-						</t:Column> -->
-
-
-					<!-- <t:Column width="9rem">
-							<Label text="Details" />
-							<t:template>
-								<Button text="Show Details" press="handleDetailsPress"/>
-							</t:template>
-						</t:Column> 
-						<t:Column width="7rem">
-							<Label text="Heavy Weight" />
-							<t:template>
-								<CheckBox selected="{
-								path: 'Heavy',
-								type: 'sap.ui.model.type.String'
-							}"/>
-							</t:template>
-						</t:Column> -->
 
 					<!-- DATA -->
 
-					<t:Column width="13rem">
-						<Label id="text_data" text="{i18n>data_aggiornamento}" />
+					<t:Column id="text_data" sortProperty="data_aggiornamento"
+						filterProperty="data_aggiornamento" resizable="false">
+						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
-							<DatePicker value="{
-								path: 'DeliveryDate',
-								type: 'sap.ui.model.type.Date',
-								formatOptions: {source: {pattern: 'timestamp'}}
-							}"/>
+							<Text text="{AddProducts>data_aggiornamento}" wrapping="false" />
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="13rem">
-						<Label id="input_data" text="{i18n>data_aggiornamento}" />
+					<t:Column id="input_data" visible="false">
+						<Label text="{i18n>data_aggiornamento}" />
 						<t:template>
-							<DatePicker value="{
-								path: 'DeliveryDate',
-								type: 'sap.ui.model.type.Date',
-								formatOptions: {source: {pattern: 'timestamp'}}
-							}"/>
+							<!-- <DatePicker value="{AddProducts>data_aggiornamento}"/> -->
+							<DatePicker value="{AddProducts>data_aggiornamento}" />
 						</t:template>
 					</t:Column>
 
 					<!-- ORIGINE -->
-					<t:Column width="12rem">
-						<Label id="text_origine" text="{i18n>origine_prodotto}" />
+					<t:Column id="text_origine" visible="true" sortProperty="origine"
+						filterProperty="origine" resizable="false">
+						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Select selectedKey="{AddProducts/origine}">
-								<c:Item text="Italia" key="Italia"/>
-								<c:Item text="Nuova Zelanda" key="Nuova"/>
-								<c:Item text="Cina" key="Cina"/>
-								<c:Item text="Messico" key="Messico"/>
-								<c:Item text="Indonesia" key="Indonesia"/>
-								<c:Item text="India" key="India"/>
-								<c:Item text="Sud America" key="Sud"/>
-								<c:Item text="iran" key="iran"/>
-								<c:Item text="Persia" key="Persia"/>
-							</Select>
+							<Text text="{AddProducts>origine}" wrapping="false" />
+
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
-					<t:Column width="12rem">
-						<Label id="input_origine" text="{i18n>origine_prodotto}" />
+					<t:Column id="input_origine" visible="false">
+						<Label text="{i18n>origine_prodotto}" />
 						<t:template>
-							<Select selectedKey="{AddProducts/origine}">
-								<c:Item text="Italia" key="Italia"/>
-								<c:Item text="Nuova Zelanda" key="Nuova"/>
-								<c:Item text="Cina" key="Cina"/>
-								<c:Item text="Messico" key="Messico"/>
-								<c:Item text="Indonesia" key="Indonesia"/>
-								<c:Item text="India" key="India"/>
-								<c:Item text="Sud America" key="Sud"/>
-								<c:Item text="iran" key="iran"/>
-								<c:Item text="Persia" key="Persia"/>
+							<Select selectedKey="{AddProducts>origine}">
+								<c:Item text="Messico" key="messico" />
+								<c:Item text="Italy" key="Italy" />
+								<c:Item text="New Zeland" key="New Zeland" />
+								<c:Item text="Cina" key="Cina" />
+								<c:Item text="Indonesia" key="Indonesia" />
+								<c:Item text="India" key="India" />
+								<c:Item text="Sud America" key="sudamerica" />
+								<c:Item text="iran" key="iran" />
+								<c:Item text="Persia" key="Persia" />
 							</Select>
 						</t:template>
 					</t:Column>
 
+					<!-- TASTI FOOTER -->
+					<t:Column id="delete" width="3rem" visible="false">
+						<t:template>
+							<Button icon="sap-icon://delete" type="Reject" press="onDelete"
+								tooltip="{delete}" />
 
-					<!-- <t:Column width="6rem" hAlign="Center">
-							<Label text="Status" />
-							<t:template>
-								<c:Icon src="{
-								path: 'Available',
-								formatter: '.formatAvailableToIcon'
-							}"/>
-							</t:template>
-						</t:Column> -->
+						</t:template>
+					</t:Column>
 
 
 				</t:columns>
@@ -288,19 +239,17 @@
 		</f:content>
 
 
-
-
 		<!-- DynamicPage Footer -->
 		<f:footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button type="Accept" text="{i18n>accetta}"/>
-				<Button type="Reject" text="{i18n>rifiuta}"/>
+			<OverflowToolbar id="barra" visible="false">
+				<ToolbarSpacer />
+				<!-- <Button press="onSave" type="Accept" text="{i18n>accetta}"/>
+				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/> -->
+				<Button id="save" press="onSave" visible="true" icon="sap-icon://save" />
+				<!-- <Button id="delete" press="undo" visible="true" icon="sap-icon://decline" /> -->
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
-
-
 
 
 </mvc:View>
