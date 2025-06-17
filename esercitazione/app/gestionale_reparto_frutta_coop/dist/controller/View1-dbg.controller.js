@@ -59,33 +59,79 @@ sap.ui.define([
 
     onSave: function () {
 
+<<<<<<< HEAD
       this.byId("modifica").setVisible(true)
       this.byId("undo").setVisible(false)
       this.byId("barra").setVisible(false)
 
+=======
+      let allInputs = this.getView().getModel("AddProducts").getProperty("/Prodotti")
 
-      this.byId("input_categoria").setVisible(false)
-      this.byId("text_categoria").setVisible(true)
+      let requiredInputs
+>>>>>>> dev_svilupppo
 
-      this.byId("input_nome").setVisible(false)
-      this.byId("text_nome").setVisible(true)
+      allInputs.forEach(element => {
+        console.log(element);
+        // debugger
+        if (element.prodotto && element.quantita_giacenza) {
+          requiredInputs = true
 
+        } else {
+          // debugger
+          requiredInputs = false
+          console.log("manca");
+          MessageBox.error("Nome e Quantià sono dei campi obbligatori");
+         
+        }
+        
+        // debugger
+      });
+
+<<<<<<< HEAD
 
       this.byId("input_quanita").setVisible(false)
       this.byId("text_quantita").setVisible(true)
+=======
+      if (requiredInputs) {
+        console.log("ce tutto");
+        this.byId("modifica").setVisible(true)
+        this.byId("undo").setVisible(false)
+        this.byId("barra").setVisible(false)
+>>>>>>> dev_svilupppo
 
-      this.byId("input_prezzo").setVisible(false)
-      this.byId("text_prezzo").setVisible(true)
 
-      this.byId("input_sconto").setVisible(false)
-      this.byId("text_sconto").setVisible(true)
+        this.byId("input_categoria").setVisible(false)
+        this.byId("text_categoria").setVisible(true)
 
-      this.byId("input_data").setVisible(false)
-      this.byId("text_data").setVisible(true)
+        this.byId("input_nome").setVisible(false)
+        this.byId("text_nome").setVisible(true)
 
+<<<<<<< HEAD
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
       this.byId("delete").setVisible(false)
+=======
+
+        this.byId("input_quanita").setVisible(false)
+        this.byId("text_quantita").setVisible(true)
+
+        this.byId("input_prezzo").setVisible(false)
+        this.byId("text_prezzo").setVisible(true)
+
+        this.byId("input_sconto").setVisible(false)
+        this.byId("text_sconto").setVisible(true)
+
+        this.byId("input_data").setVisible(false)
+        this.byId("text_data").setVisible(true)
+
+        this.byId("input_origine").setVisible(false)
+        this.byId("text_origine").setVisible(true)
+        this.byId("delete").setVisible(false)
+
+
+        this.checkOfferte()
+      }
+>>>>>>> dev_svilupppo
 
 
       this.checkOfferte()
@@ -154,7 +200,7 @@ sap.ui.define([
           title: "Annulla",
           actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
           emphasizedAction: MessageBox.Action.OK,
-          // initialFocus: MessageBox.Action.CANCEL,
+          initialFocus: MessageBox.Action.CANCEL,
           // styleClass: sResponsivePaddingClasses,
           dependentOn: this.getView(),
 
@@ -173,7 +219,32 @@ sap.ui.define([
 
 
     },
+    onlyNumbers: function (oEvent) {
+      let oInput = oEvent.getSource();
+      let contenuto = oInput.getValue();
 
+<<<<<<< HEAD
+=======
+      if (/^[0-9.,]*$/.test(contenuto)) {
+        console.log("okok");
+      } else {
+        console.log("nonono");
+
+        let arrayCaratteri = contenuto.split("");
+
+        arrayCaratteri.splice(arrayCaratteri.length - 1, 1);
+
+        let nuovoValore = arrayCaratteri.join("");
+
+        oInput.setValue(nuovoValore);
+        sap.m.MessageToast.show("Questo campo accetta solo numeri", {
+          duration: 1000,
+          width: "20em",
+
+        });
+      }
+    },
+>>>>>>> dev_svilupppo
 
     undoShit: function () {
       this.byId("modifica").setVisible(true)
@@ -261,14 +332,19 @@ sap.ui.define([
 
       this.byId("barra").setVisible(true)
 
+      // let asd =sap.ui.core.format.DateFormat.getDateInstance({ pattern: "d MMM yyyy" }, sap.ui.getCore().getConfiguration().getFormatLocale()).format(new Date()),
       const newProductRow = {
         categoria: "",
-        prodotto: "",
-        giacenza: "",
-        prezzo_unitario: "",
-        sconto: "",
-        data_aggiornamento: new Date().toISOString(),
+        data_aggiornamento: new Date().toLocaleDateString({
+          day: "2-digit",
+          month: "2-digit",
+          year: "2-digit"
+        }),
         origine: "",
+        prodotto: "",
+        prezzo_unitario: "",
+        quantita_giacenza: "",
+        sconto: "",
       };
 
       this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
@@ -287,6 +363,7 @@ sap.ui.define([
       return sap.ui.core.UIComponent.getRouterFor(this);
     },
 
+
     _gestioniProdottiMatched: function () {
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
       var that = this;
@@ -294,6 +371,7 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
+<<<<<<< HEAD
           var prodottiNumerati = data.value.map(function (item, index) {
             item.numero = index + 1;
             return item;
@@ -305,6 +383,9 @@ sap.ui.define([
 
           this.checkOfferte();
 
+=======
+          that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
+>>>>>>> dev_svilupppo
         }.bind(that),
 
         function (error) {}.bind(that)
@@ -334,6 +415,7 @@ sap.ui.define([
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
     },
 
+<<<<<<< HEAD
     onNumberOnly: function (oEvent) {
       var sValue = oEvent.getParameter("value");
 
@@ -346,7 +428,21 @@ sap.ui.define([
     }
     
 
+=======
+>>>>>>> dev_svilupppo
   });
 });
 
 
+<<<<<<< HEAD
+=======
+
+// categoria obbligatorio
+// prezzo obbligatorio
+
+// expression binding
+
+// se il campo ce o non ce, euroi di conseguenza
+
+// messasgebox con i18n
+>>>>>>> dev_svilupppo

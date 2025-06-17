@@ -6,4 +6,13 @@
 # POST {{server}}/PostNumberTileDynamic
 GET  {{server}}/odata/v4/catalog-fruttarolo/functionGetFlusso()
 # Authorization: Bearer {{tokenValue}}
+<<<<<<< HEAD
 Content-Type: application/json
+=======
+Content-Type: application/json
+
+
+
+    # post da frontend,
+    # chiamata verso function getflusso
+>>>>>>> dev_svilupppo
