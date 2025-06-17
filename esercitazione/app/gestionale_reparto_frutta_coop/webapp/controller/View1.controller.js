@@ -18,8 +18,6 @@ sap.ui.define([
       this.getView().setModel(this.AddModel, "AddProducts");
       this.getView().getModel("AddProducts").setProperty("/Prodotti", []);
 
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
 
 
@@ -62,10 +60,7 @@ sap.ui.define([
 
       var oModel = this.getView().getModel("AddProducts");
 
-      // var currentData = oModel.getProperty("/Prodotti");
-      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))
-      console.log(this.savedData);
-      
+      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))      
 
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
@@ -103,14 +98,12 @@ sap.ui.define([
 
 
       for (const element of allInputs) {
-        console.log(element);
         if (element.prodotto && element.quantita_giacenza) {
           requiredInputs = true
 
         } else {
           // debugger
           requiredInputs = false
-          console.log("manca");
           MessageBox.error("Nome e Quantià sono dei campi obbligatori");
           return "break"
         }
@@ -118,7 +111,6 @@ sap.ui.define([
       }
 
       if (requiredInputs) {
-        console.log("ce tutto");
         this.byId("modifica").setVisible(true)
         this.byId("undo").setVisible(false)
         this.byId("barra").setVisible(false)
@@ -160,15 +152,10 @@ sap.ui.define([
       let campiSconto = this.oModel.getProperty("/Prodotti").map(p => p.sconto)
 
 
-      console.log(campiSconto);
-
-
       let campoOffertte = this.byId("statoOfferte")
 
       let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
       let testoTradotto = oResourceBundle.getText("text_nessuna");
-
-      console.log(campoOffertte);
 
       let offerteIndex = 0
 
@@ -199,19 +186,14 @@ sap.ui.define([
 
       var currentData = JSON.stringify(oModel.getProperty("/Prodotti"))
 
-      var initialData = this.savedData;
-
-      console.log("asdasdasdasdasdasdasds",initialData);
-      
+      var initialData = this.savedData;      
 
       var isEqual = currentData == initialData;
 
 
       if (isEqual) {
-        console.log("Nessuna modifica");
         this.undoShit()
       } else {
-        console.log("Hai fatto modifiche");
         MessageBox.confirm("Vuoi annulare le modifiche?", {
           icon: MessageBox.Icon.WARNING,
           title: "Annulla",
@@ -223,10 +205,8 @@ sap.ui.define([
 
           onClose: function (oAction) {
             if (oAction === MessageBox.Action.OK) {
-              console.log("hai premuto ok zio");
               that.undoShit()
             } else if (MessageBox.Action.CANCEL) {
-              console.log("hai premuto cancel");
 
             }
           }
@@ -239,9 +219,7 @@ sap.ui.define([
       let contenuto = oInput.getValue();
 
       if (/^[0-9.,]*$/.test(contenuto)) {
-        console.log("okok");
       } else {
-        console.log("nonono");
 
         let arrayCaratteri = contenuto.split("");
 
@@ -300,8 +278,6 @@ sap.ui.define([
 
       let focusObject = this.getView().getModel("AddProducts").getProperty("/Prodotti")[clickIndex].prodotto
 
-      console.log(focusObject);
-
 
       MessageBox.confirm("Stai cancellando l' elemento " + focusObject, {
         icon: MessageBox.Icon.WARNING,
@@ -316,7 +292,6 @@ sap.ui.define([
           if (oAction === MessageBox.Action.OK) {
             // definisco il numero dell'indice dell'oevent
             var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
-            console.log(numero);
             // console log dell'elemento nell'arrey che andrò a cancellare
             console.log("sto cancellando", that.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]);
 
@@ -324,15 +299,11 @@ sap.ui.define([
             // splice accetta 2 valori : il primo è l'indice dove agire il secondo è il numero di elementi da "spliceare" dopo quell indice
             // esempio splice(all'indice 3 , per una volta)
             that.getView().getModel("AddProducts").getProperty("/Prodotti").splice(numero, 1)
-            // console log del modello per vedere cos'hp cancellato
-            console.log(that.getView().getModel("AddProducts").getProperty("/Prodotti"));
             // mi "salvo" il nuovo modello temporaneo in una variabile
             var getModello = that.getView().getModel("AddProducts").getProperty("/Prodotti")
             // prendo il mio modello attuale e gli dico che adesso è uguale al mio modello temporaneo vhe è getModello
             that.getView().getModel("AddProducts").setProperty("/Prodotti", getModello)
-            console.log("hai premuito ok amore");
           } else if (oAction === MessageBox.Action.CANCEL) {
-            console.log("non te ghe premuo na sega tesoro");
 
           }
         },
