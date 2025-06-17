@@ -28,9 +28,6 @@ sap.ui.define([
       }, 500);
     },
 
-
-
-
     functionPostFlusso: function () {
       let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti");
       let oPayload = {
@@ -98,6 +95,7 @@ sap.ui.define([
 
 
       for (const element of allInputs) {
+        
         if (element.prodotto && element.quantita_giacenza) {
           requiredInputs = true
 
@@ -114,7 +112,6 @@ sap.ui.define([
         this.byId("modifica").setVisible(true)
         this.byId("undo").setVisible(false)
         this.byId("barra").setVisible(false)
-
 
         setTimeout(() => {
           this.byId("input_categoria").setVisible(false)
@@ -149,8 +146,9 @@ sap.ui.define([
     },
 
     checkOfferte: function () {
-      let campiSconto = this.oModel.getProperty("/Prodotti").map(p => p.sconto)
 
+
+      let campiSconto = this.oModel.getProperty("/Prodotti").map(p => p.sconto)
 
       let campoOffertte = this.byId("statoOfferte")
 
@@ -175,8 +173,6 @@ sap.ui.define([
 
       });
     },
-
-
 
 
     onUndo: function () {
@@ -214,14 +210,18 @@ sap.ui.define([
       }
 
     },
+
     onlyNumbers: function (oEvent) {
+
       let oInput = oEvent.getSource();
       let contenuto = oInput.getValue();
 
       if (/^[0-9.,]*$/.test(contenuto)) {
+        // non faccio nulla
       } else {
 
         let arrayCaratteri = contenuto.split("");
+
 
         arrayCaratteri.splice(arrayCaratteri.length - 1, 1);
 
@@ -391,7 +391,6 @@ sap.ui.define([
       }
     }
     
-
   });
 });
 

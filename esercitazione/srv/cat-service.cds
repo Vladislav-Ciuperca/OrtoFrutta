@@ -8,9 +8,6 @@ using esercitazione as my from '../db/data-model';
 service CatalogFruttarolo {
     // tabelle per le app
     entity fruttarolo as projection on my.fruttarolo;
-<<<<<<< HEAD
-    function functionGetFlusso() returns fruttarolo;
-=======
 
     action functionGetFlusso(
 
@@ -29,5 +26,4 @@ service CatalogFruttarolo {
 
     }) returns String;
 
->>>>>>> dev_svilupppo
 }

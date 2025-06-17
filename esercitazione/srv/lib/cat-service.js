@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-//questo è il mio backend
-// devo importarmi le 
 
-
-const cds = require('@sap/cds');
-const fetch = require("node-fetch")
-
-
-module.exports = class CatalogFruttarolo extends cds.ApplicationService {
-
-    async init() {
-
-    }
-    async functionGetFlusso() {
-
-        console.log("banana");
-
-    }
-}
-=======
 const cds = require('@sap/cds')
 const fetch = require('node-fetch')
 
@@ -134,5 +114,4 @@ module.exports = class CatalogFruttarolo extends cds.ApplicationService {
 
 
 
-// chiamata post da frontednd
->>>>>>> dev_svilupppo
+// chiamata post da fronte

@@ -63,7 +63,7 @@
 
 
 				<t:extension>
-					<OverflowToolbar style="Clear">
+					<OverflowToolbar style="Clear"  >
 	
 						<ToolbarSpacer />
 						<Button id="modifica" press="onEdit" text="{i18n>button_edita}"
