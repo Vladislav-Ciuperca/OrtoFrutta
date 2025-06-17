@@ -84,21 +84,9 @@
 
 
 				<t:columns>
-<<<<<<< HEAD
-					<!-- <t:Column id="text_numeratore" visible="true" sortProperty="categoria"
-						filterProperty="categoria" resizable="true" width="50px">
-						<Label text="N°" />
-						<t:template>
-							<Text text="{AddProducts>numero}" wrapping="false" />
-						</t:template>
-					</t:Column> -->
-
-					<!-- CATEGORIA PRODOTTO -->
-=======
 
 					<!-- CATEGORIA PRODOTTO -->
 	
->>>>>>> dev_svilupppo
 					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
@@ -143,11 +131,9 @@
 					<t:Column id="input_quanita" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-<<<<<<< HEAD
-							<Input value="{AddProducts>giacenza}"  liveChange="onNumberOnly"/>
-=======
+
 							<Input value="{AddProducts>quantita_giacenza}" liveChange="onlyNumbers"/>
->>>>>>> dev_svilupppo
+
 						</t:template>
 					</t:Column>
 
@@ -164,12 +150,8 @@
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_prezzo" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
-						<t:template>
-<<<<<<< HEAD
-							<Input value="{AddProducts>prezzo_unitario}"  liveChange="onNumberOnly"/>
-=======
-							<Input value="{AddProducts>prezzo_unitario}" liveChange="onlyNumbers"/>
->>>>>>> dev_svilupppo
+						<t:template>							<Input value="{AddProducts>prezzo_unitario}" liveChange="onlyNumbers"/>
+
 						</t:template>
 					</t:Column>
 
@@ -185,11 +167,9 @@
 					<t:Column id="input_sconto" visible="false">
 						<Label text="{i18n>sconto_prodotto}" />
 						<t:template>
-<<<<<<< HEAD
-							<Input value="{AddProducts>sconto}" type="Number" liveChange="onNumberOnly"/>
-=======
+
 							<Input value="{AddProducts>sconto}" liveChange="onlyNumbers"/>
->>>>>>> dev_svilupppo
+
 						</t:template>
 					</t:Column>
 
