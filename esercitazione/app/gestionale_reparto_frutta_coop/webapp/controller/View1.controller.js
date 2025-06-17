@@ -1,3 +1,4 @@
+
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
@@ -24,19 +25,22 @@ sap.ui.define([
 
       this.oModel = this.getView().getModel("AddProducts");
 
+      setTimeout(() => {
+        this.checkOfferte()
+      }, 500);
     },
 
 
-    
 
-    callFunctionGetFlusso: function () {
+
+    functionPostFlusso: function () {
       let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti");
       let oPayload = {
         arrayProducts: aProducts
       };
-    
+
       console.log(JSON.stringify(oPayload));
-    
+
       jQuery.ajax({
         url: "/odata/v4/catalog-fruttarolo/functionGetFlusso",
         method: "POST",
@@ -44,7 +48,7 @@ sap.ui.define([
         dataType: "json",
         data: JSON.stringify(oPayload),
         success: function (data) {
-          console.log("Risposta funzione:", data?.value);
+          // console.log("Risposta funzione:", data?.value);
         },
         error: function (xhr, status, error) {
           console.error("Errore nella chiamata:", error);
@@ -52,56 +56,16 @@ sap.ui.define([
         }
       });
     },
+
     
-
-
-    // callFunctionGetFlusso: async function () {
-
-    //   let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti")
-
-    //   console.log(JSON.stringify({
-    //     arrayProducts: aProducts
-    //   }));
-
-    //   await fetch("/odata/v4/catalog-fruttarolo/functionGetFlusso", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json"
-    //       },
-    //       body: JSON.stringify({
-    //         arrayProducts: aProducts
-    //       })
-    //     })
-    //     .then((res) => {
-    //       if (!res.ok) throw new Error("Errore HTTP " + res.status);
-    //       return res.json();
-    //     })
-    //     .then((data) => {
-    //       console.log("Risposta funzione:", data.value);
-    //     })
-    //     .catch((err) => {
-    //       console.error("ze nda  in error3:", err);
-    //       console.log(err);
-    //     });
-    // },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     onEdit: function () {
+
+      var oModel = this.getView().getModel("AddProducts");
+
+      // var currentData = oModel.getProperty("/Prodotti");
+      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))
+      console.log(this.savedData);
+      
 
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
@@ -137,9 +101,9 @@ sap.ui.define([
 
       let requiredInputs
 
-      allInputs.forEach(element => {
+
+      for (const element of allInputs) {
         console.log(element);
-        // debugger
         if (element.prodotto && element.quantita_giacenza) {
           requiredInputs = true
 
@@ -148,11 +112,10 @@ sap.ui.define([
           requiredInputs = false
           console.log("manca");
           MessageBox.error("Nome e Quantià sono dei campi obbligatori");
-
+          return "break"
         }
 
-        // debugger
-      });
+      }
 
       if (requiredInputs) {
         console.log("ce tutto");
@@ -161,30 +124,33 @@ sap.ui.define([
         this.byId("barra").setVisible(false)
 
 
-        this.byId("input_categoria").setVisible(false)
-        this.byId("text_categoria").setVisible(true)
+        setTimeout(() => {
+          this.byId("input_categoria").setVisible(false)
+          this.byId("text_categoria").setVisible(true)
 
-        this.byId("input_nome").setVisible(false)
-        this.byId("text_nome").setVisible(true)
+          this.byId("input_nome").setVisible(false)
+          this.byId("text_nome").setVisible(true)
 
 
-        this.byId("input_quanita").setVisible(false)
-        this.byId("text_quantita").setVisible(true)
+          this.byId("input_quanita").setVisible(false)
+          this.byId("text_quantita").setVisible(true)
 
-        this.byId("input_prezzo").setVisible(false)
-        this.byId("text_prezzo").setVisible(true)
+          this.byId("input_prezzo").setVisible(false)
+          this.byId("text_prezzo").setVisible(true)
 
-        this.byId("input_sconto").setVisible(false)
-        this.byId("text_sconto").setVisible(true)
+          this.byId("input_sconto").setVisible(false)
+          this.byId("text_sconto").setVisible(true)
 
-        this.byId("input_data").setVisible(false)
-        this.byId("text_data").setVisible(true)
+          this.byId("input_data").setVisible(false)
+          this.byId("text_data").setVisible(true)
 
-        this.byId("input_origine").setVisible(false)
-        this.byId("text_origine").setVisible(true)
+          this.byId("input_origine").setVisible(false)
+          this.byId("text_origine").setVisible(true)
+        }, 500);
+
         this.byId("delete").setVisible(false)
 
-
+        this.functionPostFlusso()
         this.checkOfferte()
       }
 
@@ -231,15 +197,14 @@ sap.ui.define([
       var that = this
       var oModel = this.getView().getModel("AddProducts");
 
-      var currentData = oModel.getProperty("/Prodotti");
+      var currentData = JSON.stringify(oModel.getProperty("/Prodotti"))
 
       var initialData = this.savedData;
 
-      var isEqual = JSON.stringify(currentData) === JSON.stringify(initialData);
+      console.log("asdasdasdasdasdasdasds",initialData);
+      
 
-      console.log(currentData);
-      console.log(initialData);
-      console.log(isEqual);
+      var isEqual = currentData == initialData;
 
 
       if (isEqual) {
@@ -267,8 +232,6 @@ sap.ui.define([
           }
         })
       }
-
-
 
     },
     onlyNumbers: function (oEvent) {
@@ -324,6 +287,7 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
+      
       this.byId("delete").setVisible(false)
 
     },
@@ -396,13 +360,10 @@ sap.ui.define([
         sconto: "",
       };
 
-      this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
-
-      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")
-
-      this.getView().getModel("AddProducts").setProperty("/Prodotti", prova)
-
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+      let aProdotti = this.oModel.getProperty("/Prodotti");
+      aProdotti.push(newProductRow);
+      this.oModel.setProperty("/Prodotti", aProdotti);
+      this.oModel.refresh(true);
 
       this.byId("modifica").firePress()
     },
@@ -451,13 +412,3 @@ sap.ui.define([
   });
 });
 
-
-
-// categoria obbligatorio
-// prezzo obbligatorio
-
-// expression binding
-
-// se il campo ce o non ce, euroi di conseguenza
-
-// messasgebox con i18n

@@ -10,7 +10,7 @@ module.exports = class CatalogFruttarolo extends cds.ApplicationService {
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("Authorization", "Basic c2ItNjNjYjhlYWYtNzFiNC00ZjVjLWFmZDAtYzFkZWQwZWQzYmJhIWI2MzQ5OHxpdC1ydC1hZmMyM2IzZHRyaWFsIWIxOTY6Y2Q1MTA4MTItNjg2MS00OWIzLWI2NDEtN2U5YTNmNzE3MDVhJDlEdzk4bVNpMloyVGlVaGhJUmhjMlhJOXVJVDJid3d1bmNIMFpaWHhQYnM9");
 
-            const raw = JSON.stringify(req.data.arrayProducts);
+            const raw = JSON.stringify(req.data);
 
             console.log(raw);
             console.log(myHeaders);
