@@ -31,6 +31,16 @@ module.exports = class CatalogFruttarolo extends cds.ApplicationService {
 
 
         });
+        this.on('clearFruttarolo', async (req) => {
+            try {
+                console.log("Funzione clearFruttarolo chiamata");
+                await DELETE.from(this.entities.fruttarolo);  // usa l'entity dal service
+                return 'Tutti i record sono stati cancellati';
+            } catch (err) {
+                    console.error('Errore durante delete:', err);
+                    req.error(500, 'Errore durante la cancellazione dei record');
+                }
+            });
 
         await super.init();
     }

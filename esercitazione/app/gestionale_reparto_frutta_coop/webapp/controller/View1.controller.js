@@ -28,6 +28,29 @@ sap.ui.define([
       }, 500);
     },
 
+
+    onClearTable: function () {
+      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+      
+      // var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
+      // // console.log(sUrl);
+      
+      // var that = this;
+      // jQuery.ajax({
+      //   url: sUrl+"/clearFruttarolo()",
+      //   method: "GET", // funzione OData va chiamata con GET
+      //   contentType: "application/json",
+      //   success: function (data) {
+      //     MessageToast.show("Tabella fruttarolo svuotata correttamente.");
+      //     that._gestioniProdottiMatched(); // ricarica la tabella dopo lo svuotamento
+      //   },
+      //   error: function (xhr, status, error) {
+      //     MessageBox.error("Errore durante la cancellazione della tabella:\n" + xhr.responseText);
+      //   }
+      // });
+    },
+    
+
     functionPostFlusso: function () {
       let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti");
       let oPayload = {
@@ -35,9 +58,9 @@ sap.ui.define([
       };
 
       console.log(JSON.stringify(oPayload));
-
+      var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
       jQuery.ajax({
-        url: "/odata/v4/catalog-fruttarolo/functionGetFlusso",
+        url:sUrl+ "/functionGetFlusso",
         method: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -55,9 +78,15 @@ sap.ui.define([
     
     onEdit: function () {
 
+      var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
+      console.log(sUrl,"functionGetFlusso");
+
       var oModel = this.getView().getModel("AddProducts");
 
-      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))      
+      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))   
+      
+      console.log(oModel.getProperty("/Prodotti"));
+      
 
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
@@ -352,6 +381,20 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
+          data.value.forEach(element => {
+               
+            let arrayCaratteri = element.quantita_giacenza.split("")
+            console.log(arrayCaratteri);
+
+            arrayCaratteri.splice(arrayCaratteri.length - 2, 2);
+
+            let carattereCorretto =  arrayCaratteri.join("")
+
+            element.quantita_giacenza = carattereCorretto
+
+            console.log( element.quantita_giacenza);
+          });
+          
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
         function (error) {}.bind(that));

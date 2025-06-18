@@ -63,20 +63,13 @@
 
 
 				<t:extension>
-					<OverflowToolbar style="Clear">
-						<!-- apUiTinyMarginBottom (4px) sapUiMediumMarginBottom (16px)
-						sapUiLargeMarginBottom (32px) -->
-						<!-- <SearchField liveChange="onSearch" width="80%"
-						placeholder="{i18n>search}" /> -->
-						<!-- <SearchField liveChange="onSearch" width="80%"
-						placeholder="{i18n>search}" /> -->
+					<OverflowToolbar style="Clear"  >
+	
 						<ToolbarSpacer />
 						<Button id="modifica" press="onEdit" text="{i18n>button_edita}"
 							type="Emphasized" visible="true" />
 						<Button id="undo" press="onUndo" visible="false" icon="sap-icon://undo" />
-
-						<!-- <Button id="debug" press="debug" visible="true" icon="sap-icon://undo"
-						/> -->
+						<Button id="debug" press="onClearTable" visible="true" icon="sap-icon://undo" />
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add"
 							icon="sap-icon://add" />
 
@@ -92,21 +85,9 @@
 
 
 				<t:columns>
-<<<<<<< HEAD
-					<!-- <t:Column id="text_numeratore" visible="true" sortProperty="categoria"
-						filterProperty="categoria" resizable="true" width="50px">
-						<Label text="N°" />
-						<t:template>
-							<Text text="{AddProducts>numero}" wrapping="false" />
-						</t:template>
-					</t:Column> -->
-
-					<!-- CATEGORIA PRODOTTO -->
-=======
 
 					<!-- CATEGORIA PRODOTTO -->
 	
->>>>>>> dev_svilupppo
 					<t:Column id="text_categoria" visible="true" sortProperty="categoria"
 						filterProperty="categoria" resizable="false">
 						<Label text="{i18n>categoria_prodotto}" />
@@ -144,52 +125,34 @@
 						filterProperty="giacenza" resizable="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-<<<<<<< HEAD
-							<Label text="{AddProducts>giacenza}" wrapping="false" />
-=======
 							<Label text="{AddProducts>quantita_giacenza} {= ${AddProducts>quantita_giacenza} ? 'Kg' : '' }" wrapping="false" />
->>>>>>> dev_svilupppo
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_quanita" visible="false">
 						<Label text="{i18n>quantità_prodotto}" />
 						<t:template>
-<<<<<<< HEAD
-							<Input value="{AddProducts>giacenza}"  liveChange="onNumberOnly"/>
-=======
+
 							<Input value="{AddProducts>quantita_giacenza}" liveChange="onlyNumbers"/>
->>>>>>> dev_svilupppo
+
 						</t:template>
 					</t:Column>
 
 					<!-- PREZZO -->
 					<t:Column id="text_prezzo" visible="true" sortProperty="prezzo_unitario"
 						filterProperty="prezzo_unitario" resizable="false">
-<<<<<<< HEAD
-						<Label text="{i18n>prezzo_prodotto}" />
-						<t:template>
-							<!-- <u:Currency value="{AddProducts>prezzo_unitario}"
-							currency="{CurrencyCode}"/> -->
-							<Label text="{AddProducts>prezzo_unitario}" />
-=======
 						<Label text="{i18n>prezzo_prodotto} " />
 						<t:template>
 							<!-- <u:Currency value="{AddProducts>prezzo_unitario}"
 							currency="{CurrencyCode}"/> -->
 							<Label text="{AddProducts>prezzo_unitario} {= ${AddProducts>prezzo_unitario} ? '€' : '' }" />
->>>>>>> dev_svilupppo
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_prezzo" visible="false">
 						<Label text="{i18n>prezzo_prodotto}" />
-						<t:template>
-<<<<<<< HEAD
-							<Input value="{AddProducts>prezzo_unitario}"  liveChange="onNumberOnly"/>
-=======
-							<Input value="{AddProducts>prezzo_unitario}" liveChange="onlyNumbers"/>
->>>>>>> dev_svilupppo
+						<t:template>							<Input value="{AddProducts>prezzo_unitario}" liveChange="onlyNumbers"/>
+
 						</t:template>
 					</t:Column>
 
@@ -198,22 +161,16 @@
 						filterProperty="sconto" resizable="false">
 						<Label text="{i18n>sconto_prodotto}" />
 						<t:template>
-<<<<<<< HEAD
-							<Text text="{AddProducts>sconto}" wrapping="false" />
-=======
 							<Text text="{AddProducts>sconto}  {= ${AddProducts>sconto} ? '%' : '' }" wrapping="false" />
->>>>>>> dev_svilupppo
 						</t:template>
 					</t:Column>
 					<!-- /////////////////////////////// -->
 					<t:Column id="input_sconto" visible="false">
 						<Label text="{i18n>sconto_prodotto}" />
 						<t:template>
-<<<<<<< HEAD
-							<Input value="{AddProducts>sconto}" type="Number" liveChange="onNumberOnly"/>
-=======
+
 							<Input value="{AddProducts>sconto}" liveChange="onlyNumbers"/>
->>>>>>> dev_svilupppo
+
 						</t:template>
 					</t:Column>
 
@@ -283,10 +240,7 @@
 		<f:footer>
 			<OverflowToolbar id="barra" visible="false">
 				<ToolbarSpacer />
-				<!-- <Button press="onSave" type="Accept" text="{i18n>accetta}"/>
-				<Button press="debug" type="Reject" text="{i18n>rifiuta}"/> -->
 				<Button id="save" press="onSave" visible="true" icon="sap-icon://save" />
-				<!-- <Button id="delete" press="undo" visible="true" icon="sap-icon://decline" /> -->
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>

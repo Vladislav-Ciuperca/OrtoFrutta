@@ -69,6 +69,7 @@
 						<Button id="modifica" press="onEdit" text="{i18n>button_edita}"
 							type="Emphasized" visible="true" />
 						<Button id="undo" press="onUndo" visible="false" icon="sap-icon://undo" />
+						<Button id="debug" press="onClearTable" visible="true" icon="sap-icon://undo" />
 						<OverflowToolbarButton id="add" press="add" tooltip="Add" text="Add"
 							icon="sap-icon://add" />
 

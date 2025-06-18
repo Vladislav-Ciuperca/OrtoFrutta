@@ -1,3 +1,4 @@
+
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
@@ -17,17 +18,74 @@ sap.ui.define([
       this.getView().setModel(this.AddModel, "AddProducts");
       this.getView().getModel("AddProducts").setProperty("/Prodotti", []);
 
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti", []));
-
       this.getRouter().getRoute("RouteView1").attachPatternMatched(this._gestioniProdottiMatched, this);
 
 
       this.oModel = this.getView().getModel("AddProducts");
 
+      setTimeout(() => {
+        this.checkOfferte()
+      }, 500);
     },
 
 
+    onClearTable: function () {
+      // var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
+      // console.log(sUrl);
+      
+      var that = this;
+      jQuery.ajax({
+        url: "/odata/v4/catalog-fruttarolo/clearFruttarolo()",
+        method: "GET", // funzione OData va chiamata con GET
+        contentType: "application/json",
+        success: function (data) {
+          MessageToast.show("Tabella fruttarolo svuotata correttamente.");
+          that._gestioniProdottiMatched(); // ricarica la tabella dopo lo svuotamento
+        },
+        error: function (xhr, status, error) {
+          MessageBox.error("Errore durante la cancellazione della tabella:\n" + xhr.responseText);
+        }
+      });
+    },
+    
+
+
+    functionPostFlusso: function () {
+      let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti");
+      let oPayload = {
+        arrayProducts: aProducts
+      };
+
+      console.log(JSON.stringify(oPayload));
+
+      jQuery.ajax({
+        url: "/odata/v4/catalog-fruttarolo/functionGetFlusso",
+        method: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(oPayload),
+        success: function (data) {
+          // console.log("Risposta funzione:", data?.value);
+        },
+        error: function (xhr, status, error) {
+          console.error("Errore nella chiamata:", error);
+          console.log("Dettagli errore:", xhr.responseText);
+        }
+      });
+    },
+
+    
     onEdit: function () {
+
+      var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
+      console.log(sUrl,"functionGetFlusso");
+
+      var oModel = this.getView().getModel("AddProducts");
+
+      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))   
+      
+      console.log(oModel.getProperty("/Prodotti"));
+      
 
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
@@ -59,98 +117,71 @@ sap.ui.define([
 
     onSave: function () {
 
-<<<<<<< HEAD
-      this.byId("modifica").setVisible(true)
-      this.byId("undo").setVisible(false)
-      this.byId("barra").setVisible(false)
-
-=======
       let allInputs = this.getView().getModel("AddProducts").getProperty("/Prodotti")
 
       let requiredInputs
->>>>>>> dev_svilupppo
 
-      allInputs.forEach(element => {
-        console.log(element);
-        // debugger
+
+      for (const element of allInputs) {
+        
         if (element.prodotto && element.quantita_giacenza) {
           requiredInputs = true
 
         } else {
           // debugger
           requiredInputs = false
-          console.log("manca");
           MessageBox.error("Nome e Quantià sono dei campi obbligatori");
-         
+          return "break"
         }
-        
-        // debugger
-      });
 
-<<<<<<< HEAD
+      }
 
-      this.byId("input_quanita").setVisible(false)
-      this.byId("text_quantita").setVisible(true)
-=======
       if (requiredInputs) {
-        console.log("ce tutto");
         this.byId("modifica").setVisible(true)
         this.byId("undo").setVisible(false)
         this.byId("barra").setVisible(false)
->>>>>>> dev_svilupppo
+
+        setTimeout(() => {
+          this.byId("input_categoria").setVisible(false)
+          this.byId("text_categoria").setVisible(true)
+
+          this.byId("input_nome").setVisible(false)
+          this.byId("text_nome").setVisible(true)
 
 
-        this.byId("input_categoria").setVisible(false)
-        this.byId("text_categoria").setVisible(true)
+          this.byId("input_quanita").setVisible(false)
+          this.byId("text_quantita").setVisible(true)
 
-        this.byId("input_nome").setVisible(false)
-        this.byId("text_nome").setVisible(true)
+          this.byId("input_prezzo").setVisible(false)
+          this.byId("text_prezzo").setVisible(true)
 
-<<<<<<< HEAD
-      this.byId("input_origine").setVisible(false)
-      this.byId("text_origine").setVisible(true)
-      this.byId("delete").setVisible(false)
-=======
+          this.byId("input_sconto").setVisible(false)
+          this.byId("text_sconto").setVisible(true)
 
-        this.byId("input_quanita").setVisible(false)
-        this.byId("text_quantita").setVisible(true)
+          this.byId("input_data").setVisible(false)
+          this.byId("text_data").setVisible(true)
 
-        this.byId("input_prezzo").setVisible(false)
-        this.byId("text_prezzo").setVisible(true)
+          this.byId("input_origine").setVisible(false)
+          this.byId("text_origine").setVisible(true)
+        }, 500);
 
-        this.byId("input_sconto").setVisible(false)
-        this.byId("text_sconto").setVisible(true)
-
-        this.byId("input_data").setVisible(false)
-        this.byId("text_data").setVisible(true)
-
-        this.byId("input_origine").setVisible(false)
-        this.byId("text_origine").setVisible(true)
         this.byId("delete").setVisible(false)
 
-
+        this.functionPostFlusso()
         this.checkOfferte()
       }
->>>>>>> dev_svilupppo
-
-
-      this.checkOfferte()
 
     },
 
     checkOfferte: function () {
+
+
       let campiSconto = this.oModel.getProperty("/Prodotti").map(p => p.sconto)
-
-
-      console.log(campiSconto);
-
 
       let campoOffertte = this.byId("statoOfferte")
 
       let oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
       let testoTradotto = oResourceBundle.getText("text_nessuna");
-
-      console.log(campoOffertte);
 
       let offerteIndex = 0
 
@@ -172,29 +203,21 @@ sap.ui.define([
     },
 
 
-
-
     onUndo: function () {
 
       var that = this
       var oModel = this.getView().getModel("AddProducts");
 
-      var currentData = oModel.getProperty("/Prodotti");
+      var currentData = JSON.stringify(oModel.getProperty("/Prodotti"))
 
-      var initialData = this.savedData;
+      var initialData = this.savedData;      
 
-      var isEqual = JSON.stringify(currentData) === JSON.stringify(initialData);
-
-      console.log(currentData);
-      console.log(initialData);
-      console.log(isEqual);
+      var isEqual = currentData == initialData;
 
 
       if (isEqual) {
-        console.log("Nessuna modifica");
         this.undoShit()
       } else {
-        console.log("Hai fatto modifiche");
         MessageBox.confirm("Vuoi annulare le modifiche?", {
           icon: MessageBox.Icon.WARNING,
           title: "Annulla",
@@ -206,31 +229,27 @@ sap.ui.define([
 
           onClose: function (oAction) {
             if (oAction === MessageBox.Action.OK) {
-              console.log("hai premuto ok zio");
               that.undoShit()
             } else if (MessageBox.Action.CANCEL) {
-              console.log("hai premuto cancel");
 
             }
           }
         })
       }
 
-
-
     },
+
     onlyNumbers: function (oEvent) {
+
       let oInput = oEvent.getSource();
       let contenuto = oInput.getValue();
 
-<<<<<<< HEAD
-=======
       if (/^[0-9.,]*$/.test(contenuto)) {
-        console.log("okok");
+        // non faccio nulla
       } else {
-        console.log("nonono");
 
         let arrayCaratteri = contenuto.split("");
+
 
         arrayCaratteri.splice(arrayCaratteri.length - 1, 1);
 
@@ -244,7 +263,6 @@ sap.ui.define([
         });
       }
     },
->>>>>>> dev_svilupppo
 
     undoShit: function () {
       this.byId("modifica").setVisible(true)
@@ -275,6 +293,7 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
+      
       this.byId("delete").setVisible(false)
 
     },
@@ -286,8 +305,6 @@ sap.ui.define([
       var clickIndex = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
 
       let focusObject = this.getView().getModel("AddProducts").getProperty("/Prodotti")[clickIndex].prodotto
-
-      console.log(focusObject);
 
 
       MessageBox.confirm("Stai cancellando l' elemento " + focusObject, {
@@ -303,7 +320,6 @@ sap.ui.define([
           if (oAction === MessageBox.Action.OK) {
             // definisco il numero dell'indice dell'oevent
             var numero = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
-            console.log(numero);
             // console log dell'elemento nell'arrey che andrò a cancellare
             console.log("sto cancellando", that.getView().getModel("AddProducts").getProperty("/Prodotti")[numero]);
 
@@ -311,15 +327,11 @@ sap.ui.define([
             // splice accetta 2 valori : il primo è l'indice dove agire il secondo è il numero di elementi da "spliceare" dopo quell indice
             // esempio splice(all'indice 3 , per una volta)
             that.getView().getModel("AddProducts").getProperty("/Prodotti").splice(numero, 1)
-            // console log del modello per vedere cos'hp cancellato
-            console.log(that.getView().getModel("AddProducts").getProperty("/Prodotti"));
             // mi "salvo" il nuovo modello temporaneo in una variabile
             var getModello = that.getView().getModel("AddProducts").getProperty("/Prodotti")
             // prendo il mio modello attuale e gli dico che adesso è uguale al mio modello temporaneo vhe è getModello
             that.getView().getModel("AddProducts").setProperty("/Prodotti", getModello)
-            console.log("hai premuito ok amore");
           } else if (oAction === MessageBox.Action.CANCEL) {
-            console.log("non te ghe premuo na sega tesoro");
 
           }
         },
@@ -347,13 +359,10 @@ sap.ui.define([
         sconto: "",
       };
 
-      this.getView().getModel("AddProducts").getProperty("/Prodotti").push(newProductRow)
-
-      let prova = this.getView().getModel("AddProducts").getProperty("/Prodotti")
-
-      this.getView().getModel("AddProducts").setProperty("/Prodotti", prova)
-
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
+      let aProdotti = this.oModel.getProperty("/Prodotti");
+      aProdotti.push(newProductRow);
+      this.oModel.setProperty("/Prodotti", aProdotti);
+      this.oModel.refresh(true);
 
       this.byId("modifica").firePress()
     },
@@ -371,25 +380,9 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
-<<<<<<< HEAD
-          var prodottiNumerati = data.value.map(function (item, index) {
-            item.numero = index + 1;
-            return item;
-          });
-
-          that.getView().getModel("AddProducts").setProperty('/Prodotti', prodottiNumerati);
-
-          that.savedData = JSON.parse(JSON.stringify(that.oModel.getProperty("/Prodotti")));
-
-          this.checkOfferte();
-
-=======
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
->>>>>>> dev_svilupppo
         }.bind(that),
-
-        function (error) {}.bind(that)
-      );
+        function (error) {}.bind(that));
     },
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
@@ -415,7 +408,6 @@ sap.ui.define([
       console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
     },
 
-<<<<<<< HEAD
     onNumberOnly: function (oEvent) {
       var sValue = oEvent.getParameter("value");
 
@@ -427,22 +419,6 @@ sap.ui.define([
       }
     }
     
-
-=======
->>>>>>> dev_svilupppo
   });
 });
 
-
-<<<<<<< HEAD
-=======
-
-// categoria obbligatorio
-// prezzo obbligatorio
-
-// expression binding
-
-// se il campo ce o non ce, euroi di conseguenza
-
-// messasgebox con i18n
->>>>>>> dev_svilupppo
