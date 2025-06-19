@@ -282,6 +282,9 @@ sap.ui.define([
 
     onDelete: function (oEvent) {
 
+      console.log(oEvent.getParameter("key"));
+      
+
       let that = this
       var clickIndex = oEvent.getSource().getParent().sId.split("row")[oEvent.getSource().getParent().sId.split("row").length - 1]
 
@@ -356,7 +359,8 @@ sap.ui.define([
 
     filterLetters: function (input) {
 
-      let arrayValore = input.split("")
+  
+      let  arrayValore = input.split("")
 
       let corrected = []
       arrayValore.forEach((element) => {
@@ -369,18 +373,9 @@ sap.ui.define([
       });
 
       let nuovoCarattere = corrected.join("")
-      // console.log(nuovoCarattere);
-      return nuovoCarattere
-    },
-
-
-    onClearTable: function () {
-      // console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
-
-
-      console.log(this.filterLetters("1ab2cd3ef4gh"));
-
-
+     
+        return nuovoCarattere
+  
     },
 
 
@@ -391,16 +386,20 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
-          data.value.forEach(dataElement => {
+          console.log(data.value);
 
-            console.log(this.filterLetters(dataElement.quantita_giacenza));
+          // data.value.forEach(dataElement => {
 
-            dataElement.quantita_giacenza = this.filterLetters(dataElement.quantita_giacenza)
-            dataElement.prezzo_unitario = this.filterLetters(dataElement.prezzo_unitario)
-            dataElement.sconto = this.filterLetters(dataElement.sconto)
+          //   dataElement.quantita_giacenza = this.filterLetters(dataElement.quantita_giacenza)
+          //   dataElement.prezzo_unitario = this.filterLetters(dataElement.prezzo_unitario)
 
+          //   if (dataElement.sconto) {
+          //     dataElement.sconto = this.filterLetters(dataElement.sconto)
+          //     console.log("KKK");
+              
+          //   }
 
-          });
+          // });
 
 
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)

@@ -1,4 +1,3 @@
-
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
@@ -29,28 +28,8 @@ sap.ui.define([
     },
 
 
-    onClearTable: function () {
-      console.log(this.getView().getModel("AddProducts").getProperty("/Prodotti"));
-      
-      // var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
-      // // console.log(sUrl);
-      
-      // var that = this;
-      // jQuery.ajax({
-      //   url: sUrl+"/clearFruttarolo()",
-      //   method: "GET", // funzione OData va chiamata con GET
-      //   contentType: "application/json",
-      //   success: function (data) {
-      //     MessageToast.show("Tabella fruttarolo svuotata correttamente.");
-      //     that._gestioniProdottiMatched(); // ricarica la tabella dopo lo svuotamento
-      //   },
-      //   error: function (xhr, status, error) {
-      //     MessageBox.error("Errore durante la cancellazione della tabella:\n" + xhr.responseText);
-      //   }
-      // });
-    },
-    
-    
+
+
 
     functionPostFlusso: function () {
       let aProducts = this.getView().getModel("AddProducts").getProperty("/Prodotti");
@@ -61,7 +40,7 @@ sap.ui.define([
       console.log(JSON.stringify(oPayload));
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
       jQuery.ajax({
-        url:sUrl+ "/functionGetFlusso",
+        url: sUrl + "/functionGetFlusso",
         method: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -76,18 +55,18 @@ sap.ui.define([
       });
     },
 
-    
+
     onEdit: function () {
 
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
-      console.log(sUrl,"functionGetFlusso");
+      console.log(sUrl, "functionGetFlusso");
 
       var oModel = this.getView().getModel("AddProducts");
 
-      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))   
-      
+      this.savedData = JSON.stringify(oModel.getProperty("/Prodotti"))
+
       console.log(oModel.getProperty("/Prodotti"));
-      
+
 
       this.byId("modifica").setVisible(false)
       this.byId("undo").setVisible(true)
@@ -125,7 +104,7 @@ sap.ui.define([
 
 
       for (const element of allInputs) {
-        
+
         if (element.prodotto && element.quantita_giacenza) {
           requiredInputs = true
 
@@ -212,7 +191,7 @@ sap.ui.define([
 
       var currentData = JSON.stringify(oModel.getProperty("/Prodotti"))
 
-      var initialData = this.savedData;      
+      var initialData = this.savedData;
 
       var isEqual = currentData == initialData;
 
@@ -295,7 +274,7 @@ sap.ui.define([
 
       this.byId("input_origine").setVisible(false)
       this.byId("text_origine").setVisible(true)
-      
+
       this.byId("delete").setVisible(false)
 
     },
@@ -375,6 +354,35 @@ sap.ui.define([
     },
 
 
+    filterLetters: function (input) {
+
+  
+      let  arrayValore = input.split("")
+
+      let corrected = []
+      arrayValore.forEach((element) => {
+
+
+        if (/^[0-9.,]*$/.test(element)) {
+          corrected.push(element)
+        }
+
+      });
+
+      let nuovoCarattere = corrected.join("")
+     
+        return nuovoCarattere
+  
+    },
+
+
+    onClearTable: function () {
+
+      console.log(this.filterLetters("1ab2cd3ef4gh"));
+
+    },
+
+
     _gestioniProdottiMatched: function () {
       var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
       var that = this;
@@ -382,24 +390,29 @@ sap.ui.define([
       that.makeAjaxRequest(
         sUrl + "fruttarolo",
         function (data) {
-          data.value.forEach(element => {
-               
-            let arrayCaratteri = element.quantita_giacenza.split("")
-            console.log(arrayCaratteri);
+          console.log(data.value);
 
-            arrayCaratteri.splice(arrayCaratteri.length - 2, 2);
+          data.value.forEach(dataElement => {
 
-            let carattereCorretto =  arrayCaratteri.join("")
+            dataElement.quantita_giacenza = this.filterLetters(dataElement.quantita_giacenza)
+            dataElement.prezzo_unitario = this.filterLetters(dataElement.prezzo_unitario)
 
-            element.quantita_giacenza = carattereCorretto
+            if (dataElement.sconto) {
+              dataElement.sconto = this.filterLetters(dataElement.sconto)
+              console.log("KKK");
+              
+            }
 
-            console.log( element.quantita_giacenza);
           });
-          
+
+
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
         }.bind(that),
         function (error) {}.bind(that));
     },
+
+
+
 
     makeAjaxRequest: function (url, successCallback, errorCallback) { //funzione per le chiamate jquery.ajax
       let that = this
@@ -428,13 +441,31 @@ sap.ui.define([
       var sValue = oEvent.getParameter("value");
 
       console.log("scrivendo");
-      
+
       // Solo cifre (0-9)
       if (!/^\d*$/.test(sValue)) {
         oEvent.getSource().setValue(sValue.replace(/\D/g, ""));
       }
     }
-    
+
   });
 });
 
+
+
+// var sUrl = this.getOwnerComponent().getModel().sServiceUrl;
+// // console.log(sUrl);
+
+// var that = this;
+// jQuery.ajax({
+//   url: sUrl+"/clearFruttarolo()",
+//   method: "GET", // funzione OData va chiamata con GET
+//   contentType: "application/json",
+//   success: function (data) {
+//     MessageToast.show("Tabella fruttarolo svuotata correttamente.");
+//     that._gestioniProdottiMatched(); // ricarica la tabella dopo lo svuotamento
+//   },
+//   error: function (xhr, status, error) {
+//     MessageBox.error("Errore durante la cancellazione della tabella:\n" + xhr.responseText);
+//   }
+// });
