@@ -388,18 +388,18 @@ sap.ui.define([
         function (data) {
           console.log(data.value);
 
-          // data.value.forEach(dataElement => {
+          data.value.forEach(dataElement => {
 
-          //   dataElement.quantita_giacenza = this.filterLetters(dataElement.quantita_giacenza)
-          //   dataElement.prezzo_unitario = this.filterLetters(dataElement.prezzo_unitario)
+            dataElement.quantita_giacenza = this.filterLetters(dataElement.quantita_giacenza)
+            dataElement.prezzo_unitario = this.filterLetters(dataElement.prezzo_unitario)
 
-          //   if (dataElement.sconto) {
-          //     dataElement.sconto = this.filterLetters(dataElement.sconto)
-          //     console.log("KKK");
+            if (dataElement.sconto) {
+              dataElement.sconto = this.filterLetters(dataElement.sconto)
+              console.log("KKK");
               
-          //   }
+            }
 
-          // });
+          });
 
 
           that.getView().getModel("AddProducts").setProperty('/Prodotti', data.value)
