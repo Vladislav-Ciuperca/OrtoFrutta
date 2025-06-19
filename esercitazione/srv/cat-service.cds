@@ -22,6 +22,5 @@ service CatalogFruttarolo {
         }
     ) returns String;
 
-    // ✅ Aggiunto qui sotto
     function clearFruttarolo() returns String;
 }
